@@ -7,7 +7,7 @@ import { SiteLayoutComponent } from '../shared/layouts/site-layout/site-layout.c
 import { Products } from '../shared/interface';
 import { ProdutsService } from '../shared/layouts/servises/products.service';
 
-// var svgToMiniDataURI = require('mini-svg-data-uri'  jkjb);
+// var svgToMiniDataURI = require('mini-svg-data-uri');
 // import 'jquery';
 // import { SiteLayoutComponent } from '../ass'
 
