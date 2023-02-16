@@ -6387,7 +6387,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    backend_url: 'http://localhost:5000'
+    backend_url: 'https://quickpic1.adaptable.app'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,14 +1,14 @@
 {
 
     "/uploads/*": {
-        "target": "http://localhost:5000",
+        "target": "https://quickpic1.adaptable.app/",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true
     }, 
 
     "/api/*": {
-        "target": "http://localhost:5000",
+        "target": "https://quickpic1.adaptable.app/",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true
