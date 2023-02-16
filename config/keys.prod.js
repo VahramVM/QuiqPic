@@ -3,5 +3,4 @@ module.exports = {
     jwt: process.env.JWT
 }
 
-//mongodb://localhost:27017/myapp
 
