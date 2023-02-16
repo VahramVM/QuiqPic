@@ -16,6 +16,7 @@ declare var Caman: any;
 declare const fabric: any;
 declare const $: any;
 
+
 @Injectable({
   providedIn: 'root',
 })
