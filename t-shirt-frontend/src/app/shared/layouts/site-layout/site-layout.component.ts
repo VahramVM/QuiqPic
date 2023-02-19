@@ -496,14 +496,6 @@ export class SiteLayoutComponent implements AfterViewInit {
     let checkWidth = window.innerWidth;
 
 
-    if (checkWidth < 800) {
-      console.log(800, 'ok');
-      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 1.5;
-      this.canvasHtmlHeight = (this.canvasHtmlWidth * this.dataService.heightKey) * 1.5;
-      this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) * 1.5;
-    }
-
-
     this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
     this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
     this.canvasCenteredPosition = this.dataService.canvasCenteredPosition;

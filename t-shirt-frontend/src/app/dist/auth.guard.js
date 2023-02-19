@@ -7,30 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AuthGuard = void 0;
-var rxjs_1 = require("rxjs");
 var core_1 = require("@angular/core");
 var AuthGuard = /** @class */ (function () {
-    function AuthGuard(auth, router) {
-        this.auth = auth;
-        this.router = router;
+    function AuthGuard() {
     }
-    AuthGuard.prototype.canActivate = function (route, state) {
-        if (this.auth.isAuthenticated()) {
-            // console.log(this.auth.isAuthenticated());
-            return rxjs_1.of(true);
-        }
-        else {
-            // console.log(this.auth.isAuthenticated());
-            return this.router.navigate(['/login'], {
-                queryParams: {
-                    accessDenied: true
-                }
-            });
-            // return of(false)
-        }
-    };
-    AuthGuard.prototype.canActivateChild = function (route, state) {
-        return this.canActivate(route, state);
+    AuthGuard.prototype.canActivate = function (next, state) {
+        return true;
     };
     AuthGuard = __decorate([
         core_1.Injectable({

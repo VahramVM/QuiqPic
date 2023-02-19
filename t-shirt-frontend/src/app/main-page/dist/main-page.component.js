@@ -9,13 +9,18 @@ exports.__esModule = true;
 exports.MainPageComponent = void 0;
 var core_1 = require("@angular/core");
 var MainPageComponent = /** @class */ (function () {
-    function MainPageComponent(router, order, data) {
+    function MainPageComponent(service, router, order, data) {
+        this.service = service;
         this.router = router;
         this.order = order;
         this.data = data;
         this.preview = false;
     }
     MainPageComponent.prototype.ngOnInit = function () {
+        // console.log(this.site.isCarouselOpen);
+    };
+    MainPageComponent.prototype.logOut = function () {
+        this.service.logout();
     };
     MainPageComponent.prototype.redirectPreview = function () {
         this.preview = false;

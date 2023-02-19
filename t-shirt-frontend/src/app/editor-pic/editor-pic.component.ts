@@ -136,7 +136,8 @@ export class EditorPicComponent implements AfterViewInit {
   // public imageFilter = null;
   public textPadding: number = 15;
   public image: string;
-  public objectTypeImage: string = null
+  public objectTypeImage: string = null;
+  public window: number;
 
 
   // public checked = false;
@@ -195,6 +196,8 @@ export class EditorPicComponent implements AfterViewInit {
     private productsService: ProdutsService
   ) {
 
+    this.window = window.innerWidth;
+
     this.productsService.fetch().subscribe(
       (res: Products[]) => {
         this.props.canvasImage = res[1].type;
@@ -234,7 +237,6 @@ export class EditorPicComponent implements AfterViewInit {
 
     //   res => this.canvasCount = res      
     // );
-
 
   }
 
@@ -1575,7 +1577,13 @@ export class EditorPicComponent implements AfterViewInit {
           this.dataService.formatTopKey = 0.08;
           // this.dataService.scaleKey = 1;
           this.dataService.formatSizeSwich();
-          scale = 1.05;
+          if (window.innerWidth < 600) {
+            scale = this.d;
+            console.log(this.scaleKey = this.d, 'this.scaleKey = this.d');
+            
+          } else {
+            scale = 1.05;
+          }
         } else {
           this.dataService.horizontalVertical = false;
           // this.dataService.scaleKey = 1;
@@ -1584,7 +1592,13 @@ export class EditorPicComponent implements AfterViewInit {
           // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
           this.dataService.formatTopKey = -0.00;
           this.dataService.formatSizeSwich();
-          scale = 1;
+          if (window.innerWidth < 600) {
+            scale = this.d;
+            console.log(this.scaleKey = this.d, 'this.scaleKey = this.d');
+
+          } else {
+            scale = 1;
+          }
 
           // scale = this.dataService.scaleKey;
         }
@@ -1626,6 +1640,9 @@ export class EditorPicComponent implements AfterViewInit {
       // const image = fabric.util.groupSVGElements(objects, options);
       const imageWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - this.dataService.widthKey * window.innerWidth) / this.b + (window.innerWidth - this.dataService.widthKey * window.innerWidth) / 40);
       const imageHeight = imageWidth * this.c;
+
+      console.log(imageWidth, 'imageWidth');
+      
 
       image.set({
 
@@ -2467,8 +2484,9 @@ export class EditorPicComponent implements AfterViewInit {
               sel.scaleToWidth(formatHeight * scaleKey / 0.8);
 
             } else {
-              sel.scaleToWidth(formatWidth * scaleKey / 1);
-              sel.scaleToHeight(formatHeight * scaleKey / 1);
+              
+              sel.scaleToWidth(formatWidth * scaleKey / 0.4);
+              sel.scaleToHeight(formatHeight * scaleKey / 0.4);
 
             }
           }

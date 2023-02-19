@@ -42,7 +42,7 @@ var AuthServices = /** @class */ (function () {
     AuthServices.prototype.getToken = function () {
         return this.token;
     };
-    AuthServices.prototype.isAuthenticaded = function () {
+    AuthServices.prototype.isAuthenticated = function () {
         return !!this.token;
     };
     AuthServices.prototype.logout = function () {

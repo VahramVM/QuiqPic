@@ -32,11 +32,11 @@ var LoginPageComponent = /** @class */ (function () {
             if (params['registered']) {
                 console.log(params);
                 material_service_1.Material.mat('Created. Now you can login');
-                alert('Created. Now you can login');
+                // alert('Created. Now you can login');
             }
             else if (params['accessDenied']) {
                 material_service_1.Material.mat('first log in to the system');
-                alert('first log in to the system ');
+                // alert('first log in to the system ');
             }
         });
     };

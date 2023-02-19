@@ -20,24 +20,12 @@ var SizeFormatComponent = /** @class */ (function () {
         this.formatValue = 'A4';
         this.endPrise = 0;
         this.obj = { objectWidth: null, objectWidthHeight: null, topUpDown: 0 };
-        this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
-        this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
-        this.canvasSizeFormatTop = this.dataService.canvasSizeFormatTop;
-        this.canvasCenteredPosition = this.dataService.canvasCenteredPosition;
-        this.canvasSizeFormatWidth = this.dataService.canvasSizeFormatWidth;
-        this.canvasSizeFormatHeight = this.dataService.canvasSizeFormatHeight;
-        this.canvasSizeFormatLeft = this.dataService.canvasSizeFormatLeft;
-        this.sizePrintKey = this.dataService.sizePrintKey;
-        this.formatWithHeight = this.dataService.formatWithHeight;
-        this.positionTopKey = this.dataService.formatTopKey;
-        this.objectWidth = this.dataService.sizePrintKey;
-        this.objectWidthHeight = this.dataService.formatWithHeight;
-        this.horVert = this.dataService.horVert;
-        this.scaleKey = this.dataService.scaleKey;
         this.getUpdatedMessage();
     }
     ;
     SizeFormatComponent.prototype.ngOnInit = function () {
+    };
+    SizeFormatComponent.prototype.getUpdatedMessage = function () {
         var _this = this;
         this.dataService.canvasDivSelect.subscribe(function (res) {
             _this.canvasSelect = res;
@@ -47,44 +35,41 @@ var SizeFormatComponent = /** @class */ (function () {
         this.dataService.formatValue1.subscribe(function (res) {
             _this.formatValue = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
         // this.canvas.setHeight(this.canvasHtmlHeight);
         // this.canv = this.dataService.canvasSelect
-    };
-    SizeFormatComponent.prototype.getUpdatedMessage = function () {
-        var _this = this;
         this.dataService.formatA4Horizontal.subscribe(function (res) {
             _this.sizePrintKey = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
         this.dataService.scaleKeyy.subscribe(function (res) {
             _this.scaleKey = res;
-            console.log(res);
-            _this.setFormatHeightTop();
+            console.log(res, 'RES');
+            // this.setFormatHeightTop();
         });
         this.dataService.formatA4Vertical.subscribe(function (res) {
             _this.formatWithHeight = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
         this.dataService.formatTop.subscribe(function (res) {
             _this.positionTopKey = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
         this.dataService.endPriseValue.subscribe(function (res) {
             _this.endPrise = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
         this.dataService.horVertt.subscribe(function (res) {
             _this.horVert = res;
             // console.log(res);
-            _this.setFormatHeightTop();
+            // this.setFormatHeightTop();
         });
-        this.setFormatHeightTop();
+        // this.setFormatHeightTop();
     };
     SizeFormatComponent.prototype.changePosition = function () {
         this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);
@@ -152,23 +137,29 @@ var SizeFormatComponent = /** @class */ (function () {
         // this.counterNum();
         this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
         this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
-        this.canvasCenteredPosition = this.dataService.canvasCenteredPosition;
-        this.canvasSizeFormatWidth = this.dataService.canvasSizeFormatWidth;
-        this.canvasSizeFormatHeight = this.dataService.canvasSizeFormatHeight;
-        this.canvasSizeFormatTop = this.dataService.canvasSizeFormatTop;
-        this.canvasSizeFormatLeft = this.dataService.canvasSizeFormatLeft;
+        this.setFormatHeightTop();
         this.siteLayout.moveWithFormat(this.scaleKey, true);
     };
     SizeFormatComponent.prototype.setFormatHeightTop = function () {
+        this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
+        this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
+        this.sizePrintKey = this.dataService.sizePrintKey;
+        this.formatWithHeight = this.dataService.formatWithHeight;
+        this.positionTopKey = this.dataService.formatTopKey;
+        this.objectWidth = this.dataService.sizePrintKey;
+        this.objectWidthHeight = this.dataService.formatWithHeight;
+        this.horVert = this.dataService.horVert;
+        // this.scaleKey = this.dataService.scaleKey;
         // this.dataService.formatTopKey = 0.5;
         var positionTopKey = this.canvasHtmlWidth * this.positionTopKey;
         this.canvasSizeFormatWidth = this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40);
         // console.log('width', this.canvasSizeFormatWidth);
-        this.canvasSizeFormatTop = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey;
+        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) + 50;
         this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
         // console.log('height', this.canvasSizeFormatHeight);
         this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;
         this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
+        // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);
     };
     SizeFormatComponent = __decorate([
         core_1.Component({

@@ -88,10 +88,42 @@
 
             </div>
 
+            <div  style=" width: 200px; z-index: 10;" >
+                <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;"
+                    class="">
+                    <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" 
+                    type="radio" name="sizeKey" value="big" [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
+                    <div style="font-size: 120%; text-align: center; width: 120%;">
+                        <b> {{size.key}} </b>
+                    </div>
+                </label>
+
+            </div>
+
+            <div
+                            style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 80%;">
+                            <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
+                                *ngFor="let imageProduct of products; let i = index" (click)=" 
+                                canvas.props.canvasImage = imageProduct.type; 
+                                canvas.props.canvasFill = productBrandColors[0]; 
+                                allColors = true;
+                                orderDatas.productTypeName = imageProduct.name;
+                                orderDatas.productColor = '';
+                                indexBrandType = i;
+                                setCanvasImage();  
+                                productsTypeColor();" (colorPickerChange)="setCanvasFill()">
+                                <img class="productType" [src]="imageProduct.type1">
+                                <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
+                                <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
+                            </div> <br>
+                        </div>
+
+
+
         </div>
 
         <div *ngIf="canvas.canvasCount !== 0" class="col s7 m3 l4 xl10 offset-s0 offset-m9 offset-l6 offset-xl6"
-            style="padding-top: 530px; position: absolute; width: 180px;">
+            style="padding-top: 580px; position: absolute; width: 180px;">
             <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                 class="btn btn-danger" [disabled]="canvas.selected" (click)="confirmClear(); isCarouselOpen = true">
                 <i aria-hidden="true"></i> Clean

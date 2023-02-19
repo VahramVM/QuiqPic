@@ -38,11 +38,11 @@ export class LoginPageComponent implements OnInit {
       if (params['registered']) {
         console.log(params);
         Material.mat('Created. Now you can login');
-        alert('Created. Now you can login');
+        // alert('Created. Now you can login');
 
       } else if (params['accessDenied']) {
         Material.mat('first log in to the system');
-        alert('first log in to the system ');
+        // alert('first log in to the system ');
 
       }
     })

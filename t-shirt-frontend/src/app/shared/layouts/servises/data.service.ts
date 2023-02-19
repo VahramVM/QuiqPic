@@ -51,6 +51,7 @@ export class DataService {
   public products: Products[] = [];
   public indexBrandType: number = 0;
 
+
   // public endPrise: number = 0;
   // public scaleKeyyy: number = 2.3;
   // public scaleBlock: boolean;
@@ -203,7 +204,7 @@ export class DataService {
 
   ngOnInit(): void {
     // this.formatSizeSwich();
-   
+
   }
 
   public formats = [{ format: 'A3', formatSize: 297, formatPrise: 500 }, { format: 'A4', formatSize: 297, formatPrise: 400 }, { format: 'A5', formatSize: 210, formatPrise: 300 }, { format: 'A6', formatSize: 148, formatPrise: 400 }];
@@ -231,13 +232,22 @@ export class DataService {
 
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-                this.scaleKey = 4.5;
+                if (window.innerWidth < 600) {
+                  this.scaleKey = 0.4
+                } else {
+                  this.scaleKey = 4.5;
+                }
               } else {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind + 1].formatSize) / 2);
-                this.scaleKey = 4.5;
+                if (window.innerWidth < 600) {
+                  this.scaleKey = 0.4
+                } else {
+                  this.scaleKey = 4.5;
+                }
+                
               }
             } else {
-              
+
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
                 this.scaleKey = 2.5;
@@ -311,10 +321,12 @@ export class DataService {
 
   public initCalculations() {
 
-    this.sizePrintKey = 686 / ((686 - 297) / 2);
-    this.formatWithHeight = 0.707; // 0.707
-    this.formatTopKey = -0.03;
-    this.horVert = true;
+    // this.sizePrintKey = 686 / ((686 - 297) / 2);
+    // this.formatWithHeight = 0.707; // 0.707
+    // this.formatTopKey = -0.03;
+    // this.horVert = true;
+    // this.scaleKey = 1.1;
+
     // if (this.horVert) {
     //   this.scaleKey = 1
     // } else {
@@ -324,15 +336,31 @@ export class DataService {
     // }
     this.scaleKey = 1.1;
 
-    this.canvasHtmlWidth = window.innerWidth - this.widthKey * window.innerWidth;
+    var checkWidth = window.innerWidth;
+
+
+    if (checkWidth < 600) {
+      this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
+      this.canvasCenteredPosition = (window.innerWidth / this.positionKey) / 7;
+      
+    } else {
+
+      
+      this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
+      this.canvasCenteredPosition = (window.innerWidth / this.positionKey);
+    }
+
+    // this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
     this.canvasHtmlHeight = this.canvasHtmlWidth * this.heightKey;
 
     this.positionTopKey = this.canvasHtmlWidth * this.formatTopKey; // if wont to get up then it must be + in first, else get down -
-    this.canvasSizeFormatWidth = this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40);
+    this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
     this.canvasSizeFormatTop = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - this.positionTopKey;
-    this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
+    this.canvasSizeFormatHeight = (this.canvasSizeFormatWidth * this.formatWithHeight);
     this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;
-    this.canvasCenteredPosition = window.innerWidth / this.positionKey;
+
+    // this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
+    // this.canvasCenteredPosition = window.innerWidth / this.positionKey;
 
 
   }

@@ -26,8 +26,8 @@ var routes = [
     },
     {
         path: '', component: main_page_component_1.MainPageComponent, canActivate: [authguard_1.AuthGuard], children: [
-            { path: 'main', component: site_layout_component_1.SiteLayoutComponent, canActivate: [authguard_1.AuthGuard] },
-            { path: 'order', component: shoping_page_component_1.ShopingPageComponent, canActivate: [authguard_1.AuthGuard] },
+            { path: 'main', component: site_layout_component_1.SiteLayoutComponent },
+            { path: 'order', component: shoping_page_component_1.ShopingPageComponent },
         ]
     }
 ];

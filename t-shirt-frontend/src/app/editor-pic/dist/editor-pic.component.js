@@ -110,6 +110,7 @@ var EditorPicComponent = /** @class */ (function () {
             affectStroke: false
         };
         this.imageEditor = false;
+        this.window = window.innerWidth;
         this.productsService.fetch().subscribe(function (res) {
             _this.props.canvasImage = res[1].type;
         });
@@ -1127,7 +1128,13 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.dataService.formatTopKey = 0.08;
                     // this.dataService.scaleKey = 1;
                     _this.dataService.formatSizeSwich();
-                    scale = 1.05;
+                    if (window.innerWidth < 600) {
+                        scale = _this.d;
+                        console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
+                    }
+                    else {
+                        scale = 1.05;
+                    }
                 }
                 else {
                     _this.dataService.horizontalVertical = false;
@@ -1137,7 +1144,13 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
                     _this.dataService.formatTopKey = -0.00;
                     _this.dataService.formatSizeSwich();
-                    scale = 1;
+                    if (window.innerWidth < 600) {
+                        scale = _this.d;
+                        console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
+                    }
+                    else {
+                        scale = 1;
+                    }
                     // scale = this.dataService.scaleKey;
                 }
             }
@@ -1167,6 +1180,7 @@ var EditorPicComponent = /** @class */ (function () {
             // const image = fabric.util.groupSVGElements(objects, options);
             var imageWidth = (window.innerWidth - _this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - _this.dataService.widthKey * window.innerWidth) / _this.b + (window.innerWidth - _this.dataService.widthKey * window.innerWidth) / 40);
             var imageHeight = imageWidth * _this.c;
+            console.log(imageWidth, 'imageWidth');
             image.set({
                 // multiplier: 0.5,
                 // originX: 'center',
@@ -1840,8 +1854,8 @@ var EditorPicComponent = /** @class */ (function () {
                             sel.scaleToWidth(formatHeight * scaleKey / 0.8);
                         }
                         else {
-                            sel.scaleToWidth(formatWidth * scaleKey / 1);
-                            sel.scaleToHeight(formatHeight * scaleKey / 1);
+                            sel.scaleToWidth(formatWidth * scaleKey / 0.4);
+                            sel.scaleToHeight(formatHeight * scaleKey / 0.4);
                         }
                     }
                 }
