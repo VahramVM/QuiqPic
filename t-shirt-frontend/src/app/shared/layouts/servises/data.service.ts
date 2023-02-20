@@ -232,19 +232,10 @@ export class DataService {
 
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-                if (window.innerWidth < 600) {
-                  this.scaleKey = 0.4
-                } else {
                   this.scaleKey = 4.5;
-                }
               } else {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind + 1].formatSize) / 2);
-                if (window.innerWidth < 600) {
-                  this.scaleKey = 0.4
-                } else {
                   this.scaleKey = 4.5;
-                }
-                
               }
             } else {
 

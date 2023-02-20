@@ -1578,7 +1578,7 @@ export class EditorPicComponent implements AfterViewInit {
           // this.dataService.scaleKey = 1;
           this.dataService.formatSizeSwich();
           if (window.innerWidth < 600) {
-            scale = this.d;
+            scale = 0.4;
             console.log(this.scaleKey = this.d, 'this.scaleKey = this.d');
             
           } else {
@@ -1593,7 +1593,7 @@ export class EditorPicComponent implements AfterViewInit {
           this.dataService.formatTopKey = -0.00;
           this.dataService.formatSizeSwich();
           if (window.innerWidth < 600) {
-            scale = this.d;
+            scale = 0.4;
             console.log(this.scaleKey = this.d, 'this.scaleKey = this.d');
 
           } else {
@@ -2484,9 +2484,8 @@ export class EditorPicComponent implements AfterViewInit {
               sel.scaleToWidth(formatHeight * scaleKey / 0.8);
 
             } else {
-              
-              sel.scaleToWidth(formatWidth * scaleKey / 0.4);
-              sel.scaleToHeight(formatHeight * scaleKey / 0.4);
+              sel.scaleToWidth(formatWidth * scaleKey / 1);
+              sel.scaleToHeight(formatHeight * scaleKey / 1);
 
             }
           }

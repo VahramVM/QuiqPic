@@ -728,7 +728,14 @@ export class SiteLayoutComponent implements AfterViewInit {
     this.dataService.sizeValue = a;
 
     this.dataService.formatSizeSwich();
-    this.canvas.moveWithFormat(this.dataService.scaleKey, true);
+
+    if (window.innerWidth < 600) {
+      this.canvas.moveWithFormat(this.dataService.scaleKey/0.4, true);
+
+    } else {
+      this.canvas.moveWithFormat(this.dataService.scaleKey, true);
+
+    }
     this.canvas.canvas.discardActiveObject().renderAll();
 
   }

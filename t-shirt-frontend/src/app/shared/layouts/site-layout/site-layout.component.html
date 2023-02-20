@@ -88,42 +88,11 @@
 
             </div>
 
-            <div  style=" width: 200px; z-index: 10;" >
-                <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;"
-                    class="">
-                    <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" 
-                    type="radio" name="sizeKey" value="big" [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
-                    <div style="font-size: 120%; text-align: center; width: 120%;">
-                        <b> {{size.key}} </b>
-                    </div>
-                </label>
-
-            </div>
-
-            <div
-                            style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 80%;">
-                            <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
-                                *ngFor="let imageProduct of products; let i = index" (click)=" 
-                                canvas.props.canvasImage = imageProduct.type; 
-                                canvas.props.canvasFill = productBrandColors[0]; 
-                                allColors = true;
-                                orderDatas.productTypeName = imageProduct.name;
-                                orderDatas.productColor = '';
-                                indexBrandType = i;
-                                setCanvasImage();  
-                                productsTypeColor();" (colorPickerChange)="setCanvasFill()">
-                                <img class="productType" [src]="imageProduct.type1">
-                                <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
-                                <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
-                            </div> <br>
-                        </div>
-
-
-
         </div>
 
+
         <div *ngIf="canvas.canvasCount !== 0" class="col s7 m3 l4 xl10 offset-s0 offset-m9 offset-l6 offset-xl6"
-            style="padding-top: 580px; position: absolute; width: 180px;">
+            style="padding-top: 650px; position: absolute; width: 180px;">
             <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                 class="btn btn-danger" [disabled]="canvas.selected" (click)="confirmClear(); isCarouselOpen = true">
                 <i aria-hidden="true"></i> Clean
@@ -186,7 +155,8 @@
             </button> -->
 
 
-            <button *ngIf="canvas.canvasCount === 0" class="btn-small #00e676" style="margin-left: 5px;" (click)="isOpen = !isOpen">
+            <button *ngIf="canvas.canvasCount === 0" class="btn-small #00e676" style="margin-left: 55px; margin-top: 10px;"
+                (click)="isOpen = !isOpen">
                 <i class="material-icons right">cloud</i>
                 Themes
             </button>
@@ -235,15 +205,12 @@
 
 
         <div *ngIf="canvas.canvasCount !== 0"
-            style="margin-left: 25%; position: absolute; margin-top: 40%; z-index: 3;">
+            style="margin-left: 25%; position: absolute; margin-top: 130%; z-index: 3;">
             <div style="z-index: 10;">
-                <input type="range" [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()"
-                   >
+                <input type="range" [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
             </div>
             <label style="margin-top: -40px; margin-left: 160px; position: absolute; cursor:pointer; z-index: 10;">
-                <input
-                id="shadowSVG" type="checkbox" (change)="shadowSVG = !shadowSVG;" class="filled-in"
-                />
+                <input id="shadowSVG" type="checkbox" (change)="shadowSVG = !shadowSVG;" class="filled-in" />
                 <i class="fa fa-cloud" style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
             </label>
         </div>
@@ -262,6 +229,8 @@
 
 
         </div>
+
+        
 
 
         <!-- <h1>{{categories[0].imageSrc}}</h1>
@@ -294,14 +263,14 @@
                         <div style="width: 60%; height: auto; margin-left: 24%;">
 
                             <img [src]="image.imageSrc">
-                            <button data-toggle="tooltip" style="margin-top: 0px;" (click)="selectPicture();  isCarouselOpen = false "
-                                *ngIf="canvas.canvasCount === 0 "
+                            <button data-toggle="tooltip" style="margin-top: 0px;"
+                                (click)="selectPicture();  isCarouselOpen = false " *ngIf="canvas.canvasCount === 0 "
                                 class="but btn-small #00e676 green accent-4 black-text">
                                 <i style="margin-left: -9px; margin-top: -0px;" class="check material-icons">check</i>
                             </button>
 
                         </div>
-                        
+
                     </ng-template>
                 </ng-container>
                 <ng-template carouselSlide id="image.id">
@@ -313,7 +282,37 @@
         </div>
 
 
+        <div class="card-content grey lighten-4">
 
+        <div style="margin-top: 5%; width: 40px; position: absolute;" class="row">
+            <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;" class="">
+                <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" type="radio"
+                    name="sizeKey" value="big"
+                    [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
+                <div style="font-size: 120%; text-align: center; width: 120%;">
+                    <b> {{size.key}} </b>
+                </div>
+            </label>
+
+        </div>
+        </div>
+
+        <div style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 140%;">
+            <div class="card-panel hoverable row" style="margin-top: 3%; margin-right: 0%;" id="show"
+                *ngFor="let imageProduct of products; let i = index" (click)=" 
+                            canvas.props.canvasImage = imageProduct.type; 
+                            canvas.props.canvasFill = productBrandColors[0]; 
+                            allColors = true;
+                            orderDatas.productTypeName = imageProduct.name;
+                            orderDatas.productColor = '';
+                            indexBrandType = i;
+                            setCanvasImage();  
+                            productsTypeColor();" (colorPickerChange)="setCanvasFill()">
+                <img class="productType" [src]="imageProduct.type1">
+                <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
+                <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
+            </div> <br>
+        </div>
 
 
 
@@ -419,7 +418,7 @@
 
 
                         <div style="margin-top: 5%;" class="card">
-                            <div  class="card-content" style="height: 120px; width: 100%;">
+                            <div class="card-content" style="height: 120px; width: 100%;">
                                 <a
                                     [href]="indexBrand === null ? productBrands[0].linkeBrand : productBrands[indexBrand].linkeBrand">
                                     <img style="width: 40%; height: auto;  display: flex;
@@ -432,7 +431,7 @@
                             <div class="card-tabs">
 
                                 <ul class="tabs tabs-fixed-width">
-                                    <li  *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
+                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
                                             canvas.props.brandName = productBrand.name;
                                             orderDatas.brendName = productBrand.name;
                                             productBrandColor(); 
@@ -469,8 +468,9 @@
                                     <div style="margin-top: 5%;" class="row">
                                         <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;"
                                             class="col s5 m3 l2 offset-s0 offset-m0 offset-l0">
-                                            <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" [disabled]="size.value" 
-                                            type="radio" name="sizeKey" value="big" [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
+                                            <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)"
+                                                [disabled]="size.value" type="radio" name="sizeKey" value="big"
+                                                [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
                                             <div style="font-size: 120%; text-align: center; width: 120%;">
                                                 <b> {{size.key}} </b>
                                             </div>
@@ -903,11 +903,12 @@
                                                     (click)="canvas.reRender()" name="group1" type="radio" checked />
                                                 <span>Straight</span>
                                             </label>
-                                            
+
                                             <label>
                                                 <input style="margin-left: 10px;"
                                                     [disabled]="canvas.intCountText > 1 && canvas.intCountText !== 0 "
-                                                    (change)="canvas.props.textCurved = 2" (click)="canvas.reRender1(); canvas.props.diametr = 300"
+                                                    (change)="canvas.props.textCurved = 2"
+                                                    (click)="canvas.reRender1(); canvas.props.diametr = 300"
                                                     name="group1" type="radio" />
                                                 <span>Bend</span>
                                             </label>
@@ -931,7 +932,8 @@
                                 <!-- <div>{{canvas.props.diametr}}</div> -->
                             </div>
 
-                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.props.diametr < 300" class="col s12 offset-s0" style="padding-top: 20px;">
+                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.props.diametr < 300"
+                                class="col s12 offset-s0" style="padding-top: 20px;">
 
                                 <div class="col s2">Font Size</div>
                                 <div class="col s8">

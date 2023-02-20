@@ -1129,7 +1129,7 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.scaleKey = 1;
                     _this.dataService.formatSizeSwich();
                     if (window.innerWidth < 600) {
-                        scale = _this.d;
+                        scale = 0.4;
                         console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
                     }
                     else {
@@ -1145,7 +1145,7 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.dataService.formatTopKey = -0.00;
                     _this.dataService.formatSizeSwich();
                     if (window.innerWidth < 600) {
-                        scale = _this.d;
+                        scale = 0.4;
                         console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
                     }
                     else {
@@ -1854,8 +1854,8 @@ var EditorPicComponent = /** @class */ (function () {
                             sel.scaleToWidth(formatHeight * scaleKey / 0.8);
                         }
                         else {
-                            sel.scaleToWidth(formatWidth * scaleKey / 0.4);
-                            sel.scaleToHeight(formatHeight * scaleKey / 0.4);
+                            sel.scaleToWidth(formatWidth * scaleKey / 1);
+                            sel.scaleToHeight(formatHeight * scaleKey / 1);
                         }
                     }
                 }
