@@ -226,9 +226,17 @@ var SiteLayoutComponent = /** @class */ (function () {
             // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) * 1.5;
         }
         $('#myCarousel').trigger('refresh.owl.carousel');
-        this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+        if (checkWidth < 600) {
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 7;
+        }
+        else {
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+        }
+        // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
         this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
-        this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+        // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
     };
     SiteLayoutComponent.prototype.Resize = function () {
         console.log('resize');
@@ -476,6 +484,7 @@ var SiteLayoutComponent = /** @class */ (function () {
     SiteLayoutComponent.prototype.sizeValuePass = function (a) {
         this.dataService.sizeValue = a;
         this.dataService.formatSizeSwich();
+        //mobile
         if (window.innerWidth < 600) {
             this.canvas.moveWithFormat(this.dataService.scaleKey / 0.4, true);
         }

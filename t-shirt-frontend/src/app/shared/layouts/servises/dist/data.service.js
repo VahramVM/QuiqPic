@@ -244,6 +244,7 @@ var DataService = /** @class */ (function () {
         // }
         this.scaleKey = 1.1;
         var checkWidth = window.innerWidth;
+        //mobile
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
             this.canvasCenteredPosition = (window.innerWidth / this.positionKey) / 7;

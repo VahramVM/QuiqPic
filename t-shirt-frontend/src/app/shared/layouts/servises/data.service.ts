@@ -232,10 +232,10 @@ export class DataService {
 
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-                  this.scaleKey = 4.5;
+                this.scaleKey = 4.5;
               } else {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind + 1].formatSize) / 2);
-                  this.scaleKey = 4.5;
+                this.scaleKey = 4.5;
               }
             } else {
 
@@ -329,14 +329,13 @@ export class DataService {
 
     var checkWidth = window.innerWidth;
 
-
+    //mobile
     if (checkWidth < 600) {
       this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
       this.canvasCenteredPosition = (window.innerWidth / this.positionKey) / 7;
-      
+
     } else {
 
-      
       this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
       this.canvasCenteredPosition = (window.innerWidth / this.positionKey);
     }
