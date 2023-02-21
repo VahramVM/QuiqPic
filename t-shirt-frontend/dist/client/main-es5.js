@@ -5297,7 +5297,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //   this.scaleKey = 4.3
           // }
           this.scaleKey = 1.1;
-          var checkWidth = window.innerWidth;
+          var checkWidth = window.innerWidth; //mobile
 
           if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
@@ -7492,9 +7492,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           $('#myCarousel').trigger('refresh.owl.carousel');
-          this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
-          this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
-          this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
+
+          if (checkWidth < 600) {
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+            this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 7;
+          } else {
+            this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
+            this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
+          } // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+
+
+          this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey; // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
         }
       }, {
         key: "Resize",
@@ -7816,7 +7824,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "sizeValuePass",
         value: function sizeValuePass(a) {
           this.dataService.sizeValue = a;
-          this.dataService.formatSizeSwich();
+          this.dataService.formatSizeSwich(); //mobile
 
           if (window.innerWidth < 600) {
             this.canvas.moveWithFormat(this.dataService.scaleKey / 0.4, true);
