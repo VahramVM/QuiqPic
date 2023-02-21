@@ -227,7 +227,7 @@ var SiteLayoutComponent = /** @class */ (function () {
         }
         $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.5;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.7;
             this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 7;
         }
         else {
