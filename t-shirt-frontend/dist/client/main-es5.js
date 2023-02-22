@@ -5296,7 +5296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //   console.log('ggggg');
           //   this.scaleKey = 4.3
           // }
-          this.scaleKey = 1.1;
+          this.scaleKey = 1;
           var checkWidth = window.innerWidth; //mobile
 
           if (checkWidth < 600) {
@@ -7494,7 +7494,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $('#myCarousel').trigger('refresh.owl.carousel');
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.4;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.2;
             this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 7;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
@@ -9731,9 +9731,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.formatA4H(); // this.setformatScale();
           // this.getUpdatedMessage();
           // this.counterNum();
+          // this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
+          // this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
 
-          this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
-          this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
           this.setFormatHeightTop();
           this.siteLayout.moveWithFormat(this.scaleKey, true);
         }

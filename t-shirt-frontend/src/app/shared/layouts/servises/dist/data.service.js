@@ -242,7 +242,7 @@ var DataService = /** @class */ (function () {
         //   console.log('ggggg');
         //   this.scaleKey = 4.3
         // }
-        this.scaleKey = 1.1;
+        this.scaleKey = 1;
         var checkWidth = window.innerWidth;
         //mobile
         if (checkWidth < 600) {

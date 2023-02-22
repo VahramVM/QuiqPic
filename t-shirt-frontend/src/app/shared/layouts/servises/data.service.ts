@@ -325,7 +325,7 @@ export class DataService {
 
     //   this.scaleKey = 4.3
     // }
-    this.scaleKey = 1.1;
+    this.scaleKey = 1;
 
     var checkWidth = window.innerWidth;
 

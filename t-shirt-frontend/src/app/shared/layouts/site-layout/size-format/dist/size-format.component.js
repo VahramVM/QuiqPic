@@ -135,8 +135,8 @@ var SizeFormatComponent = /** @class */ (function () {
         // this.setformatScale();
         // this.getUpdatedMessage();
         // this.counterNum();
-        this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
-        this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
+        // this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
+        // this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
         this.setFormatHeightTop();
         this.siteLayout.moveWithFormat(this.scaleKey, true);
     };
