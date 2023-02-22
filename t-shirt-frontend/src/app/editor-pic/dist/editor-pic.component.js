@@ -635,16 +635,16 @@ var EditorPicComponent = /** @class */ (function () {
                     if (checkWidth < 600) {
                         if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
                             o.get('type') === 'i-text' && sumHeight > formatHeight) {
-                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
-                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.35));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.35));
                         }
                         if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
-                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.35));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.35));
                         }
                         if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.3));
-                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.3));
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.35));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.35));
                         }
                     }
                     else {

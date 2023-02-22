@@ -92,7 +92,7 @@
 
 
         <div *ngIf="canvas.canvasCount !== 0" class="col s7 m3 l4 xl10 offset-s0 offset-m9 offset-l6 offset-xl6"
-            style="top: 55%; position: absolute; z-index: 2; width: 180px; height: 100px;">
+            style="margin-top: 110%; position: absolute; z-index: 2; width: 180px; height: 100px;">
             <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                 class="btn btn-danger" [disabled]="canvas.selected" (click)="confirmClear(); isCarouselOpen = true">
                 <i aria-hidden="true"></i> Clean
@@ -252,7 +252,7 @@
 
 
         <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}"
-            style="margin-top: -3%; position: absolute; z-index: 0;"
+            style="margin-top: -16%; position: absolute; z-index: 0;"
             class="owlCarousel owl-theme selectPic col s12 m12 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0">
             <owl-carousel-o id="myCarousel" #owlElement [options]="customOptions" (translated)="getPassedData($event)">
 
