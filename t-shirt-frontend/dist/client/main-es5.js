@@ -1286,23 +1286,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var sin = Math.abs(Math.sin(angle));
               var formatWidth = window.innerWidth - _this2.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this2.dataService.widthKey * window.innerWidth) / _this2.b + (window.innerWidth - _this2.dataService.widthKey * window.innerWidth) / 40);
               var formatHeight = formatWidth * _this2.c;
+              var checkWidth = window.innerWidth;
 
               _this2.canvas.getObjects().filter(function (o) {
-                if (o.get('type') === 'i-text' && sumWidth > formatWidth || o.get('type') === 'i-text' && sumHeight > formatHeight) {
-                  console.log('ccccc');
-                  activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-                  activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
-                }
+                if (checkWidth < 600) {
+                  if (o.get('type') === 'i-text' && sumWidth > formatWidth || o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                    activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                    activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                  }
 
-                if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                  activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                  activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                }
+                  if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                    activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                    activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                  }
 
-                if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-                  console.log('kkkkkk');
-                  activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
-                  activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                  if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                    activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                    activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                  }
+                } else {
+                  if (o.get('type') === 'i-text' && sumWidth > formatWidth || o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                    activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                    activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                  }
+
+                  if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                    activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                    activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                  }
+
+                  if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                    activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
+                    activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+                  }
                 }
               });
 
@@ -9609,7 +9625,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           topUpDown: 0
         };
         this.getUpdatedMessage();
-        this.setFormatHeightTop();
       }
 
       _createClass(SizeFormatComponent, [{
@@ -9755,7 +9770,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.canvasSizeFormatWidth = this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40);
           this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey; // console.log('width', this.canvasSizeFormatWidth);
 
-          this.canvasSizeFormatTop = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey;
+          this.canvasSizeFormatTop = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey - 20;
           this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight; // console.log('height', this.canvasSizeFormatHeight);
 
           this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey; // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);

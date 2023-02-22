@@ -896,16 +896,16 @@ export class EditorPicComponent implements AfterViewInit {
 
         const formatWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - this.dataService.widthKey * window.innerWidth) / this.b + (window.innerWidth - this.dataService.widthKey * window.innerWidth) / 40);
         const formatHeight = formatWidth * this.c;
-
+        let checkWidth = window.innerWidth;
 
         this.canvas.getObjects().filter((o) => {
 
-          if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+          if (checkWidth < 600) {
+            if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
             o.get('type') === 'i-text' && sumHeight > formatHeight) {
-            console.log('ccccc');
 
-            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
 
           }
 
@@ -915,12 +915,36 @@ export class EditorPicComponent implements AfterViewInit {
           }
 
           if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-            console.log('kkkkkk');
 
             activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
             activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
           }
 
+
+          } else {
+
+            if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+            o.get('type') === 'i-text' && sumHeight > formatHeight) {
+
+            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+
+          }
+
+          if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+          }
+
+          if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+
+            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
+            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+          }
+
+          }
+
+         
 
         })
 
@@ -1580,7 +1604,7 @@ export class EditorPicComponent implements AfterViewInit {
           if (window.innerWidth < 600) {
             scale = 0.4;
             console.log(this.scaleKey = this.d, 'this.scaleKey = this.d');
-            
+
           } else {
             scale = 1.05;
           }
@@ -1642,7 +1666,7 @@ export class EditorPicComponent implements AfterViewInit {
       const imageHeight = imageWidth * this.c;
 
       console.log(imageWidth, 'imageWidth');
-      
+
 
       image.set({
 

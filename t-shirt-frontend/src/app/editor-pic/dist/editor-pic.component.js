@@ -629,21 +629,37 @@ var EditorPicComponent = /** @class */ (function () {
                 var sin = Math.abs(Math.sin(angle));
                 var formatWidth = (window.innerWidth - _this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - _this.dataService.widthKey * window.innerWidth) / _this.b + (window.innerWidth - _this.dataService.widthKey * window.innerWidth) / 40);
                 var formatHeight = formatWidth * _this.c;
+                var checkWidth = window.innerWidth;
                 _this.canvas.getObjects().filter(function (o) {
-                    if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
-                        o.get('type') === 'i-text' && sumHeight > formatHeight) {
-                        console.log('ccccc');
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                    if (checkWidth < 600) {
+                        if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+                            o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        }
+                        if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        }
+                        if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                        }
                     }
-                    if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                    }
-                    if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-                        console.log('kkkkkk');
-                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
-                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                    else {
+                        if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+                            o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        }
+                        if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        }
+                        if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+                        }
                     }
                 });
                 $(".distance").remove();

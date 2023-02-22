@@ -21,7 +21,6 @@ var SizeFormatComponent = /** @class */ (function () {
         this.endPrise = 0;
         this.obj = { objectWidth: null, objectWidthHeight: null, topUpDown: 0 };
         this.getUpdatedMessage();
-        this.setFormatHeightTop();
     }
     ;
     SizeFormatComponent.prototype.ngOnInit = function () {
@@ -156,7 +155,7 @@ var SizeFormatComponent = /** @class */ (function () {
         this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
         this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
         // console.log('width', this.canvasSizeFormatWidth);
-        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey);
+        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) - 20;
         this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
         // console.log('height', this.canvasSizeFormatHeight);
         this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;

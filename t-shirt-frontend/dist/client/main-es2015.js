@@ -920,21 +920,37 @@ class EditorPicComponent {
                 const sin = Math.abs(Math.sin(angle));
                 const formatWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - this.dataService.widthKey * window.innerWidth) / this.b + (window.innerWidth - this.dataService.widthKey * window.innerWidth) / 40);
                 const formatHeight = formatWidth * this.c;
+                let checkWidth = window.innerWidth;
                 this.canvas.getObjects().filter((o) => {
-                    if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
-                        o.get('type') === 'i-text' && sumHeight > formatHeight) {
-                        console.log('ccccc');
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                    if (checkWidth < 600) {
+                        if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+                            o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        }
+                        if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        }
+                        if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                        }
                     }
-                    if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                    }
-                    if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-                        console.log('kkkkkk');
-                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
-                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                    else {
+                        if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
+                            o.get('type') === 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        }
+                        if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        }
+                        if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+                        }
                     }
                 });
                 $(".distance").remove();
@@ -5918,7 +5934,6 @@ class SizeFormatComponent {
         this.endPrise = 0;
         this.obj = { objectWidth: null, objectWidthHeight: null, topUpDown: 0 };
         this.getUpdatedMessage();
-        this.setFormatHeightTop();
     }
     ;
     ngOnInit() {
@@ -6052,7 +6067,7 @@ class SizeFormatComponent {
         this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
         this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
         // console.log('width', this.canvasSizeFormatWidth);
-        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey);
+        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) - 20;
         this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
         // console.log('height', this.canvasSizeFormatHeight);
         this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;

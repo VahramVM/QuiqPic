@@ -42,9 +42,7 @@ export class SizeFormatComponent implements OnInit {
   constructor(private dataService: DataService,
     private siteLayout: SiteLayoutComponent) {
 
-
     this.getUpdatedMessage();
-    this.setFormatHeightTop();
   };
 
 
@@ -271,7 +269,7 @@ export class SizeFormatComponent implements OnInit {
 
     // console.log('width', this.canvasSizeFormatWidth);
 
-    this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey);
+    this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) - 20;
     this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
     // console.log('height', this.canvasSizeFormatHeight);
 
