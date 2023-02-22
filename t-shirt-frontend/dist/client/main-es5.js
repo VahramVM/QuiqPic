@@ -9609,6 +9609,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           topUpDown: 0
         };
         this.getUpdatedMessage();
+        this.setFormatHeightTop();
       }
 
       _createClass(SizeFormatComponent, [{

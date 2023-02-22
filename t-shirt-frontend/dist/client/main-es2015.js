@@ -5918,6 +5918,7 @@ class SizeFormatComponent {
         this.endPrise = 0;
         this.obj = { objectWidth: null, objectWidthHeight: null, topUpDown: 0 };
         this.getUpdatedMessage();
+        this.setFormatHeightTop();
     }
     ;
     ngOnInit() {

@@ -42,15 +42,15 @@ export class SizeFormatComponent implements OnInit {
   constructor(private dataService: DataService,
     private siteLayout: SiteLayoutComponent) {
 
-  
-    this.getUpdatedMessage();
 
+    this.getUpdatedMessage();
+    this.setFormatHeightTop();
   };
 
 
   ngOnInit(): void {
 
-    
+
   }
 
 
@@ -239,7 +239,7 @@ export class SizeFormatComponent implements OnInit {
     // this.counterNum();
     // this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
     // this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
-    
+
 
     this.setFormatHeightTop();
 
@@ -278,9 +278,9 @@ export class SizeFormatComponent implements OnInit {
     this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;
 
 
-      // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);
-  
-    
+    // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);
+
+
   }
 
 }
