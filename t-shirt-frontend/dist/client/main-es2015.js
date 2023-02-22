@@ -928,13 +928,13 @@ class EditorPicComponent {
                         activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
                     }
                     if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
                     }
                     if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
                         console.log('kkkkkk');
-                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
-                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
                     }
                 });
                 $(".distance").remove();
@@ -6048,13 +6048,13 @@ class SizeFormatComponent {
         // this.scaleKey = this.dataService.scaleKey;
         // this.dataService.formatTopKey = 0.5;
         let positionTopKey = this.canvasHtmlWidth * this.positionTopKey;
-        this.canvasSizeFormatWidth = this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40);
+        this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
+        this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 7;
         // console.log('width', this.canvasSizeFormatWidth);
         this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) + 50;
         this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
         // console.log('height', this.canvasSizeFormatHeight);
         this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;
-        this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
         // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);
     }
 }

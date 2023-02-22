@@ -266,7 +266,9 @@ export class SizeFormatComponent implements OnInit {
     // this.dataService.formatTopKey = 0.5;
     let positionTopKey = this.canvasHtmlWidth * this.positionTopKey;
 
-    this.canvasSizeFormatWidth = this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40);
+    this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
+    this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 7;
+
     // console.log('width', this.canvasSizeFormatWidth);
 
     this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) + 50;
@@ -274,7 +276,6 @@ export class SizeFormatComponent implements OnInit {
     // console.log('height', this.canvasSizeFormatHeight);
 
     this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;
-    this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
 
 
       // this.siteLayout.moveWithFormat(this.scaleKey, this.scaleBlock);

@@ -637,13 +637,13 @@ var EditorPicComponent = /** @class */ (function () {
                         activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
                     }
                     if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
-                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
+                        activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                        activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
                     }
                     if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
                         console.log('kkkkkk');
-                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75));
-                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75));
+                        activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                        activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
                     }
                 });
                 $(".distance").remove();
