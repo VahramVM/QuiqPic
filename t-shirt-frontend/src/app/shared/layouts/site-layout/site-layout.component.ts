@@ -299,7 +299,7 @@ export class SiteLayoutComponent implements AfterViewInit {
     $('#myCarousel').trigger('refresh.owl.carousel');
 
     if (checkWidth < 600) {
-      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.8;
       this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 7;
 
     } else {
