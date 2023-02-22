@@ -30,7 +30,7 @@
 
         <!-- <div class="col ">Options</div> -->
         <div *ngIf="canvas.canvasCount !==0" class="col s12 m12 l12 xl12 offset-s0 offset-m0 offset-l0 offset-xl0"
-            style="top: -0.3%; position: absolute; z-index: 1;">
+            style="top: -0.2%; position: absolute; z-index: 1; margin-left: -2%;">
             <div class="btn-group" role="group" aria-label="...">
                 <!-- <button data-toggle="tooltip" data-placement="bottom" title="Delete element" type="button"
                     class="btn btn-outline-danger remove" [disabled]="!canvas.selected"
@@ -251,8 +251,8 @@
 
 
 
-        <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}"
-            style="margin-top: -16%; position: absolute; z-index: 0;"
+        <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}" [ngClass]="{'mobile': window < 600, 'laptop' : window > 600}"
+            style="margin-top: -3%; position: absolute; z-index: 0;"
             class="owlCarousel owl-theme selectPic col s12 m12 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0">
             <owl-carousel-o id="myCarousel" #owlElement [options]="customOptions" (translated)="getPassedData($event)">
 
