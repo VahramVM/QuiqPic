@@ -155,7 +155,7 @@ var SizeFormatComponent = /** @class */ (function () {
         this.canvasSizeFormatWidth = (this.canvasHtmlWidth - 2 * (this.canvasHtmlWidth / this.sizePrintKey + this.canvasHtmlWidth / 40));
         this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey;
         // console.log('width', this.canvasSizeFormatWidth);
-        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) - 20;
+        this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey);
         this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
         // console.log('height', this.canvasSizeFormatHeight);
         this.canvasSizeFormatLeft = this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey;

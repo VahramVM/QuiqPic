@@ -225,26 +225,26 @@ export class DataService {
         if (this.sizeValue === Object.keys(realSize)[i] && this.formatValue === this.formats[ind].format) {
           if (this.horVert) {
             this.sizePrintKey = Object.values(realSize)[i] / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-            this.scaleKey = 1;
+            this.scaleKey = 1.1;
           } else {
 
             if (this.horizontalVertical) {
 
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-                this.scaleKey = 4.5;
+                this.scaleKey = 4.8;
               } else {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind + 1].formatSize) / 2);
-                this.scaleKey = 4.5;
+                this.scaleKey = 4.8;
               }
             } else {
 
               if (this.formatValue === this.formats[0].format) {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind].formatSize) / 2);
-                this.scaleKey = 2.5;
+                this.scaleKey = 2.8;
               } else {
                 this.sizePrintKey = Object.values(realSize)[i] * cafficient / ((Object.values(realSize)[i] - this.formats[ind + 1].formatSize) / 2);
-                this.scaleKey = 2.5;
+                this.scaleKey = 2.8;
               }
             }
           }
@@ -325,7 +325,7 @@ export class DataService {
 
     //   this.scaleKey = 4.3
     // }
-    this.scaleKey = 1;
+    this.scaleKey = 1.1;
 
     var checkWidth = window.innerWidth;
 

@@ -269,7 +269,7 @@ export class SizeFormatComponent implements OnInit {
 
     // console.log('width', this.canvasSizeFormatWidth);
 
-    this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey) - 20;
+    this.canvasSizeFormatTop = (this.canvasHtmlWidth / 40 + this.canvasHtmlWidth / this.sizePrintKey - positionTopKey);
     this.canvasSizeFormatHeight = this.canvasSizeFormatWidth * this.formatWithHeight;
     // console.log('height', this.canvasSizeFormatHeight);
 

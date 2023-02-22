@@ -631,19 +631,20 @@ var EditorPicComponent = /** @class */ (function () {
                 var formatHeight = formatWidth * _this.c;
                 var checkWidth = window.innerWidth;
                 _this.canvas.getObjects().filter(function (o) {
+                    //mobile
                     if (checkWidth < 600) {
                         if (o.get('type') === 'i-text' && sumWidth > formatWidth ||
                             o.get('type') === 'i-text' && sumHeight > formatHeight) {
-                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
                         }
                         if (o.get('type') !== 'i-text' && sumWidth > formatWidth) {
-                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
-                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.4));
+                            activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
+                            activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75 / 0.3));
                         }
                         if (o.get('type') !== 'i-text' && sumHeight > formatHeight) {
-                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
-                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.4));
+                            activeObject.scaleX = formatHeight / (activeObject.height / (cos * 0.75 / 0.3));
+                            activeObject.scaleY = formatHeight / (activeObject.height / (cos * 0.75 / 0.3));
                         }
                     }
                     else {
@@ -1118,8 +1119,15 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.dataService.formatWithHeight = 1.414;
                     _this.dataService.formatTopKey = -0.00;
                     // this.dataService.scaleKey = 1;
+                    //mobile
                     _this.dataService.formatSizeSwich();
-                    scale = 1.05;
+                    if (window.innerWidth < 600) {
+                        scale = 0.4;
+                        console.log(_this.scaleKey = _this.d, 'A3');
+                    }
+                    else {
+                        scale = 1.05;
+                    }
                 }
                 else {
                     console.log('mage.height / image.width > 1.1 else');
@@ -1130,7 +1138,14 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
                     _this.dataService.formatTopKey = -0.00;
                     _this.dataService.formatSizeSwich();
-                    scale = 1;
+                    //mobile
+                    if (window.innerWidth < 600) {
+                        scale = 0.36;
+                        console.log(_this.scaleKey = _this.d, 'A4');
+                    }
+                    else {
+                        scale = 1;
+                    }
                     // scale = this.dataService.scaleKey;
                 }
             }
@@ -1143,10 +1158,11 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.dataService.formatWithHeight = 1.414;
                     _this.dataService.formatTopKey = 0.08;
                     // this.dataService.scaleKey = 1;
+                    //mobile
                     _this.dataService.formatSizeSwich();
                     if (window.innerWidth < 600) {
                         scale = 0.4;
-                        console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
+                        console.log(_this.scaleKey = _this.d, 'A4');
                     }
                     else {
                         scale = 1.05;
@@ -1160,9 +1176,10 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
                     _this.dataService.formatTopKey = -0.00;
                     _this.dataService.formatSizeSwich();
+                    //mobile
                     if (window.innerWidth < 600) {
-                        scale = 0.4;
-                        console.log(_this.scaleKey = _this.d, 'this.scaleKey = this.d');
+                        scale = 0.36;
+                        console.log(_this.scaleKey = _this.d, 'A4');
                     }
                     else {
                         scale = 1;
