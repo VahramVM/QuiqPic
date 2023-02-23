@@ -31,8 +31,8 @@
 
         <!-- <div class="col ">Options</div> -->
         <div class="col s12 m12 l12 xl12 offset-s0 offset-m0 offset-l0 offset-xl0"
-            style="top: -0.2%; position: absolute; z-index: 1;">
-            <div class="btn-group" role="group" aria-label="...">
+            style="top: -0.2%;">
+            <div class="btn-group" style="position: absolute; z-index: 5; top: 0;" role="group" aria-label="...">
                 <!-- <button data-toggle="tooltip" data-placement="bottom" title="Delete element" type="button"
                     class="btn btn-outline-danger remove" [disabled]="!canvas.selected"
                     (click)="removeSelected(); isCarouselOpen = true ">
@@ -69,7 +69,7 @@
 
                 <button *ngIf="canvas.canvasCount === 0" data-toggle="tooltip" data-placement="bottom" title="Clone"
                     type="button" class="btn-small #00e676" style="height: 30px;" (click)="isOpen = !isOpen">
-                    <i class="material-icons right" aria-hidden="true">cloud</i>
+                    <i class="material-icons left" aria-hidden="true">cloud</i>
                     Themes
                 </button>
 
