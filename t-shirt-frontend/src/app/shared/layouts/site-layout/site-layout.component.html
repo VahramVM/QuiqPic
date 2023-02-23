@@ -39,22 +39,22 @@
                     <i class="large material-icons" aria-hidden="true">delete</i>
                 </button> -->
                 <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom"
-                    title="Send to back" type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
+                    title="Send to back" type="button" class="btn btn-small indigo lighten-3" style="height: 28px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="sendToBack();">
                     <i class="large material-icons" aria-hidden="true">flip_to_back</i>
                 </button>
                 <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom"
-                    title="Send to front" type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
+                    title="Send to front" type="button" class="btn btn-small indigo lighten-3" style="height: 28px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="bringToFront();">
                     <i class="large material-icons" aria-hidden="true">flip_to_front</i>
                 </button>
                 <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom" title="Clone"
-                    type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
+                    type="button" class="btn btn-small indigo lighten-3" style="height: 28px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="clone();">
                     <i class="large material-icons" aria-hidden="true">content_copy</i>
                 </button>
                 <button *ngIf="canvas.canvasCount !==0" class="btn-small indigo lighten-3"
-                    style="cursor: pointer; width: 80px; height: 30px;">
+                    style="cursor: pointer; width: 80px; height: 28px;">
                     <!-- <i class="small material-icons">{{formatValue}}</i> -->
                     <p style="top: 50%; float:left; margin: 0; margin-left: -8px;  font-size: large; font-family: Arial, Helvetica, sans-serif; color: #ffffff;"
                         for="">{{formatValue}}</p>
@@ -68,7 +68,7 @@
 
 
                 <button *ngIf="canvas.canvasCount === 0" data-toggle="tooltip" data-placement="bottom" title="Clone"
-                    type="button" class="btn-small #00e676" style="height: 30px;" (click)="isOpen = !isOpen">
+                    type="button" class="btn-small #00e676" style="height: 28px;" (click)="isOpen = !isOpen">
                     <i class="material-icons left" aria-hidden="true">cloud</i>
                     Themes
                 </button>
