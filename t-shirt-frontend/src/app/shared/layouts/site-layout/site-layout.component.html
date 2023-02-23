@@ -28,31 +28,33 @@
         </div>
 
 
+
         <!-- <div class="col ">Options</div> -->
-        <div *ngIf="canvas.canvasCount !==0" class="col s12 m12 l12 xl12 offset-s0 offset-m0 offset-l0 offset-xl0"
-            style="top: -0.2%; position: absolute; z-index: 1; margin-left: -2%;">
+        <div class="col s12 m12 l12 xl12 offset-s0 offset-m0 offset-l0 offset-xl0"
+            style="top: -0.2%; position: absolute; z-index: 1;">
             <div class="btn-group" role="group" aria-label="...">
                 <!-- <button data-toggle="tooltip" data-placement="bottom" title="Delete element" type="button"
                     class="btn btn-outline-danger remove" [disabled]="!canvas.selected"
                     (click)="removeSelected(); isCarouselOpen = true ">
                     <i class="large material-icons" aria-hidden="true">delete</i>
                 </button> -->
-                <button data-toggle="tooltip" data-placement="bottom" title="Send to back" type="button"
-                    class="btn btn-small indigo lighten-3" style="height: 30px;"
+                <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom"
+                    title="Send to back" type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="sendToBack();">
                     <i class="large material-icons" aria-hidden="true">flip_to_back</i>
                 </button>
-                <button data-toggle="tooltip" data-placement="bottom" title="Send to front" type="button"
-                    class="btn btn-small indigo lighten-3" style="height: 30px;"
+                <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom"
+                    title="Send to front" type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="bringToFront();">
                     <i class="large material-icons" aria-hidden="true">flip_to_front</i>
                 </button>
-                <button data-toggle="tooltip" data-placement="bottom" title="Clone" type="button"
-                    class="btn btn-small indigo lighten-3" style="height: 30px;"
+                <button *ngIf="canvas.canvasCount !==0" data-toggle="tooltip" data-placement="bottom" title="Clone"
+                    type="button" class="btn btn-small indigo lighten-3" style="height: 30px;"
                     [disabled]="!canvas.selected || canvas.selected.type == 'group'" (click)="clone();">
                     <i class="large material-icons" aria-hidden="true">content_copy</i>
                 </button>
-                <button class="btn-small indigo lighten-3" style="cursor: pointer; width: 80px; height: 28px;">
+                <button *ngIf="canvas.canvasCount !==0" class="btn-small indigo lighten-3"
+                    style="cursor: pointer; width: 80px; height: 30px;">
                     <!-- <i class="small material-icons">{{formatValue}}</i> -->
                     <p style="top: 50%; float:left; margin: 0; margin-left: -8px;  font-size: large; font-family: Arial, Helvetica, sans-serif; color: #ffffff;"
                         for="">{{formatValue}}</p>
@@ -63,6 +65,29 @@
                     border-radius: 5%;" src="../assets/img/oie_aHdWpUcmnmvA.png">
                     </i>
                 </button>
+
+
+                <button *ngIf="canvas.canvasCount === 0" data-toggle="tooltip" data-placement="bottom" title="Clone"
+                    type="button" class="btn-small #00e676" style="height: 30px;" (click)="isOpen = !isOpen">
+                    <i class="material-icons right" aria-hidden="true">cloud</i>
+                    Themes
+                </button>
+
+                <div *ngIf="isOpen;"
+                    style="overflow-y: scroll; max-width: 100%;
+                overflow-x: hidden; width: 250px; max-height: 300px; z-index: 1; margin-top: 5px; position: relative; padding: 10px 10px 0px 0px; background-color: #3d365a73">
+                    <div class="colorBox;  offset-m4 offset-l3 offset-xl5" style="margin: 0;"
+                        *ngFor="let categoryy of categories"
+                        (click)="category = categoryy.name; Themes(); funk(); isOpen = false">
+                        <div class="imageDiv" style="margin: -5px;">
+                            <p style="top: 50%; transform: translateY(-50%); margin: 0; left: 13px; position: relative; font-family: Arial, Helvetica, sans-serif; color: #ffffff;"
+                                for="">{{categoryy.name}}</p>
+                            <img class="imageBox" style="top:-45%; margin: 0; position: relative; margin-left: 80%;"
+                                [src]="categoryy.imageSrc" alt="">
+                        </div>
+                        <hr style="border: 1px solid rgba(255, 255, 255, 0.507)">
+                    </div>
+                </div>
 
                 <!-- <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
                     class="btn btn-small indigo lighten-3" style="height: 30px;"
@@ -155,8 +180,8 @@
             </button> -->
 
 
-            <button *ngIf="canvas.canvasCount === 0" class="btn-small #00e676" style="margin-left: 55px; margin-top: 10px;"
-                (click)="isOpen = !isOpen">
+            <!-- <button *ngIf="canvas.canvasCount === 0" class="btn-small #00e676"
+                style="margin-left: 55px; margin-top: 10px;" (click)="isOpen = !isOpen">
                 <i class="material-icons right">cloud</i>
                 Themes
             </button>
@@ -175,7 +200,7 @@
                     </div>
                     <hr style="border: 1px solid rgba(255, 255, 255, 0.507)">
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -230,7 +255,7 @@
 
         </div>
 
-        
+
 
 
         <!-- <h1>{{categories[0].imageSrc}}</h1>
@@ -251,8 +276,8 @@
 
 
 
-        <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}" [ngClass]="{'mobile': window < 600, 'laptop' : window > 600}"
-            style="margin-top: -3%; position: absolute; z-index: 0;"
+        <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}"
+            style="margin-top: -16%; position: absolute; z-index: 0;"
             class="owlCarousel owl-theme selectPic col s12 m12 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0">
             <owl-carousel-o id="myCarousel" #owlElement [options]="customOptions" (translated)="getPassedData($event)">
 
@@ -284,20 +309,21 @@
 
         <div class="card-content grey lighten-4">
 
-        <div style="margin-top: 5%; width: 40px; position: absolute; z-index: 1;" class="row">
-            <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;" class="">
-                <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" type="radio"
-                    name="sizeKey" value="big"
-                    [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
-                <div style="font-size: 120%; text-align: center; width: 120%;">
-                    <b> {{size.key}} </b>
-                </div>
-            </label>
+            <div style="margin-top: 5%; width: 40px; position: absolute; z-index: 1;" class="row">
+                <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;" class="">
+                    <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" type="radio"
+                        name="sizeKey" value="big"
+                        [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
+                    <div style="font-size: 120%; text-align: center; width: 120%;">
+                        <b> {{size.key}} </b>
+                    </div>
+                </label>
 
-        </div>
+            </div>
         </div>
 
-        <div style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;">
+        <div
+            style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;">
             <div class="card-panel hoverable row" style="margin-top: 3%; margin-right: 0%;" id="show"
                 *ngFor="let imageProduct of products; let i = index" (click)=" 
                             canvas.props.canvasImage = imageProduct.type; 
