@@ -469,7 +469,7 @@ span {
 }
 @media only screen and (max-width: 600px) {
   .mobileImageLeft {
-    margin-left: 24%;
+    margin-left: 26%;
   }
 }
 @media only screen and (min-width: 1200px) {
