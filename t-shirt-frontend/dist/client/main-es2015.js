@@ -3108,7 +3108,7 @@ class MainPageComponent {
     }
 }
 MainPageComponent.ɵfac = function MainPageComponent_Factory(t) { return new (t || MainPageComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_layouts_servises_services__WEBPACK_IMPORTED_MODULE_1__["AuthServices"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_layouts_servises_order_datas_service__WEBPACK_IMPORTED_MODULE_3__["OrderDatasService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_layouts_servises_data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"])); };
-MainPageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainPageComponent, selectors: [["app-main-page"]], decls: 21, vars: 1, consts: [[1, "full-width"], [1, "row"], [1, "toolNav1", "col", "s12", "m9", "l8", "xl8", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "width", "67%", "z-index", "0", "margin-left", "0%"], [2, "height", "28px"], [1, "nav-wrapper", "indigo", "lighten-4"], [1, "brand-logo", "right", "hide-on-small-only", 2, "margin-top", "-18px"], ["class", " brand-logo left", "style", "margin-top: -18px; cursor: pointer;", 3, "click", 4, "ngIf"], ["href", "#", "data-target", "mobile-links", 1, "sidenav-trigger", 2, "margin-top", "-14px"], [1, "material-icons"], [1, "toolNav1", "col", "s5", "m3", "l4", "xl4", "offset-s0", "offset-m9", "offset-l8", "offset-xl8", 2, "width", "36%", "margin-left", "66%"], [1, "nav-wrapper", "#e8eaf6", "indigo", "lighten-4"], [1, "brand-logo", "left", "hide-on-small-only", 2, "margin-top", "-18px", "position", "absolute", "z-index", "0"], ["routerLinkActive", "color", 1, "brand-logo", "right", 2, "margin-top", "-18px", "cursor", "pointer", "margin-left", "-5%"], ["routerLink", "/login", 3, "click"], [1, "brand-logo", "left", 2, "margin-top", "-18px", "cursor", "pointer", 3, "click"]], template: function MainPageComponent_Template(rf, ctx) { if (rf & 1) {
+MainPageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainPageComponent, selectors: [["app-main-page"]], decls: 21, vars: 1, consts: [[1, "full-width"], [1, "row"], [1, "toolNav1", "col", "s12", "m9", "l8", "xl8", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "width", "67%", "z-index", "0", "margin-left", "0%"], [2, "height", "28px"], [1, "nav-wrapper", "indigo", "lighten-4"], [1, "brand-logo", "right", "hide-on-small-only", 2, "margin-top", "-18px"], ["class", " brand-logo left", "style", "margin-top: -18px; cursor: pointer;", 3, "click", 4, "ngIf"], ["href", "#", "data-target", "mobile-links", 1, "sidenav-trigger", 2, "margin-top", "-14px"], [1, "material-icons"], [1, "toolNav1", "col", "s5", "m3", "l4", "xl4", "offset-s0", "offset-m9", "offset-l8", "offset-xl8", 2, "width", "36%", "margin-left", "66%"], [1, "nav-wrapper", "#e8eaf6", "indigo", "lighten-4"], [1, "brand-logo", "left", "hide-on-small-only", 2, "margin-top", "-14px", "position", "absolute", "z-index", "0"], ["routerLinkActive", "color", 1, "brand-logo", "right", 2, "margin-top", "-14px", "cursor", "pointer", "margin-left", "-5%"], ["routerLink", "/login", 3, "click"], [1, "brand-logo", "left", 2, "margin-top", "-18px", "cursor", "pointer", 3, "click"]], template: function MainPageComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -3863,7 +3863,7 @@ class DataService {
         //mobile
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
-            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 7.5);
+            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 55);
         }
         else {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
@@ -4888,7 +4888,7 @@ let SiteLayoutComponent = class SiteLayoutComponent {
         $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.7;
-            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 7;
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 55;
         }
         else {
             this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
