@@ -5336,7 +5336,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var checkWidth = window.innerWidth; //mobile
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 2.8;
+            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 2.9;
             this.canvasCenteredPosition = window.innerWidth / this.positionKey / 7;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.widthKey * window.innerWidth;
@@ -7548,7 +7548,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $('#myCarousel').trigger('refresh.owl.carousel');
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.8;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.7;
             this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 7;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
