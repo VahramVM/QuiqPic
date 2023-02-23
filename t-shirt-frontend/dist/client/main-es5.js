@@ -5336,8 +5336,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var checkWidth = window.innerWidth; //mobile
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 2.9;
-            this.canvasCenteredPosition = window.innerWidth / this.positionKey / 7;
+            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
+            this.canvasCenteredPosition = window.innerWidth / this.positionKey / 7.5;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.widthKey * window.innerWidth;
             this.canvasCenteredPosition = window.innerWidth / this.positionKey;
@@ -9662,7 +9662,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         width: a0,
         height: a1,
         top: a2,
-        "left.px": a3,
+        left: a3,
         "position": "absolute",
         "pointer-events": "none"
       };
@@ -9886,7 +9886,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](4, _c0, ctx.canvasSelect))("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction4"](6, _c1, ctx.canvasSizeFormatWidth + "px", ctx.canvasSizeFormatHeight + "px", ctx.canvasSizeFormatTop + "px", ctx.canvasSizeFormatLeft));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](4, _c0, ctx.canvasSelect))("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction4"](6, _c1, ctx.canvasSizeFormatWidth + "px", ctx.canvasSizeFormatHeight + "px", ctx.canvasSizeFormatTop + "px", ctx.canvasSizeFormatLeft + "px"));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 

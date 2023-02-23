@@ -246,8 +246,8 @@ var DataService = /** @class */ (function () {
         var checkWidth = window.innerWidth;
         //mobile
         if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 2.9;
-            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 7);
+            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
+            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 7.5);
         }
         else {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
