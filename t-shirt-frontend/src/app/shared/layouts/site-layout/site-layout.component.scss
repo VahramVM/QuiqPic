@@ -280,6 +280,7 @@ div.colorBox div:hover {
   z-index: 0;
   position: absolute;
   /* border: 2px dashed #e21010; */
+  
 }
 
 
@@ -516,12 +517,12 @@ span {
   display: none;
 }
 
-.mobile{
-  margin-top: -26%;
+@media only screen and (max-width: 600px) {
+  .mobile { margin-top: -16%; border: 0px dashed #ffffff;}
 }
 
-.laptop{
-  margin-left: -3%;
+@media only screen and (min-width: 1200px) {
+  .mobile { margin-top: -3%; border: 0px dashed #ffffff;}
 }
 
 #show {
