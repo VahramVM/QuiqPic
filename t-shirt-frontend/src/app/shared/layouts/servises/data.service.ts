@@ -332,7 +332,7 @@ export class DataService {
     //mobile
     if (checkWidth < 600) {
       this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
-      this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 55);
+      this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 40);
 
     } else {
 

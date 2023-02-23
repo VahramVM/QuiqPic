@@ -3863,7 +3863,7 @@ class DataService {
         //mobile
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
-            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 55);
+            this.canvasCenteredPosition = (window.innerWidth / this.positionKey / 40);
         }
         else {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth);
@@ -4887,8 +4887,8 @@ let SiteLayoutComponent = class SiteLayoutComponent {
         }
         $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.7;
-            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 55;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
         }
         else {
             this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
