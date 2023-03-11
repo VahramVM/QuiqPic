@@ -321,7 +321,6 @@ export class DataService {
     // if (this.horVert) {
     //   this.scaleKey = 1
     // } else {
-    //   console.log('ggggg');
 
     //   this.scaleKey = 4.3
     // }

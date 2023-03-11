@@ -3062,7 +3062,6 @@ export class EditorPicComponent implements AfterViewInit {
     //   $(".canvas").css("z-index", 0);
     //   this.siteLayout.toggle = false;
     //   this.disableBtn = false;
-    //   // console.log(this.canvasCount);
     //   this.canvasCount -= 1;
 
     // }

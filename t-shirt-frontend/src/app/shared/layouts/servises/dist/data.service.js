@@ -239,7 +239,6 @@ var DataService = /** @class */ (function () {
         // if (this.horVert) {
         //   this.scaleKey = 1
         // } else {
-        //   console.log('ggggg');
         //   this.scaleKey = 4.3
         // }
         this.scaleKey = 1.1;

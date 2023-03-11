@@ -2320,7 +2320,6 @@ var EditorPicComponent = /** @class */ (function () {
         //   $(".canvas").css("z-index", 0);
         //   this.siteLayout.toggle = false;
         //   this.disableBtn = false;
-        //   // console.log(this.canvasCount);
         //   this.canvasCount -= 1;
         // }
         // console.log(this.canvasCount);
