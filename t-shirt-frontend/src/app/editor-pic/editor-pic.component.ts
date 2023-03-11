@@ -1479,8 +1479,15 @@ export class EditorPicComponent implements AfterViewInit {
           // this.dataService.scaleKey = 1;
           // this.dataService.formatSizeSwich();
           scale = 2;
-          text.scaleToHeight(textHeight / 1.2);
-          text.scaleToWidth(textWidth / 1.2);
+
+          if (window.innerWidth < 600) {
+            text.scaleToHeight(textHeight / 0.5);
+            text.scaleToWidth(textWidth / 0.5);
+          } else {
+            text.scaleToHeight(textHeight / 1.2);
+            text.scaleToWidth(textWidth / 1.2);
+          }
+
         } else {
           // this.dataService.horizontalVertical = false;
           // this.dataService.scaleKey = 1;
@@ -1490,8 +1497,13 @@ export class EditorPicComponent implements AfterViewInit {
           // this.dataService.formatTopKey = -0.03;
           // this.dataService.formatSizeSwich();
           scale = 2;
-          text.scaleToHeight(textHeight / 1.5);
-          text.scaleToWidth(textWidth / 1.5);
+          if (window.innerWidth < 600) {
+            text.scaleToHeight(textHeight / 0.4);
+            text.scaleToWidth(textWidth / 0.4);
+          } else {
+            text.scaleToHeight(textHeight / 1.1);
+            text.scaleToWidth(textWidth / 1.1);
+          }
           // scale = this.dataService.scaleKey;
         }
 

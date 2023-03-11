@@ -239,10 +239,15 @@ var DataService = /** @class */ (function () {
         // if (this.horVert) {
         //   this.scaleKey = 1
         // } else {
+        //   console.log('ggggg');
         //   this.scaleKey = 4.3
         // }
-        this.scaleKey = 1.1;
+        this.scaleKey = 0.5;
         var checkWidth = window.innerWidth;
+        this.sizePrintKey = 686 / ((686 - 297) / 2);
+        this.formatWithHeight = 0.707; // 0.707
+        this.formatTopKey = -0.03;
+        this.horVert = true;
         //mobile
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;

@@ -1050,8 +1050,14 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.scaleKey = 1;
                     // this.dataService.formatSizeSwich();
                     scale = 2;
-                    text_2.scaleToHeight(textHeight / 1.2);
-                    text_2.scaleToWidth(textWidth / 1.2);
+                    if (window.innerWidth < 600) {
+                        text_2.scaleToHeight(textHeight / 0.5);
+                        text_2.scaleToWidth(textWidth / 0.5);
+                    }
+                    else {
+                        text_2.scaleToHeight(textHeight / 1.2);
+                        text_2.scaleToWidth(textWidth / 1.2);
+                    }
                 }
                 else {
                     // this.dataService.horizontalVertical = false;
@@ -1062,8 +1068,14 @@ var EditorPicComponent = /** @class */ (function () {
                     // this.dataService.formatTopKey = -0.03;
                     // this.dataService.formatSizeSwich();
                     scale = 2;
-                    text_2.scaleToHeight(textHeight / 1.5);
-                    text_2.scaleToWidth(textWidth / 1.5);
+                    if (window.innerWidth < 600) {
+                        text_2.scaleToHeight(textHeight / 0.4);
+                        text_2.scaleToWidth(textWidth / 0.4);
+                    }
+                    else {
+                        text_2.scaleToHeight(textHeight / 1.1);
+                        text_2.scaleToWidth(textWidth / 1.1);
+                    }
                     // scale = this.dataService.scaleKey;
                 }
                 $('#shadowText').on('click', function () {
