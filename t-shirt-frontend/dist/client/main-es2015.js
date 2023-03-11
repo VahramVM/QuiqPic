@@ -1333,8 +1333,14 @@ class EditorPicComponent {
                     // this.dataService.scaleKey = 1;
                     // this.dataService.formatSizeSwich();
                     scale = 2;
-                    text.scaleToHeight(textHeight / 1.2);
-                    text.scaleToWidth(textWidth / 1.2);
+                    if (window.innerWidth < 600) {
+                        text.scaleToHeight(textHeight / 0.5);
+                        text.scaleToWidth(textWidth / 0.5);
+                    }
+                    else {
+                        text.scaleToHeight(textHeight / 1.2);
+                        text.scaleToWidth(textWidth / 1.2);
+                    }
                 }
                 else {
                     // this.dataService.horizontalVertical = false;
@@ -1345,8 +1351,14 @@ class EditorPicComponent {
                     // this.dataService.formatTopKey = -0.03;
                     // this.dataService.formatSizeSwich();
                     scale = 2;
-                    text.scaleToHeight(textHeight / 1.5);
-                    text.scaleToWidth(textWidth / 1.5);
+                    if (window.innerWidth < 600) {
+                        text.scaleToHeight(textHeight / 0.4);
+                        text.scaleToWidth(textWidth / 0.4);
+                    }
+                    else {
+                        text.scaleToHeight(textHeight / 1.1);
+                        text.scaleToWidth(textWidth / 1.1);
+                    }
                     // scale = this.dataService.scaleKey;
                 }
                 $('#shadowText').on('click', () => {
@@ -2597,7 +2609,6 @@ class EditorPicComponent {
         //   $(".canvas").css("z-index", 0);
         //   this.siteLayout.toggle = false;
         //   this.disableBtn = false;
-        //   // console.log(this.canvasCount);
         //   this.canvasCount -= 1;
         // }
         // console.log(this.canvasCount);
@@ -3852,8 +3863,12 @@ class DataService {
         //   console.log('ggggg');
         //   this.scaleKey = 4.3
         // }
-        this.scaleKey = 1.1;
-        var checkWidth = window.innerWidth;
+        this.scaleKey = 0.5;
+        let checkWidth = window.innerWidth;
+        this.sizePrintKey = 686 / ((686 - 297) / 2);
+        this.formatWithHeight = 0.707; // 0.707
+        this.formatTopKey = -0.03;
+        this.horVert = true;
         //mobile
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;

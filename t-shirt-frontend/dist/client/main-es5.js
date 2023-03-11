@@ -1743,9 +1743,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // this.dataService.formatSizeSwich();
                 scale = 2;
 
-                _text.scaleToHeight(_textHeight / 1.2);
+                if (window.innerWidth < 600) {
+                  _text.scaleToHeight(_textHeight / 0.5);
 
-                _text.scaleToWidth(_textWidth / 1.2);
+                  _text.scaleToWidth(_textWidth / 0.5);
+                } else {
+                  _text.scaleToHeight(_textHeight / 1.2);
+
+                  _text.scaleToWidth(_textWidth / 1.2);
+                }
               } else {
                 // this.dataService.horizontalVertical = false;
                 // this.dataService.scaleKey = 1;
@@ -1756,9 +1762,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // this.dataService.formatSizeSwich();
                 scale = 2;
 
-                _text.scaleToHeight(_textHeight / 1.5);
+                if (window.innerWidth < 600) {
+                  _text.scaleToHeight(_textHeight / 0.4);
 
-                _text.scaleToWidth(_textWidth / 1.5); // scale = this.dataService.scaleKey;
+                  _text.scaleToWidth(_textWidth / 0.4);
+                } else {
+                  _text.scaleToHeight(_textHeight / 1.1);
+
+                  _text.scaleToWidth(_textWidth / 1.1);
+                } // scale = this.dataService.scaleKey;
 
               }
 
@@ -3166,7 +3178,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //   $(".canvas").css("z-index", 0);
           //   this.siteLayout.toggle = false;
           //   this.disableBtn = false;
-          //   // console.log(this.canvasCount);
           //   this.canvasCount -= 1;
           // }
           // console.log(this.canvasCount);
@@ -5311,8 +5322,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //   console.log('ggggg');
           //   this.scaleKey = 4.3
           // }
-          this.scaleKey = 1.1;
-          var checkWidth = window.innerWidth; //mobile
+          this.scaleKey = 0.5;
+          var checkWidth = window.innerWidth;
+          this.sizePrintKey = 686 / ((686 - 297) / 2);
+          this.formatWithHeight = 0.707; // 0.707
+
+          this.formatTopKey = -0.03;
+          this.horVert = true; //mobile
 
           if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
