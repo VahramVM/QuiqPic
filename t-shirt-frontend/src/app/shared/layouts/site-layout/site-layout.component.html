@@ -306,21 +306,6 @@
         </div>
 
 
-        <div class="card-content grey lighten-4">
-
-            <div style="margin-top: 5%; width: 40px; position: absolute; z-index: 1;" class="row">
-                <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;" class="">
-                    <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)" type="radio"
-                        name="sizeKey" value="big"
-                        [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
-                    <div style="font-size: 120%; text-align: center; width: 120%;">
-                        <b> {{size.key}} </b>
-                    </div>
-                </label>
-
-            </div>
-        </div>
-
         <div
             style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;">
             <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"

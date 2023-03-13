@@ -228,8 +228,8 @@ export class SizeFormatComponent implements OnInit {
 
     // this.counterTop();
 
-    this.formatA4V();
-    this.formatA4H();
+    // this.formatA4V();
+    // this.formatA4H();
 
     // this.setformatScale();
     // this.getUpdatedMessage();
@@ -239,9 +239,9 @@ export class SizeFormatComponent implements OnInit {
     // this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
 
 
-    this.setFormatHeightTop();
+    // this.setFormatHeightTop();
 
-    this.siteLayout.moveWithFormat(this.scaleKey, true);
+    // this.siteLayout.moveWithFormat(this.scaleKey, true);
 
   }
 

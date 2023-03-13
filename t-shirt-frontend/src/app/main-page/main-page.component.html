@@ -1,41 +1,74 @@
-
 <div class="full-width">
     <div class="row">
-        <div class="toolNav1 col s12 m9 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0" style="width: 66%; z-index: 0;">
+        <!-- <div class="toolNav1 col s12 m9 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0"
+            style="width: 66%; z-index: 0;">
             <nav style="height: 28px;">
                 <div class="nav-wrapper indigo lighten-4">
 
-                    <div class=" brand-logo right hide-on-small-only" style="margin-top: -18px;" >
+                    <div class=" brand-logo right hide-on-small-only" style="margin-top: -18px;">
                         Design
                     </div>
-                    <div class=" brand-logo left" style="margin-top: -18px; cursor: pointer;" *ngIf="preview" (click)="redirectPreview()" >
+                    <div class=" brand-logo left" style="margin-top: -18px; cursor: pointer;" *ngIf="preview"
+                        (click)="redirectPreview()">
                         Preview
                     </div>
                     <a href="#" class="sidenav-trigger" style="margin-top: -14px;" data-target="mobile-links">
                         <i class="material-icons">menu</i>
                     </a>
-                    <!-- <ul id="nav-mobile" class="hide-on-med-and-down">
+                    <ul id="nav-mobile" class="brand-logo right" style="margin-top: -18px; position: absolute; z-index: 0;">
                         <li routerLinkActive="color"><a routerLink='/login'>LogOut</a></li>
                         <li routerLinkActive="color"><a routerLink='/register'>Registration</a></li>
-                    </ul> -->
+                    </ul>
                 </div>
             </nav>
 
-        </div>
+        </div> -->
 
-        <div class="toolNav1 col s5 m3 l4 xl4 offset-s0 offset-m9 offset-l8 offset-xl8"
-            style="width: 34%; margin-left: 66%;">
+        <div class="toolNav1 col s12 m12 l12 xl12">
             <nav style="height: 28px;">
                 <div class="nav-wrapper #e8eaf6 indigo lighten-4">
-                    <div class="brand-logo left hide-on-small-only" style="margin-top: -18px; position: absolute; z-index: 0;"> Your Style</div> 
-                    <li routerLinkActive="color" class="brand-logo right" style="margin-top: -14px; cursor: pointer; margin-left: -5%;"><a (click)="logOut()" routerLink='/login'>
-                        <i class="material-icons" >call_made</i>
-                    </a></li>
 
-                    <!-- <a href="#" class="right sidenav-trigger" data-target="mobile-links">
-                        <i class="material-icons">menu</i>
-                    </a> -->
+                    <div class="brand-logo hide-on-small-only" *ngIf="!preview" style="margin-left: 58%; position: absolute; z-index: 0; 
+                        top: 50%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);">
+                        Design
+                    </div>
+
+                    <div class="brand-logo hide-on-small-only" *ngIf="!preview"
+                        style="margin-left: 67%; position: absolute; z-index: 0;
+                        top: 50%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);">
+                        Your Style
+                    </div>
+
+                    <div class=" brand-logo left" *ngIf="preview" style="margin-top: -18px; cursor: pointer;
+                        top: 50%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);" 
+                        (click)="redirectPreview()">
+                        Preview
+                    </div>
+                    <!-- <li routerLinkActive="color" class="brand-logo right hide-on-small-only"
+                        style="margin-top: -14px; cursor: pointer; margin-left: -5%;">
+                        <a (click)="logOut()" routerLink='/login'>
+                            <i class="material-icons">call_made</i>
+                        </a>
+                    </li> -->
+
+                    <div id="nav-mobile" class="brand-logo right" *ngIf="!preview" style="cursor: pointer; 
+                        top: 50%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);" (click)="logOut()" routerLink='/login'>
+                        <i class="material-icons">arrow_upward</i>
+                        <!-- <li routerLinkActive="color"><a routerLink='/register'>Registration</a></li> -->
+                    </div>
+
+
                 </div>
+
+
             </nav>
 
         </div>
@@ -95,10 +128,10 @@
             </div>
         </div> -->
 
-        <!-- <div class="divv"></div>
+<!-- <div class="divv"></div>
     <div class="divv"></div> -->
 
-        <!-- <div onselect="onElementSelected" ondrag="onCanvasDragged" class="canvas-container" tabindex="1000"
+<!-- <div onselect="onElementSelected" ondrag="onCanvasDragged" class="canvas-container" tabindex="1000"
             style="width: 600px; height: 600px; position: relative; user-select: none;">
             <canvas width="60" height="60" edit-enabled="editEnabled" side="side" drawing-area="side.drawingArea"
                 class="lower-canvas"
@@ -108,7 +141,7 @@
             </canvas>
         </div> -->
 
-        <!-- [ngClass]="{'dt-SideContainer-touch': $root.touchDevices}"
+<!-- [ngClass]="{'dt-SideContainer-touch': $root.touchDevices}"
     on-select="onElementSelected"
     on-selection-cleared="onSelectionCleared"
     on-delete="onElementDeleted"
@@ -117,4 +150,4 @@
     on-canvas-done="onCanvasDone" -->
 <!-- 
     </div>
-</div> --> 
+</div> -->

@@ -18,10 +18,12 @@ import { DataService } from '../servises/data.service';
 import { SizeFormatComponent } from './size-format/size-format.component';
 import { MainPageComponent } from 'src/app/main-page/main-page.component';
 import { OrderDatasService } from '../servises/order-datas.service';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 
 declare const $: any;
+
 
 @Component({
   selector: 'app-site-layout',
@@ -36,7 +38,6 @@ declare const $: any;
 @HostListener('window:load')
 
 
-
 export class SiteLayoutComponent implements AfterViewInit {
 
 
@@ -46,6 +47,7 @@ export class SiteLayoutComponent implements AfterViewInit {
   @ViewChild('owlElement') owlElement: ElementRef;
   @ViewChild('inputColor') inputColor: ElementRef;
   @ViewChild('divvv') divvv: ElementRef;
+  @ViewChild('owlCarousel') owlCarousel: CarouselModule
 
 
   title = 'EditorPic';
@@ -262,8 +264,6 @@ export class SiteLayoutComponent implements AfterViewInit {
     let src = $('.owlCarousel').find(".owl-item").eq(index).find("img").attr('src');
     $('.divv').text(src)
 
-    console.log(index, src, 'QQQQQQQQ');
-
     this.firstImage = 1;
     index = 0;
 
@@ -287,7 +287,9 @@ export class SiteLayoutComponent implements AfterViewInit {
   onResize(event) {
 
     var checkWidth = window.innerWidth;
+    
 
+    $('#myCarousel').trigger('refresh.owl.carousel');
 
     if (checkWidth < 800) {
       console.log(800, 'ok');
@@ -296,7 +298,7 @@ export class SiteLayoutComponent implements AfterViewInit {
       // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) * 1.5;
     }
 
-    $('#myCarousel').trigger('refresh.owl.carousel');
+    // $('#myCarousel').trigger('refresh.owl.carousel');
 
     if (checkWidth < 600) {
       this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
@@ -316,7 +318,7 @@ export class SiteLayoutComponent implements AfterViewInit {
   Resize() {
     console.log('resize');
 
-    return this.customOptions
+    // return this.customOptions
 
   }
 

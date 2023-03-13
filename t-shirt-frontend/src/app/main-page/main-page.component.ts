@@ -24,7 +24,7 @@ export class MainPageComponent implements OnInit {
   }
 
   public logOut() {
-    this.service.logout();
+    this.service.logout();    
   }
 
   public redirectPreview(): void {

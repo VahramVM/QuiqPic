@@ -205,7 +205,6 @@ var SiteLayoutComponent = /** @class */ (function () {
         var index = this.activeSlides.startPosition;
         var src = $('.owlCarousel').find(".owl-item").eq(index).find("img").attr('src');
         $('.divv').text(src);
-        console.log(index, src, 'QQQQQQQQ');
         this.firstImage = 1;
         index = 0;
         // $('.owlCarousel').on('changed.owlCarousel', (event) => {
@@ -219,13 +218,14 @@ var SiteLayoutComponent = /** @class */ (function () {
     };
     SiteLayoutComponent.prototype.onResize = function (event) {
         var checkWidth = window.innerWidth;
+        $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 800) {
             console.log(800, 'ok');
             // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 1.5;
             // this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey * 1.5;
             // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) * 1.5;
         }
-        $('#myCarousel').trigger('refresh.owl.carousel');
+        // $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 600) {
             this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
             this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
@@ -240,7 +240,7 @@ var SiteLayoutComponent = /** @class */ (function () {
     };
     SiteLayoutComponent.prototype.Resize = function () {
         console.log('resize');
-        return this.customOptions;
+        // return this.customOptions
     };
     SiteLayoutComponent.prototype.ret = function () {
         return 0;
@@ -591,6 +591,9 @@ var SiteLayoutComponent = /** @class */ (function () {
     __decorate([
         core_1.ViewChild('divvv')
     ], SiteLayoutComponent.prototype, "divvv");
+    __decorate([
+        core_1.ViewChild('owlCarousel')
+    ], SiteLayoutComponent.prototype, "owlCarousel");
     SiteLayoutComponent = __decorate([
         core_1.Component({
             selector: 'app-site-layout',

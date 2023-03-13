@@ -135,6 +135,7 @@ var EditorPicComponent = /** @class */ (function () {
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
+        console.log('resizzeeee');
         // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
         // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.setCanvasImage1();

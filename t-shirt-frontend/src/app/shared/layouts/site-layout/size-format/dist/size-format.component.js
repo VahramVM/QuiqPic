@@ -130,15 +130,15 @@ var SizeFormatComponent = /** @class */ (function () {
     SizeFormatComponent.prototype.onResize = function () {
         this.dataService.initCalculations();
         // this.counterTop();
-        this.formatA4V();
-        this.formatA4H();
+        // this.formatA4V();
+        // this.formatA4H();
         // this.setformatScale();
         // this.getUpdatedMessage();
         // this.counterNum();
         // this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
         // this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
-        this.setFormatHeightTop();
-        this.siteLayout.moveWithFormat(this.scaleKey, true);
+        // this.setFormatHeightTop();
+        // this.siteLayout.moveWithFormat(this.scaleKey, true);
     };
     SizeFormatComponent.prototype.setFormatHeightTop = function () {
         this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
