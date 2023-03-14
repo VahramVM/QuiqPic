@@ -72,13 +72,13 @@ export class EditorPicComponent implements AfterViewInit {
   public objectType: boolean = false;
 
 
-  onResize(event) {
+  onResize() {
     // --!
-    // this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-    // this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
-    // // this.canvas.backgroundImage = null;
-    // this.setCanvasImage();
-    // this.canvas.renderAll();
+    this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
+    this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
+    // this.canvas.backgroundImage = null;
+    this.setCanvasImage();
+    this.canvas.renderAll();
 
     // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
     // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
@@ -1216,7 +1216,7 @@ export class EditorPicComponent implements AfterViewInit {
     $(document).on('click', '.deleteBtn', (event) => {
 
       this.removeSelected();
-
+      this.onResize();
     });
 
 

@@ -300,19 +300,19 @@ export class SiteLayoutComponent implements AfterViewInit {
 
     // $('#myCarousel').trigger('refresh.owl.carousel');
 
-    // if (checkWidth < 600) {
-    //   this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
-    //   this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
+    if (checkWidth < 600) {
+      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+      this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
 
-    // } else {
+    } else {
 
-    //   this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
-    //   this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
-    // }
+      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+      this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+    }
 
-    // // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
-    // this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
-    // // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+    // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+    this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
+    // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
   }
 
   Resize() {
@@ -343,8 +343,8 @@ export class SiteLayoutComponent implements AfterViewInit {
     dots: false,
     autoHeight: true,
     // autoplay:true,
-    // autoWidth: true,s
-    smartSpeed: 1000,
+    autoWidth: true,
+    smartSpeed: 700,
     center: true,
 
     responsive: {

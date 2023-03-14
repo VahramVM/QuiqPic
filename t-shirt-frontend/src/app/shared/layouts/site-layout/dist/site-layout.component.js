@@ -152,8 +152,8 @@ var SiteLayoutComponent = /** @class */ (function () {
             dots: false,
             autoHeight: true,
             // autoplay:true,
-            // autoWidth: true,s
-            smartSpeed: 1000,
+            autoWidth: true,
+            smartSpeed: 700,
             center: true,
             responsive: {
                 0: {
@@ -226,16 +226,17 @@ var SiteLayoutComponent = /** @class */ (function () {
             // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) * 1.5;
         }
         // $('#myCarousel').trigger('refresh.owl.carousel');
-        // if (checkWidth < 600) {
-        //   this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
-        //   this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
-        // } else {
-        //   this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
-        //   this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
-        // }
-        // // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
-        // this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
-        // // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+        if (checkWidth < 600) {
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
+        }
+        else {
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+            this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
+        }
+        // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth);
+        this.canvasHtmlHeight = this.canvasHtmlWidth * this.dataService.heightKey;
+        // this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey);
     };
     SiteLayoutComponent.prototype.Resize = function () {
         console.log('resize');
