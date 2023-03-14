@@ -682,7 +682,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function onResize(event) {
           // --!
           this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-          this.canvas.setHeight(this.siteLayout.canvasHtmlHeight); // this.canvas.backgroundImage = null;
+          this.canvas.setHeight(this.siteLayout.canvasHtmlHeight + 0.0001); // this.canvas.backgroundImage = null;
 
           this.setCanvasImage();
           this.canvas.renderAll();
@@ -1550,8 +1550,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // console.log(this.props.textCurved);
           this.objectType = true;
           $(document).on('click', '.deleteBtn', function (event) {
-            _this7.removeSelected(); // this.onResize(1);
+            _this7.removeSelected();
 
+            _this7.onResize(1);
           });
 
           if (this.props.diametr < 299) {

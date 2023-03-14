@@ -420,7 +420,7 @@ class EditorPicComponent {
     onResize(event) {
         // --!
         this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
+        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight + 0.0001);
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
@@ -1150,7 +1150,7 @@ class EditorPicComponent {
         this.objectType = true;
         $(document).on('click', '.deleteBtn', (event) => {
             this.removeSelected();
-            // this.onResize(1);
+            this.onResize(1);
         });
         if (this.props.diametr < 299) {
             console.log('<280');
