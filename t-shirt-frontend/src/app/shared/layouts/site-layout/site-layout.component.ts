@@ -355,14 +355,6 @@ export class SiteLayoutComponent implements AfterViewInit {
 
       },
 
-      400: {
-
-        items: 3,
-        margin: 10,
-        stagePadding: 50,
-
-      },
-
       760: {
         items: 3,
         margin: 60,

@@ -161,11 +161,6 @@ var SiteLayoutComponent = /** @class */ (function () {
                     margin: 90,
                     stagePadding: 90
                 },
-                400: {
-                    items: 3,
-                    margin: 10,
-                    stagePadding: 50
-                },
                 760: {
                     items: 3,
                     margin: 60
