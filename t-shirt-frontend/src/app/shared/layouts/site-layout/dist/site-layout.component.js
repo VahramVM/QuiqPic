@@ -486,7 +486,7 @@ var SiteLayoutComponent = /** @class */ (function () {
         this.dataService.formatSizeSwich();
         //mobile
         if (window.innerWidth < 600) {
-            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
+            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.4, true);
         }
         else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
