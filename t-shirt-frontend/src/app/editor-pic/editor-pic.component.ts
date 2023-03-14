@@ -1605,12 +1605,9 @@ console.log('resizzeeee');
           //mobile
           if (window.innerWidth < 600) {
             scale = 0.36;
-            console.log(this.scaleKey = this.d, 'A4');
-
           } else {
             scale = 1;
           }
-
           // scale = this.dataService.scaleKey;
         }
 
@@ -1630,9 +1627,7 @@ console.log('resizzeeee');
           //mobile
           this.dataService.formatSizeSwich();
           if (window.innerWidth < 600) {
-            scale = 0.4;
-            console.log(this.scaleKey = this.d, 'A4');
-
+            scale = 0.36;
           } else {
             scale = 1.05;
           }
@@ -1646,9 +1641,7 @@ console.log('resizzeeee');
           this.dataService.formatSizeSwich();
           //mobile
           if (window.innerWidth < 600) {
-            scale = 0.36;
-            console.log(this.scaleKey = this.d, 'A4');
-
+            scale = 0.335;
           } else {
             scale = 1;
           }

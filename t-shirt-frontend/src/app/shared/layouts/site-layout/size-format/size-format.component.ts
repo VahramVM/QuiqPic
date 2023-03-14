@@ -228,8 +228,8 @@ export class SizeFormatComponent implements OnInit {
 
     // this.counterTop();
 
-    // this.formatA4V();
-    // this.formatA4H();
+    this.formatA4V();
+    this.formatA4H();
 
     // this.setformatScale();
     // this.getUpdatedMessage();

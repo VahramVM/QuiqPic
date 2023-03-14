@@ -218,7 +218,7 @@ var SiteLayoutComponent = /** @class */ (function () {
     };
     SiteLayoutComponent.prototype.onResize = function (event) {
         var checkWidth = window.innerWidth;
-        $('#myCarousel').trigger('refresh.owl.carousel');
+        // $('#myCarousel').trigger('refresh.owl.carousel-o');
         if (checkWidth < 800) {
             console.log(800, 'ok');
             // this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 1.5;
@@ -486,12 +486,12 @@ var SiteLayoutComponent = /** @class */ (function () {
         this.dataService.formatSizeSwich();
         //mobile
         if (window.innerWidth < 600) {
-            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.4, true);
+            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
         }
         else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
         }
-        this.canvas.canvas.discardActiveObject().renderAll();
+        // this.canvas.canvas.discardActiveObject().renderAll();
     };
     SiteLayoutComponent.prototype.productBrandColor = function () {
         var _this = this;

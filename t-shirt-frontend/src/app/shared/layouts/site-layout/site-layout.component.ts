@@ -289,7 +289,7 @@ export class SiteLayoutComponent implements AfterViewInit {
     var checkWidth = window.innerWidth;
     
 
-    $('#myCarousel').trigger('refresh.owl.carousel');
+    // $('#myCarousel').trigger('refresh.owl.carousel-o');
 
     if (checkWidth < 800) {
       console.log(800, 'ok');
@@ -742,13 +742,13 @@ export class SiteLayoutComponent implements AfterViewInit {
 
     //mobile
     if (window.innerWidth < 600) {
-      this.canvas.moveWithFormat(this.dataService.scaleKey/0.4, true);
+      this.canvas.moveWithFormat(this.dataService.scaleKey/0.36, true);
 
     } else {
       this.canvas.moveWithFormat(this.dataService.scaleKey, true);
 
     }
-    this.canvas.canvas.discardActiveObject().renderAll();
+    // this.canvas.canvas.discardActiveObject().renderAll();
 
   }
 

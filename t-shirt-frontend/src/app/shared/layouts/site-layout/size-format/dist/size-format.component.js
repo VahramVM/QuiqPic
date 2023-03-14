@@ -130,8 +130,8 @@ var SizeFormatComponent = /** @class */ (function () {
     SizeFormatComponent.prototype.onResize = function () {
         this.dataService.initCalculations();
         // this.counterTop();
-        // this.formatA4V();
-        // this.formatA4H();
+        this.formatA4V();
+        this.formatA4H();
         // this.setformatScale();
         // this.getUpdatedMessage();
         // this.counterNum();
