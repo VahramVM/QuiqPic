@@ -679,13 +679,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(EditorPicComponent, [{
         key: "onResize",
-        value: function onResize() {
+        value: function onResize(event) {
           // --!
           this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
           this.canvas.setHeight(this.siteLayout.canvasHtmlHeight); // this.canvas.backgroundImage = null;
 
           this.setCanvasImage();
-          this.canvas.renderAll(); // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
+          this.canvas.renderAll();
+          console.log('resizzeeee'); // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
           // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
           // this.setCanvasImage1();
           // this.canvas1.renderAll();
@@ -1550,8 +1551,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.objectType = true;
           $(document).on('click', '.deleteBtn', function (event) {
             _this7.removeSelected();
-
-            _this7.onResize();
           });
 
           if (this.props.diametr < 299) {
@@ -3425,8 +3424,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function EditorPicComponent_Template_div_resize_0_listener() {
-            return ctx.onResize();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function EditorPicComponent_Template_div_resize_0_listener($event) {
+            return ctx.onResize($event);
           }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "canvas", 1, 2);
@@ -8171,8 +8170,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           dots: false,
           autoHeight: true,
           // autoplay:true,
-          autoWidth: true,
-          smartSpeed: 700,
+          // autoWidth: true,s
+          smartSpeed: 1000,
           center: true,
           responsive: {
             0: {
@@ -8257,7 +8256,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
             this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 40;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
@@ -8592,8 +8591,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
           } else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
-          } // this.canvas.canvas.discardActiveObject().renderAll();
+          }
 
+          this.canvas.canvas.discardActiveObject().renderAll();
         }
       }, {
         key: "productBrandColor",

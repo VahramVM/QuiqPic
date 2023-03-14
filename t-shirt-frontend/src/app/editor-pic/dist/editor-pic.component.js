@@ -128,13 +128,14 @@ var EditorPicComponent = /** @class */ (function () {
         //   res => this.canvasCount = res      
         // );
     }
-    EditorPicComponent.prototype.onResize = function () {
+    EditorPicComponent.prototype.onResize = function (event) {
         // --!
         this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
         this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
+        console.log('resizzeeee');
         // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
         // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.setCanvasImage1();
@@ -866,7 +867,6 @@ var EditorPicComponent = /** @class */ (function () {
         this.objectType = true;
         $(document).on('click', '.deleteBtn', function (event) {
             _this.removeSelected();
-            _this.onResize();
         });
         if (this.props.diametr < 299) {
             console.log('<280');

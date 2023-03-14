@@ -417,13 +417,14 @@ class EditorPicComponent {
         //   res => this.canvasCount = res      
         // );
     }
-    onResize() {
+    onResize(event) {
         // --!
         this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
         this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
+        console.log('resizzeeee');
         // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
         // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.setCanvasImage1();
@@ -1149,7 +1150,6 @@ class EditorPicComponent {
         this.objectType = true;
         $(document).on('click', '.deleteBtn', (event) => {
             this.removeSelected();
-            this.onResize();
         });
         if (this.props.diametr < 299) {
             console.log('<280');
@@ -2809,7 +2809,7 @@ EditorPicComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.htmlCanvas = _t.first);
     } }, decls: 3, vars: 0, consts: [[3, "resize"], [1, "mobile"], ["htmlCanvas", ""]], template: function EditorPicComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function EditorPicComponent_Template_div_resize_0_listener() { return ctx.onResize(); }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function EditorPicComponent_Template_div_resize_0_listener($event) { return ctx.onResize($event); }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "canvas", 1, 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, styles: ["@media only screen and (max-width: 600px) {\n  .mobile[_ngcontent-%COMP%] {\n    margin-top: 0px;\n    border: 0px dashed #ffffff;\n  }\n}\n\n@media only screen and (min-width: 1200px) {\n  .mobile[_ngcontent-%COMP%] {\n    margin-top: 0px;\n    border: 0px dashed #ffffff;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZWRpdG9yLXBpYy9EOlxcQW5ndWxhclxcQ29weSBvZiBvcmlnaW4gcHJvamVjdCBULXNoaXJ0X2xhc3RcXHQtc2hpcnRcXHQtc2hpcnQtYmFja2VuZFxcdC1zaGlydC1mcm9udGVuZC9zcmNcXGFwcFxcZWRpdG9yLXBpY1xcZWRpdG9yLXBpYy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvZWRpdG9yLXBpYy9lZGl0b3ItcGljLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0U7SUFBVSxlQUFlO0lBQUUsMEJBQTBCO0VDRXJEO0FBQ0Y7O0FEQUE7RUFDRTtJQUFVLGVBQWU7SUFBRSwwQkFBMEI7RUNLckQ7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2VkaXRvci1waWMvZWRpdG9yLXBpYy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDYwMHB4KSB7XHJcbiAgLm1vYmlsZSB7IG1hcmdpbi10b3A6IDBweDsgYm9yZGVyOiAwcHggZGFzaGVkICNmZmZmZmY7fVxyXG59XHJcblxyXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDEyMDBweCkge1xyXG4gIC5tb2JpbGUgeyBtYXJnaW4tdG9wOiAwcHg7IGJvcmRlcjogMHB4IGRhc2hlZCAjZmZmZmZmO31cclxufVxyXG5cclxuIiwiQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA2MDBweCkge1xuICAubW9iaWxlIHtcbiAgICBtYXJnaW4tdG9wOiAwcHg7XG4gICAgYm9yZGVyOiAwcHggZGFzaGVkICNmZmZmZmY7XG4gIH1cbn1cblxuQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxMjAwcHgpIHtcbiAgLm1vYmlsZSB7XG4gICAgbWFyZ2luLXRvcDogMHB4O1xuICAgIGJvcmRlcjogMHB4IGRhc2hlZCAjZmZmZmZmO1xuICB9XG59XG4iXX0= */"] });
@@ -5084,8 +5084,8 @@ let SiteLayoutComponent = class SiteLayoutComponent {
             dots: false,
             autoHeight: true,
             // autoplay:true,
-            autoWidth: true,
-            smartSpeed: 700,
+            // autoWidth: true,s
+            smartSpeed: 1000,
             center: true,
             responsive: {
                 0: {
@@ -5159,7 +5159,7 @@ let SiteLayoutComponent = class SiteLayoutComponent {
         }
         // $('#myCarousel').trigger('refresh.owl.carousel');
         if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
             this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
         }
         else {
@@ -5420,7 +5420,7 @@ let SiteLayoutComponent = class SiteLayoutComponent {
         else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
         }
-        // this.canvas.canvas.discardActiveObject().renderAll();
+        this.canvas.canvas.discardActiveObject().renderAll();
     }
     productBrandColor() {
         this.canvas.productsTypeColor();

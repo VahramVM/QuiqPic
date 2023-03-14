@@ -301,7 +301,7 @@ export class SiteLayoutComponent implements AfterViewInit {
     // $('#myCarousel').trigger('refresh.owl.carousel');
 
     if (checkWidth < 600) {
-      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
+      this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
       this.canvasCenteredPosition = (window.innerWidth / this.dataService.positionKey) / 40;
 
     } else {
@@ -343,8 +343,8 @@ export class SiteLayoutComponent implements AfterViewInit {
     dots: false,
     autoHeight: true,
     // autoplay:true,
-    autoWidth: true,
-    smartSpeed: 700,
+    // autoWidth: true,s
+    smartSpeed: 1000,
     center: true,
 
     responsive: {
@@ -748,7 +748,7 @@ export class SiteLayoutComponent implements AfterViewInit {
       this.canvas.moveWithFormat(this.dataService.scaleKey, true);
 
     }
-    // this.canvas.canvas.discardActiveObject().renderAll();
+    this.canvas.canvas.discardActiveObject().renderAll();
 
   }
 
