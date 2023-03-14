@@ -679,14 +679,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(EditorPicComponent, [{
         key: "onResize",
-        value: function onResize(event) {
-          // --!
-          this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-          this.canvas.setHeight(this.siteLayout.canvasHtmlHeight); // this.canvas.backgroundImage = null;
-
-          this.setCanvasImage();
-          this.canvas.renderAll();
-          console.log('resizzeeee'); // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
+        value: function onResize(event) {// --!
+          // this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
+          // this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
+          // // this.canvas.backgroundImage = null;
+          // this.setCanvasImage();
+          // this.canvas.renderAll();
+          // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
           // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
           // this.setCanvasImage1();
           // this.canvas1.renderAll();

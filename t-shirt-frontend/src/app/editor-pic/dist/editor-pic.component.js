@@ -130,12 +130,11 @@ var EditorPicComponent = /** @class */ (function () {
     }
     EditorPicComponent.prototype.onResize = function (event) {
         // --!
-        this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
-        // this.canvas.backgroundImage = null;
-        this.setCanvasImage();
-        this.canvas.renderAll();
-        console.log('resizzeeee');
+        // this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
+        // this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
+        // // this.canvas.backgroundImage = null;
+        // this.setCanvasImage();
+        // this.canvas.renderAll();
         // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
         // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.setCanvasImage1();
