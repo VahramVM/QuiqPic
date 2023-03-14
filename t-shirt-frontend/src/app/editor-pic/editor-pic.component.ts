@@ -1558,6 +1558,7 @@ export class EditorPicComponent implements AfterViewInit {
 
     $(document).on('click', '.deleteBtn', (event) => {
 
+      this.onResize(1);
       this.removeSelected();
 
     });

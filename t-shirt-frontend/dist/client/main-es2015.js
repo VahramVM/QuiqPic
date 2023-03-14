@@ -1396,6 +1396,7 @@ class EditorPicComponent {
     // Block "Add images"
     getImgPolaroid(event) {
         $(document).on('click', '.deleteBtn', (event) => {
+            this.onResize(1);
             this.removeSelected();
         });
         this.canvas.includeDefaultValues;

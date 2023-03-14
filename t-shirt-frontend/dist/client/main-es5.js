@@ -1811,6 +1811,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this8 = this;
 
           $(document).on('click', '.deleteBtn', function (event) {
+            _this8.onResize(1);
+
             _this8.removeSelected();
           });
           this.canvas.includeDefaultValues;

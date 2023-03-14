@@ -1114,6 +1114,7 @@ var EditorPicComponent = /** @class */ (function () {
     EditorPicComponent.prototype.getImgPolaroid = function (event) {
         var _this = this;
         $(document).on('click', '.deleteBtn', function (event) {
+            _this.onResize(1);
             _this.removeSelected();
         });
         this.canvas.includeDefaultValues;
