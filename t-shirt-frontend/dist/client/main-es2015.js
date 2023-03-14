@@ -1150,7 +1150,7 @@ class EditorPicComponent {
         this.objectType = true;
         $(document).on('click', '.deleteBtn', (event) => {
             this.removeSelected();
-            this.onResize(1);
+            // this.onResize(1);
         });
         if (this.props.diametr < 299) {
             console.log('<280');
@@ -5416,7 +5416,7 @@ let SiteLayoutComponent = class SiteLayoutComponent {
         this.dataService.formatSizeSwich();
         //mobile
         if (window.innerWidth < 600) {
-            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.38, true);
+            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
         }
         else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);

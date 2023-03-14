@@ -1550,9 +1550,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // console.log(this.props.textCurved);
           this.objectType = true;
           $(document).on('click', '.deleteBtn', function (event) {
-            _this7.removeSelected();
+            _this7.removeSelected(); // this.onResize(1);
 
-            _this7.onResize(1);
           });
 
           if (this.props.diametr < 299) {
@@ -8590,7 +8589,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.dataService.formatSizeSwich(); //mobile
 
           if (window.innerWidth < 600) {
-            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.38, true);
+            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
           } else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
           }
