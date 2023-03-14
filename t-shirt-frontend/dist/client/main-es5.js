@@ -5339,7 +5339,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.horVert = true; //mobile
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 2.8;
+            this.canvasHtmlWidth = (window.innerWidth - this.widthKey * window.innerWidth) * 3;
             this.canvasCenteredPosition = window.innerWidth / this.positionKey / 40;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.widthKey * window.innerWidth;
@@ -8256,7 +8256,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
           if (checkWidth < 600) {
-            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 2.9;
+            this.canvasHtmlWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) * 3;
             this.canvasCenteredPosition = window.innerWidth / this.dataService.positionKey / 40;
           } else {
             this.canvasHtmlWidth = window.innerWidth - this.dataService.widthKey * window.innerWidth;
