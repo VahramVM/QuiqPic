@@ -1551,6 +1551,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.objectType = true;
           $(document).on('click', '.deleteBtn', function (event) {
             _this7.removeSelected();
+
+            _this7.onResize(1);
           });
 
           if (this.props.diametr < 299) {

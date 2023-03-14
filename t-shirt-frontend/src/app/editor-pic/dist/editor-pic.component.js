@@ -867,6 +867,7 @@ var EditorPicComponent = /** @class */ (function () {
         this.objectType = true;
         $(document).on('click', '.deleteBtn', function (event) {
             _this.removeSelected();
+            _this.onResize(1);
         });
         if (this.props.diametr < 299) {
             console.log('<280');

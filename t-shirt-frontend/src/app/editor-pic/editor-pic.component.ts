@@ -1217,7 +1217,7 @@ console.log('resizzeeee');
     $(document).on('click', '.deleteBtn', (event) => {
 
       this.removeSelected();
-
+      this.onResize(1);
     });
 
 
