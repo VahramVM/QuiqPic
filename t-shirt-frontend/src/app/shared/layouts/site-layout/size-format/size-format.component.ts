@@ -224,12 +224,12 @@ export class SizeFormatComponent implements OnInit {
 
   onResize() {
 
-    this.dataService.initCalculations();
+    // this.dataService.initCalculations();
 
     // this.counterTop();
 
-    this.formatA4V();
-    this.formatA4H();
+    // this.formatA4V();
+    // this.formatA4H();
 
     // this.setformatScale();
     // this.getUpdatedMessage();

@@ -11528,11 +11528,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "onResize",
-        value: function onResize() {
-          this.dataService.initCalculations(); // this.counterTop();
-
-          this.formatA4V();
-          this.formatA4H(); // this.setformatScale();
+        value: function onResize() {// this.dataService.initCalculations();
+          // this.counterTop();
+          // this.formatA4V();
+          // this.formatA4H();
+          // this.setformatScale();
           // this.getUpdatedMessage();
           // this.counterNum();
           // this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
