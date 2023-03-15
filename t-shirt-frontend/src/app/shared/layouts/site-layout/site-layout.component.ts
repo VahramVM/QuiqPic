@@ -69,7 +69,9 @@ export class SiteLayoutComponent implements AfterViewInit {
   public category = '';
   public formatValue: string = 'A4';
   public horVert: boolean = true;
-
+  private items: number = null;
+  private margin: number = null;
+  private stagePadding: number = null;
 
   origin = true;
   shadow = false;
@@ -327,6 +329,7 @@ export class SiteLayoutComponent implements AfterViewInit {
 
 
 
+
   customOptions: OwlOptions = {
 
     // stagePadding: 200,
@@ -346,30 +349,33 @@ export class SiteLayoutComponent implements AfterViewInit {
     smartSpeed: 700,
     center: true,
 
-    responsive: {
-      0: {
-        items: 1,
-        margin: 90,
-        stagePadding: 90,
-      },
+    items: null,
+    margin: null,
+    stagePadding: null,
+    // responsive: {
+    //   0: {
+    //     items: 1,
+    //     margin: 90,
+    //     stagePadding: 90,
+    //   },
 
-      760: {
-        items: 3,
-        margin: 60,
-        // stagePadding: 85,
-      },
+    //   760: {
+    //     items: 3,
+    //     margin: 60,
+    //     // stagePadding: 85,
+    //   },
 
-      1000: {
-        items: 3,
-        margin: 60,
-        // stagePadding: 150,
-      },
+    //   1000: {
+    //     items: 3,
+    //     margin: 60,
+    //     // stagePadding: 150,
+    //   },
 
-    },
+    // },
   }
 
   changeOptions() {
-    this.customOptions = { ...this.customOptions } // this will make the carousel refresh
+    this.customOptions = { ...this.customOptions,  items: this.items, margin: this.margin, stagePadding: this.stagePadding} // this will make the carousel refresh
   }
 
   funk() {
@@ -507,6 +513,21 @@ export class SiteLayoutComponent implements AfterViewInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
+    if (checkWidth < 600) {
+      this.items = 1;
+      this.margin = 90;
+      this.stagePadding = 90;
+      console.log('window.innerWidth < 600!!');
+      
+    } else {
+      this.items = 3;
+      this.margin = 60;
+      this.stagePadding = null;
+      console.log('window.innerWidth > 600!!');
+
+    }
+
+    this.changeOptions();
 
   }
 

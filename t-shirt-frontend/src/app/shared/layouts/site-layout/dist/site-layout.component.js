@@ -95,6 +95,9 @@ var SiteLayoutComponent = /** @class */ (function () {
         this.category = '';
         this.formatValue = 'A4';
         this.horVert = true;
+        this.items = null;
+        this.margin = null;
+        this.stagePadding = null;
         this.origin = true;
         this.shadow = false;
         this.shadowText = true;
@@ -166,21 +169,9 @@ var SiteLayoutComponent = /** @class */ (function () {
             // autoWidth: true,
             smartSpeed: 700,
             center: true,
-            responsive: {
-                0: {
-                    items: 1,
-                    margin: 90,
-                    stagePadding: 90
-                },
-                760: {
-                    items: 3,
-                    margin: 60
-                },
-                1000: {
-                    items: 3,
-                    margin: 60
-                }
-            }
+            items: null,
+            margin: null,
+            stagePadding: null
         };
         // public drawFill() {
         //   this.canvas.drawFill();
@@ -252,7 +243,7 @@ var SiteLayoutComponent = /** @class */ (function () {
         return 0;
     };
     SiteLayoutComponent.prototype.changeOptions = function () {
-        this.customOptions = __assign({}, this.customOptions); // this will make the carousel refresh
+        this.customOptions = __assign(__assign({}, this.customOptions), { items: this.items, margin: this.margin, stagePadding: this.stagePadding }); // this will make the carousel refresh
     };
     SiteLayoutComponent.prototype.funk = function () {
         //   if ( $(window).width() < 768 ) {
@@ -344,6 +335,19 @@ var SiteLayoutComponent = /** @class */ (function () {
         this.canvasCenteredPosition = this.dataService.canvasCenteredPosition;
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
+        if (checkWidth < 600) {
+            this.items = 1;
+            this.margin = 90;
+            this.stagePadding = 90;
+            console.log('window.innerWidth < 600!!');
+        }
+        else {
+            this.items = 3;
+            this.margin = 60;
+            this.stagePadding = null;
+            console.log('window.innerWidth > 600!!');
+        }
+        this.changeOptions();
     };
     SiteLayoutComponent.prototype.sendMail = function () {
         var r = confirm("Are you shure!");

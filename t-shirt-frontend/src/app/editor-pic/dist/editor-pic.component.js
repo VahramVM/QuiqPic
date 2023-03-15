@@ -136,9 +136,6 @@ var EditorPicComponent = /** @class */ (function () {
         this.setCanvasImage();
         this.canvas.renderAll();
         console.log('resizzeeee');
-        document.documentElement.style.setProperty('overflow', 'auto');
-        var metaViewport = document.querySelector('meta[name=viewport]');
-        metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=1.0');
         // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
         // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.setCanvasImage1();
@@ -150,9 +147,9 @@ var EditorPicComponent = /** @class */ (function () {
         //Add 'implements OnInit' to the class.
         $(document).on('click', '.deleteBtn', function (event) {
             _this.removeSelected();
-            document.documentElement.style.setProperty('overflow', 'auto');
-            var metaViewport = document.querySelector('meta[name=viewport]');
-            metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99');
+            // document.documentElement.style.setProperty('overflow', 'auto')
+            // const metaViewport = document.querySelector('meta[name=viewport]')
+            // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
         });
     };
     EditorPicComponent.prototype.ngAfterViewInit = function () {
@@ -879,11 +876,6 @@ var EditorPicComponent = /** @class */ (function () {
         var _this = this;
         // console.log(this.props.textCurved);
         this.objectType = true;
-        // $(document).on('click', '.deleteBtn', (event) => {
-        //   this.removeSelected();
-        //   document.documentElement.style.setProperty('overflow', 'auto')
-        //   const metaViewport = document.querySelector('meta[name=viewport]')
-        //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';

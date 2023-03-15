@@ -686,10 +686,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.setCanvasImage();
           this.canvas.renderAll();
-          console.log('resizzeeee');
-          document.documentElement.style.setProperty('overflow', 'auto');
-          var metaViewport = document.querySelector('meta[name=viewport]');
-          metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=1.0'); // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
+          console.log('resizzeeee'); // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
           // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
           // this.setCanvasImage1();
           // this.canvas1.renderAll();
@@ -702,11 +699,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
           //Add 'implements OnInit' to the class.
           $(document).on('click', '.deleteBtn', function (event) {
-            _this2.removeSelected();
+            _this2.removeSelected(); // document.documentElement.style.setProperty('overflow', 'auto')
+            // const metaViewport = document.querySelector('meta[name=viewport]')
+            // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
 
-            document.documentElement.style.setProperty('overflow', 'auto');
-            var metaViewport = document.querySelector('meta[name=viewport]');
-            metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99');
           });
         }
       }, {
@@ -1566,11 +1562,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this8 = this;
 
           // console.log(this.props.textCurved);
-          this.objectType = true; // $(document).on('click', '.deleteBtn', (event) => {
-          //   this.removeSelected();
-          //   document.documentElement.style.setProperty('overflow', 'auto')
-          //   const metaViewport = document.querySelector('meta[name=viewport]')
-          //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
+          this.objectType = true;
 
           if (this.props.diametr < 299) {
             console.log('<280');
@@ -3432,7 +3424,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 3,
       vars: 0,
-      consts: [[3, "resize"], [1, "mobile"], ["htmlCanvas", ""]],
+      consts: [[3, "resize"], [1, "mobile", 2, "resize", "block"], ["htmlCanvas", ""]],
       template: function EditorPicComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -8114,6 +8106,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.category = '';
         this.formatValue = 'A4';
         this.horVert = true;
+        this.items = null;
+        this.margin = null;
+        this.stagePadding = null;
         this.origin = true;
         this.shadow = false;
         this.shadowText = true;
@@ -8186,21 +8181,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // autoWidth: true,
           smartSpeed: 700,
           center: true,
-          responsive: {
-            0: {
-              items: 1,
-              margin: 90,
-              stagePadding: 90
-            },
-            760: {
-              items: 3,
-              margin: 60
-            },
-            1000: {
-              items: 3,
-              margin: 60
-            }
-          }
+          items: null,
+          margin: null,
+          stagePadding: null
         }; // public drawFill() {
         //   this.canvas.drawFill();
         // }
@@ -8287,7 +8270,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "changeOptions",
         value: function changeOptions() {
-          this.customOptions = Object.assign({}, this.customOptions); // this will make the carousel refresh
+          this.customOptions = Object.assign(Object.assign({}, this.customOptions), {
+            items: this.items,
+            margin: this.margin,
+            stagePadding: this.stagePadding
+          }); // this will make the carousel refresh
         }
       }, {
         key: "funk",
@@ -8389,6 +8376,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.canvasHtmlHeight = this.dataService.canvasHtmlHeight;
           this.canvasCenteredPosition = this.dataService.canvasCenteredPosition; //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
           //Add 'implements OnInit' to the class.
+
+          if (checkWidth < 600) {
+            this.items = 1;
+            this.margin = 90;
+            this.stagePadding = 90;
+            console.log('window.innerWidth < 600!!');
+          } else {
+            this.items = 3;
+            this.margin = 60;
+            this.stagePadding = null;
+            console.log('window.innerWidth > 600!!');
+          }
+
+          this.changeOptions();
         }
       }, {
         key: "sendMail",

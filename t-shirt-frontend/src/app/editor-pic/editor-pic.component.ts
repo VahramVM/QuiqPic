@@ -81,9 +81,6 @@ export class EditorPicComponent implements AfterViewInit {
     this.canvas.renderAll();
     console.log('resizzeeee');
 
-    document.documentElement.style.setProperty('overflow', 'auto')
-    const metaViewport = document.querySelector('meta[name=viewport]')
-    metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=1.0')
 
     // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
     // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
@@ -252,9 +249,10 @@ export class EditorPicComponent implements AfterViewInit {
     $(document).on('click', '.deleteBtn', (event) => {
 
       this.removeSelected();
-      document.documentElement.style.setProperty('overflow', 'auto')
-      const metaViewport = document.querySelector('meta[name=viewport]')
-      metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
+      // document.documentElement.style.setProperty('overflow', 'auto')
+      // const metaViewport = document.querySelector('meta[name=viewport]')
+      // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
+    });
   }
 
 
@@ -1228,15 +1226,6 @@ export class EditorPicComponent implements AfterViewInit {
 
     // console.log(this.props.textCurved);
     this.objectType = true;
-
-
-    // $(document).on('click', '.deleteBtn', (event) => {
-
-    //   this.removeSelected();
-    //   document.documentElement.style.setProperty('overflow', 'auto')
-    //   const metaViewport = document.querySelector('meta[name=viewport]')
-    //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
-
 
     if (this.props.diametr < 299) {
 
