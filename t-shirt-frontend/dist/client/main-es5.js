@@ -12495,8 +12495,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])["catch"](function (err) {
       return console.error(err);
     });
-    /***/
 
+    document.documentElement.style.setProperty('overflow', 'auto');
+    var metaViewport = document.querySelector('meta[name=viewport]');
+    metaViewport.setAttribute('content', 'height=' + 'px, width=device-width, initial-scale=1.0');
+    /***/
   },
 
   /***/

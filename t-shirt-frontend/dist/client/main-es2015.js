@@ -7301,6 +7301,9 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].produc
 }
 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(err => console.error(err));
+document.documentElement.style.setProperty('overflow', 'auto');
+const metaViewport = document.querySelector('meta[name=viewport]');
+metaViewport.setAttribute('content', 'height=' + 'px, width=device-width, initial-scale=1.0');
 
 
 /***/ }),
