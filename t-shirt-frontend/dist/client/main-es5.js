@@ -1876,7 +1876,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this8.dataService.formatSizeSwich();
 
                 if (window.innerWidth < 600) {
-                  scale = 0.36;
+                  scale = 0.35;
                 } else {
                   scale = 1.05;
                 }
@@ -2643,8 +2643,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     sel.scaleToWidth(formatWidth * scaleKey / 0.8);
                     sel.scaleToWidth(formatHeight * scaleKey / 0.8);
                   } else {
-                    sel.scaleToWidth(formatWidth * scaleKey / 1);
-                    sel.scaleToHeight(formatHeight * scaleKey / 1);
+                    sel.scaleToWidth(formatWidth * scaleKey / 1.1);
+                    sel.scaleToHeight(formatHeight * scaleKey / 1.1);
                   }
                 }
               } else {
@@ -8592,7 +8592,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.dataService.formatSizeSwich(); //mobile
 
           if (window.innerWidth < 600) {
-            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
+            this.canvas.moveWithFormat(this.dataService.scaleKey / 0.335, true);
           } else {
             this.canvas.moveWithFormat(this.dataService.scaleKey, true);
           }
