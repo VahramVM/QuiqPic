@@ -31,9 +31,9 @@ export class MainPageComponent implements OnInit {
 
     this.preview = false;
     this.router.navigate(['/main']);
-    setTimeout(() => {
-      location.reload();
-    }, 10);
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 10);
   }
 
 

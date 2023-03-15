@@ -25,9 +25,9 @@ var MainPageComponent = /** @class */ (function () {
     MainPageComponent.prototype.redirectPreview = function () {
         this.preview = false;
         this.router.navigate(['/main']);
-        setTimeout(function () {
-            location.reload();
-        }, 10);
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 10);
     };
     MainPageComponent = __decorate([
         core_1.Component({
