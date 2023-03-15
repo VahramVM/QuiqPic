@@ -420,7 +420,7 @@ class EditorPicComponent {
     onResize(event) {
         // --!
         this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight + 0.0001);
+        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
@@ -5086,8 +5086,8 @@ let SiteLayoutComponent = class SiteLayoutComponent {
             dots: false,
             autoHeight: true,
             // autoplay:true,
-            // autoWidth: true,s
-            smartSpeed: 1000,
+            // autoWidth: true,
+            smartSpeed: 700,
             center: true,
             responsive: {
                 0: {
@@ -5173,6 +5173,9 @@ let SiteLayoutComponent = class SiteLayoutComponent {
     }
     ret() {
         return 0;
+    }
+    changeOptions() {
+        this.customOptions = Object.assign({}, this.customOptions); // this will make the carousel refresh
     }
     funk() {
         //   if ( $(window).width() < 768 ) {

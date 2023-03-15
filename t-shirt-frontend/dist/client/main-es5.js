@@ -682,7 +682,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function onResize(event) {
           // --!
           this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-          this.canvas.setHeight(this.siteLayout.canvasHtmlHeight + 0.0001); // this.canvas.backgroundImage = null;
+          this.canvas.setHeight(this.siteLayout.canvasHtmlHeight); // this.canvas.backgroundImage = null;
 
           this.setCanvasImage();
           this.canvas.renderAll();
@@ -8174,8 +8174,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           dots: false,
           autoHeight: true,
           // autoplay:true,
-          // autoWidth: true,s
-          smartSpeed: 1000,
+          // autoWidth: true,
+          smartSpeed: 700,
           center: true,
           responsive: {
             0: {
@@ -8274,6 +8274,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ret",
         value: function ret() {
           return 0;
+        }
+      }, {
+        key: "changeOptions",
+        value: function changeOptions() {
+          this.customOptions = Object.assign({}, this.customOptions); // this will make the carousel refresh
         }
       }, {
         key: "funk",

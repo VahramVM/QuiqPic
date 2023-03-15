@@ -287,7 +287,6 @@ export class SiteLayoutComponent implements AfterViewInit {
   onResize(event) {
 
     var checkWidth = window.innerWidth;
-    
 
     // $('#myCarousel').trigger('refresh.owl.carousel-o');
 
@@ -343,8 +342,8 @@ export class SiteLayoutComponent implements AfterViewInit {
     dots: false,
     autoHeight: true,
     // autoplay:true,
-    // autoWidth: true,s
-    smartSpeed: 1000,
+    // autoWidth: true,
+    smartSpeed: 700,
     center: true,
 
     responsive: {
@@ -352,7 +351,6 @@ export class SiteLayoutComponent implements AfterViewInit {
         items: 1,
         margin: 90,
         stagePadding: 90,
-
       },
 
       760: {
@@ -370,7 +368,9 @@ export class SiteLayoutComponent implements AfterViewInit {
     },
   }
 
-
+  changeOptions() {
+    this.customOptions = { ...this.customOptions } // this will make the carousel refresh
+  }
 
   funk() {
 
@@ -734,7 +734,7 @@ export class SiteLayoutComponent implements AfterViewInit {
 
     //mobile
     if (window.innerWidth < 600) {
-      this.canvas.moveWithFormat(this.dataService.scaleKey/0.36, true);
+      this.canvas.moveWithFormat(this.dataService.scaleKey / 0.36, true);
 
     } else {
       this.canvas.moveWithFormat(this.dataService.scaleKey, true);

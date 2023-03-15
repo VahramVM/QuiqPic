@@ -131,7 +131,7 @@ var EditorPicComponent = /** @class */ (function () {
     EditorPicComponent.prototype.onResize = function (event) {
         // --!
         this.canvas.setWidth(this.siteLayout.canvasHtmlWidth);
-        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight + 0.0001);
+        this.canvas.setHeight(this.siteLayout.canvasHtmlHeight);
         // this.canvas.backgroundImage = null;
         this.setCanvasImage();
         this.canvas.renderAll();
