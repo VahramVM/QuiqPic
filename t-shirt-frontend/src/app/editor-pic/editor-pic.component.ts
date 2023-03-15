@@ -81,6 +81,10 @@ export class EditorPicComponent implements AfterViewInit {
     this.canvas.renderAll();
     console.log('resizzeeee');
 
+    document.documentElement.style.setProperty('overflow', 'auto')
+    const metaViewport = document.querySelector('meta[name=viewport]')
+    metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=1.0')
+
     // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
     // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
     // this.setCanvasImage1();

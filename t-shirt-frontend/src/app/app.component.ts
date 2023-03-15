@@ -8,7 +8,7 @@ import { AuthServices } from './shared/layouts/servises/services';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private auth:AuthServices) {}
+  constructor(private auth: AuthServices) { }
 
   ngOnInit() {
     const correntToken = localStorage.getItem('auth-token')
@@ -16,8 +16,5 @@ export class AppComponent implements OnInit {
       this.auth.setToken(correntToken)
     }
 
-//     document.documentElement.style.setProperty('overflow', 'auto')
-//  const metaViewport = document.querySelector(‘meta[name=viewport]’)
-//  metaViewport.setAttribute('content', 'height=' + initialHeight + 'px, width=device-width, initial-scale=1.0')
   }
 }
