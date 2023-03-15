@@ -144,6 +144,17 @@ var EditorPicComponent = /** @class */ (function () {
         // this.setCanvasImage1();
         // this.canvas1.renderAll();
     };
+    EditorPicComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        $(document).on('click', '.deleteBtn', function (event) {
+            _this.removeSelected();
+            document.documentElement.style.setProperty('overflow', 'auto');
+            var metaViewport = document.querySelector('meta[name=viewport]');
+            metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99');
+        });
+    };
     EditorPicComponent.prototype.ngAfterViewInit = function () {
         // setup front side canvas
         // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -868,10 +879,11 @@ var EditorPicComponent = /** @class */ (function () {
         var _this = this;
         // console.log(this.props.textCurved);
         this.objectType = true;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-            _this.onResize(1);
-        });
+        // $(document).on('click', '.deleteBtn', (event) => {
+        //   this.removeSelected();
+        //   document.documentElement.style.setProperty('overflow', 'auto')
+        //   const metaViewport = document.querySelector('meta[name=viewport]')
+        //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';
@@ -1116,10 +1128,6 @@ var EditorPicComponent = /** @class */ (function () {
     // Block "Add images"
     EditorPicComponent.prototype.getImgPolaroid = function (event) {
         var _this = this;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.onResize(1);
-            _this.removeSelected();
-        });
         this.canvas.includeDefaultValues;
         this.objectTypeImage = 'image';
         this.canvasCount += 1;
@@ -1436,9 +1444,6 @@ var EditorPicComponent = /** @class */ (function () {
     // Block "Upload Image"
     EditorPicComponent.prototype.addImageOnCanvas = function (url) {
         var _this = this;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-        });
         $(document).on('click', ".deleteBtn", function (event) {
             event.stopImmediatePropagation();
             var activeObject = _this.canvas.getActiveObject();

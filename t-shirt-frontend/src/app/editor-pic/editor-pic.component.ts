@@ -246,6 +246,18 @@ export class EditorPicComponent implements AfterViewInit {
   }
 
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    $(document).on('click', '.deleteBtn', (event) => {
+
+      this.removeSelected();
+      document.documentElement.style.setProperty('overflow', 'auto')
+      const metaViewport = document.querySelector('meta[name=viewport]')
+      metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
+  }
+
+
   ngAfterViewInit(): void {
     // setup front side canvas
     // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -1218,11 +1230,12 @@ export class EditorPicComponent implements AfterViewInit {
     this.objectType = true;
 
 
-    $(document).on('click', '.deleteBtn', (event) => {
+    // $(document).on('click', '.deleteBtn', (event) => {
 
-      this.removeSelected();
-      this.onResize(1);
-    });
+    //   this.removeSelected();
+    //   document.documentElement.style.setProperty('overflow', 'auto')
+    //   const metaViewport = document.querySelector('meta[name=viewport]')
+    //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
 
 
     if (this.props.diametr < 299) {
@@ -1559,13 +1572,6 @@ export class EditorPicComponent implements AfterViewInit {
   // Block "Add images"
 
   public getImgPolaroid(event: any): void {
-
-    $(document).on('click', '.deleteBtn', (event) => {
-
-      this.onResize(1);
-      this.removeSelected();
-
-    });
 
     this.canvas.includeDefaultValues;
     this.objectTypeImage = 'image'
@@ -1963,12 +1969,6 @@ export class EditorPicComponent implements AfterViewInit {
   // Block "Upload Image"
 
   public addImageOnCanvas(url): void {
-
-    $(document).on('click', '.deleteBtn', (event) => {
-
-      this.removeSelected();
-
-    });
 
 
     $(document).on('click', ".deleteBtn", (event) => {

@@ -433,6 +433,16 @@ class EditorPicComponent {
         // this.setCanvasImage1();
         // this.canvas1.renderAll();
     }
+    ngOnInit() {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        $(document).on('click', '.deleteBtn', (event) => {
+            this.removeSelected();
+            document.documentElement.style.setProperty('overflow', 'auto');
+            const metaViewport = document.querySelector('meta[name=viewport]');
+            metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99');
+        });
+    }
     ngAfterViewInit() {
         // setup front side canvas
         // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -1151,10 +1161,11 @@ class EditorPicComponent {
     addText() {
         // console.log(this.props.textCurved);
         this.objectType = true;
-        $(document).on('click', '.deleteBtn', (event) => {
-            this.removeSelected();
-            this.onResize(1);
-        });
+        // $(document).on('click', '.deleteBtn', (event) => {
+        //   this.removeSelected();
+        //   document.documentElement.style.setProperty('overflow', 'auto')
+        //   const metaViewport = document.querySelector('meta[name=viewport]')
+        //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';
@@ -1398,10 +1409,6 @@ class EditorPicComponent {
     }
     // Block "Add images"
     getImgPolaroid(event) {
-        $(document).on('click', '.deleteBtn', (event) => {
-            this.onResize(1);
-            this.removeSelected();
-        });
         this.canvas.includeDefaultValues;
         this.objectTypeImage = 'image';
         this.canvasCount += 1;
@@ -1717,9 +1724,6 @@ class EditorPicComponent {
     }
     // Block "Upload Image"
     addImageOnCanvas(url) {
-        $(document).on('click', '.deleteBtn', (event) => {
-            this.removeSelected();
-        });
         $(document).on('click', ".deleteBtn", (event) => {
             event.stopImmediatePropagation();
             const activeObject = this.canvas.getActiveObject();

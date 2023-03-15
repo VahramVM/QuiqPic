@@ -695,9 +695,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // this.canvas1.renderAll();
         }
       }, {
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this2 = this;
+
+          //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+          //Add 'implements OnInit' to the class.
+          $(document).on('click', '.deleteBtn', function (event) {
+            _this2.removeSelected();
+
+            document.documentElement.style.setProperty('overflow', 'auto');
+            var metaViewport = document.querySelector('meta[name=viewport]');
+            metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99');
+          });
+        }
+      }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this2 = this;
+          var _this3 = this;
 
           // setup front side canvas
           // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -724,7 +739,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var numTop = this.top;
           this.canvas.on({
             'after:render': function afterRender(e) {
-              _this2.canvas.calcOffset();
+              _this3.canvas.calcOffset();
             },
             'object:moving': function objectMoving(e) {
               var obj = e.target;
@@ -734,34 +749,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
               console.log(imageCoordy);
-              _this2.siteLayout.imageCoordy = Math.floor(imageCoordy);
-              _this2.siteLayout.imageCoordx = Math.floor(imageCoordx);
-              var moveSizeLimit = _this2.canvas.width / _this2.b;
-              var cornerSize = _this2.canvas.width / 40;
+              _this3.siteLayout.imageCoordy = Math.floor(imageCoordy);
+              _this3.siteLayout.imageCoordx = Math.floor(imageCoordx);
+              var moveSizeLimit = _this3.canvas.width / _this3.b;
+              var cornerSize = _this3.canvas.width / 40;
               var sumLeft = obj.getBoundingRect().left;
               var sumTop = obj.getBoundingRect().top;
               var sumWidth = obj.getBoundingRect().width;
               var sumHeight = obj.getBoundingRect().height;
-              var Delta = _this2.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this2.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this2.dataService.formatWithHeight;
-              var formatWidth = _this2.canvas.width - 2 * (moveSizeLimit + cornerSize);
-              var formatHeight = formatWidth * _this2.dataService.formatWithHeight;
-              var angle = Math.abs(_this2.canvas.getActiveObject().angle * Math.PI / 180);
+              var Delta = _this3.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this3.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this3.dataService.formatWithHeight;
+              var formatWidth = _this3.canvas.width - 2 * (moveSizeLimit + cornerSize);
+              var formatHeight = formatWidth * _this3.dataService.formatWithHeight;
+              var angle = Math.abs(_this3.canvas.getActiveObject().angle * Math.PI / 180);
               var cos = Math.abs(Math.cos(angle)); // if (obj.height > obj.canvas.height || obj.width > obj.canvas.width) {
               //   obj.originY;
               //   obj.originX;
               // }
               // top-left  corner
 
-              console.log('fromEditor', _this2.dataService.sizePrintKey, _this2.b, _this2.d);
+              console.log('fromEditor', _this3.dataService.sizePrintKey, _this3.b, _this3.d);
 
-              if (sumTop < cornerSize + moveSizeLimit - _this2.canvas.width * _this2.a || sumLeft < cornerSize + moveSizeLimit) {
-                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSizeLimit - _this2.canvas.width * _this2.a);
+              if (sumTop < cornerSize + moveSizeLimit - _this3.canvas.width * _this3.a || sumLeft < cornerSize + moveSizeLimit) {
+                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSizeLimit - _this3.canvas.width * _this3.a);
                 obj.left = Math.max(obj.left, obj.left - sumLeft + (cornerSize + moveSizeLimit));
               } // bot-right corner
 
 
-              if (sumTop + sumHeight + Delta + cornerSize + moveSizeLimit + _this2.canvas.width * _this2.a > obj.canvas.height || sumLeft + sumWidth > obj.canvas.width - cornerSize - moveSizeLimit) {
-                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - cornerSize - moveSizeLimit - Delta - _this2.canvas.width * _this2.a);
+              if (sumTop + sumHeight + Delta + cornerSize + moveSizeLimit + _this3.canvas.width * _this3.a > obj.canvas.height || sumLeft + sumWidth > obj.canvas.width - cornerSize - moveSizeLimit) {
+                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - cornerSize - moveSizeLimit - Delta - _this3.canvas.width * _this3.a);
                 obj.left = Math.min(obj.left, obj.canvas.width - sumWidth + obj.left - sumLeft - cornerSize - moveSizeLimit);
               }
 
@@ -769,16 +784,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               $(".distance").remove();
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
+              _this3.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
 
 
-              _this2.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'object:scaling': function objectScaling(e) {
               var obj = e.target; // this.dataService.scaleKey = obj.scaleX;
@@ -786,8 +801,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               obj.setCoords();
               obj.saveState();
-              var cornerSize = _this2.canvas.width / 40;
-              var moveSiseLimit = _this2.canvas.width / _this2.dataService.sizePrintKey;
+              var cornerSize = _this3.canvas.width / 40;
+              var moveSiseLimit = _this3.canvas.width / _this3.dataService.sizePrintKey;
               var sumLeft = obj.getBoundingRect().left;
               var sumTop = obj.getBoundingRect().top;
               var sumWith = obj.getBoundingRect().width;
@@ -795,24 +810,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var matrix = e.target.calcTransformMatrix();
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
-              var angle = Math.abs(_this2.canvas.getActiveObject().angle * Math.PI / 180);
+              var angle = Math.abs(_this3.canvas.getActiveObject().angle * Math.PI / 180);
 
-              var activeObject = _this2.canvas.getActiveObject();
+              var activeObject = _this3.canvas.getActiveObject();
 
               var nerqnadzic = Math.sqrt(Math.pow(activeObject.width, 2) + Math.pow(activeObject.height, 2));
               var cos = Math.abs(Math.cos(angle));
               var sin = Math.abs(Math.sin(angle));
-              var formatWidth = _this2.canvas.width - 2 * (moveSiseLimit + cornerSize);
-              var formatHeight = formatWidth * _this2.dataService.formatWithHeight;
-              var moveSizeLimit = _this2.canvas.width / _this2.dataService.sizePrintKey;
-              var Delta = _this2.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this2.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this2.dataService.formatWithHeight; // top-left  corner
+              var formatWidth = _this3.canvas.width - 2 * (moveSiseLimit + cornerSize);
+              var formatHeight = formatWidth * _this3.dataService.formatWithHeight;
+              var moveSizeLimit = _this3.canvas.width / _this3.dataService.sizePrintKey;
+              var Delta = _this3.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this3.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this3.dataService.formatWithHeight; // top-left  corner
 
               if (sumLeft < cornerSize + moveSiseLimit) {
                 obj.left = Math.max(obj.left, obj.left - sumLeft + (cornerSize + moveSiseLimit));
               }
 
-              if (sumTop < cornerSize + moveSiseLimit - _this2.canvas.width * _this2.a) {
-                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSiseLimit - _this2.canvas.width * _this2.a + 50);
+              if (sumTop < cornerSize + moveSiseLimit - _this3.canvas.width * _this3.a) {
+                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSiseLimit - _this3.canvas.width * _this3.a + 50);
               } //top right corner
 
 
@@ -821,8 +836,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               } // bot right corner
 
 
-              if (sumTop + sumHeight + obj.cornerSize + moveSiseLimit + Delta + _this2.canvas.width * _this2.a > obj.canvas.width) {
-                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - obj.cornerSize - moveSiseLimit - Delta - _this2.canvas.width * _this2.a);
+              if (sumTop + sumHeight + obj.cornerSize + moveSiseLimit + Delta + _this3.canvas.width * _this3.a > obj.canvas.width) {
+                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - obj.cornerSize - moveSiseLimit - Delta - _this3.canvas.width * _this3.a);
               } // With limit
               // this.canvas.getObjects().filter((o) => {
               //   if (o.get('type') === 'i-text') {
@@ -832,7 +847,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
               if (activeObject.angle === 0 || activeObject.angle === 180) {
-                _this2.canvas.getObjects().filter(function (o) {
+                _this3.canvas.getObjects().filter(function (o) {
                   if (o.get('type') === 'i-text' && sumWith > formatWidth || o.get('type') === 'i-text' && sumHeight > formatHeight) {
                     activeObject.scaleX = formatWidth / (activeObject.width * 1.3);
                     activeObject.scaleY = formatWidth / (activeObject.width * 1.3);
@@ -849,7 +864,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
                 });
               } else {
-                _this2.canvas.getObjects().filter(function (o) {
+                _this3.canvas.getObjects().filter(function (o) {
                   if (o.get('type') === 'i-text' && sumWith > formatWidth || o.get('type') === 'i-text' && sumWith > formatHeight) {
                     activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.75));
                     activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.75));
@@ -921,16 +936,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               $(".distance").remove();
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
+              _this3.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
 
 
-              _this2.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'object:modified': function objectModified(e) {
               var obj = e.target;
@@ -940,20 +955,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var boundingRect = obj.getBoundingRect(true);
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
-              var moveSizeLimit = _this2.canvas.width / _this2.dataService.sizePrintKey;
-              var cornerSize = _this2.canvas.width / 40;
+              var moveSizeLimit = _this3.canvas.width / _this3.dataService.sizePrintKey;
+              var cornerSize = _this3.canvas.width / 40;
               var sumLeft = obj.getBoundingRect().left;
               var sumTop = obj.getBoundingRect().top;
               var sumWidth = obj.getBoundingRect().width;
               var sumHeight = obj.getBoundingRect().height;
-              var Delta = _this2.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this2.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this2.dataService.formatWithHeight; // top-left  corner
+              var Delta = _this3.canvas.height - 2 * (moveSizeLimit + cornerSize) - (_this3.canvas.width - 2 * (moveSizeLimit + cornerSize)) * _this3.dataService.formatWithHeight; // top-left  corner
 
               if (sumLeft < cornerSize + moveSizeLimit) {
                 obj.left = Math.max(obj.left, obj.left - sumLeft + (cornerSize + moveSizeLimit));
               }
 
-              if (sumTop < cornerSize + moveSizeLimit - _this2.canvas.width * _this2.a) {
-                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSizeLimit - _this2.canvas.width * _this2.a);
+              if (sumTop < cornerSize + moveSizeLimit - _this3.canvas.width * _this3.a) {
+                obj.top = Math.max(obj.top, obj.top - sumTop + cornerSize + moveSizeLimit - _this3.canvas.width * _this3.a);
               } // bot-right corner
 
 
@@ -961,26 +976,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 obj.left = Math.min(obj.left, obj.canvas.width - sumWidth + obj.left - sumLeft - cornerSize - moveSizeLimit);
               }
 
-              if (sumTop + sumHeight + cornerSize + moveSizeLimit + Delta + _this2.canvas.width * _this2.a > obj.canvas.height) {
-                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - cornerSize - moveSizeLimit - Delta - _this2.canvas.width * _this2.a);
+              if (sumTop + sumHeight + cornerSize + moveSizeLimit + Delta + _this3.canvas.width * _this3.a > obj.canvas.height) {
+                obj.top = Math.min(obj.top, obj.canvas.height - sumHeight + obj.top - sumTop - cornerSize - moveSizeLimit - Delta - _this3.canvas.width * _this3.a);
               }
 
-              _this2.siteLayout.imageCoordy = Math.floor(imageCoordy);
-              _this2.siteLayout.imageCoordx = Math.floor(imageCoordx);
+              _this3.siteLayout.imageCoordy = Math.floor(imageCoordy);
+              _this3.siteLayout.imageCoordx = Math.floor(imageCoordx);
               $(".distance").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrow(imageCoordy, 2);
+              _this3.addArrow(imageCoordy, 2);
 
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2);
+              _this3.addArrowUp(imageCoordx, 2);
 
-              _this2.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'selection:created': function selectionCreated(e) {
               var obj = e.target; // let sumTop = obj.getBoundingRect().top;
@@ -1013,112 +1028,112 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               obj.saveState();
               $(".deleteBtn").remove(); // console.log('selected');
 
-              _this2.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
               $(".distance").remove();
               var matrixx = e.target.calcTransformMatrix();
               var imageCoordxx = matrixx[4];
               var imageCoordyy = matrixx[5]; // addDistancePoint(imageCoordyy, imageCoordxx);
 
-              _this2.addArrow(imageCoordyy, 2);
+              _this3.addArrow(imageCoordyy, 2);
 
               $(".distanceY").remove();
               var matrixxx = e.target.calcTransformMatrix();
               var imageCoordxxx = matrixxx[4];
               var imageCoordyyy = matrixxx[5]; // addDistancePoint(imageCoordyyy, imageCoordxxx);
 
-              _this2.addArrowUp(imageCoordxxx, 2);
+              _this3.addArrowUp(imageCoordxxx, 2);
 
               var matrix = e.target.calcTransformMatrix();
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
-              _this2.siteLayout.imageCoordy = Math.floor(imageCoordy);
-              _this2.siteLayout.imageCoordx = Math.floor(imageCoordx);
+              _this3.siteLayout.imageCoordy = Math.floor(imageCoordy);
+              _this3.siteLayout.imageCoordx = Math.floor(imageCoordx);
               var imgWith = obj.width * obj.scaleX;
               var imgHeight = obj.height * obj.scaleY;
-              _this2.siteLayout.imgWith = Math.floor(imgWith);
-              _this2.siteLayout.imgHeigt = Math.floor(imgHeight);
-              _this2.selected = obj.type;
+              _this3.siteLayout.imgWith = Math.floor(imgWith);
+              _this3.siteLayout.imgHeigt = Math.floor(imgHeight);
+              _this3.selected = obj.type;
               obj.hasRotatingPoint = true;
               obj.transparentCorners = false;
               obj.cornerColor = '#FF7F50'; // e.target.bringToFront()
               // this.canvas.getActiveObject()
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
 
-              _this2.resetPanels();
+              _this3.resetPanels();
 
-              _this2.getOpacity();
+              _this3.getOpacity();
 
-              _this2.getDistance();
+              _this3.getDistance();
 
               obj.setCoords();
               obj.saveState();
 
               if (obj.type !== 'group' && obj) {
-                _this2.getId();
+                _this3.getId();
 
-                _this2.getOpacity();
+                _this3.getOpacity();
 
-                _this2.getDistance();
+                _this3.getDistance();
 
                 switch (obj.type) {
                   case 'rect':
                   case 'circle':
                   case 'triangle':
-                    _this2.figureEditor = true;
+                    _this3.figureEditor = true;
 
-                    _this2.getFill();
+                    _this3.getFill();
 
                     break;
 
                   case 'i-text':
-                    _this2.textEditor = true; // this.getLineHeight();
+                    _this3.textEditor = true; // this.getLineHeight();
                     // this.getCharSpacing();
 
-                    _this2.getBold();
+                    _this3.getBold();
 
-                    _this2.getFill();
+                    _this3.getFill();
 
-                    _this2.getTextDecoration();
+                    _this3.getTextDecoration();
 
-                    _this2.getTextAlign();
+                    _this3.getTextAlign();
 
-                    _this2.getFontFamily();
+                    _this3.getFontFamily();
 
-                    _this2.bringToFront(); // this.sendToBack()
+                    _this3.bringToFront(); // this.sendToBack()
                     // this.getLineHeight();
 
 
-                    _this2.getCharSpacing();
+                    _this3.getCharSpacing();
 
-                    _this2.getFontSize();
+                    _this3.getFontSize();
 
                     break;
 
                   case 'image':
-                    _this2.getOpacity();
+                    _this3.getOpacity();
 
-                    _this2.getDistance();
+                    _this3.getDistance();
 
                     break;
                 }
               } // addDistancePoint(imageCoordy, imageCoordx);
 
 
-              _this2.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
+              _this3.addArrowUp(imageCoordx, 2); // addDistancePoint(imageCoordy, imageCoordy);
 
 
-              _this2.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addArrow(imageCoordy, 2); // addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
 
-              if (_this2.canvasCount !== 0) {
-                _this2.dataService.canvasSelect = true;
+              if (_this3.canvasCount !== 0) {
+                _this3.dataService.canvasSelect = true;
               }
             },
             // 'selection:created': (e) => {
@@ -1127,8 +1142,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //   }
             // },
             'before:selection:cleared': function beforeSelectionCleared(e) {
-              if (_this2.canvasCount !== 0) {
-                _this2.dataService.canvasSelect = true;
+              if (_this3.canvasCount !== 0) {
+                _this3.dataService.canvasSelect = true;
               }
 
               $(".deleteBtn").remove();
@@ -1137,88 +1152,88 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'selection:updated': function selectionUpdated(e) {
               var obj = e.target;
 
-              _this2.addDeleteBtn(e.target.oCoords.mb.x, e.target.oCoords.mb.y);
+              _this3.addDeleteBtn(e.target.oCoords.mb.x, e.target.oCoords.mb.y);
 
               $(".distance").remove();
               var matrixx = e.target.calcTransformMatrix();
               var imageCoordx = matrixx[4];
               var imageCoordy = matrixx[5]; // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrow(imageCoordy, 2);
+              _this3.addArrow(imageCoordy, 2);
 
               $(".distanceY").remove();
               var matrixxx = e.target.calcTransformMatrix();
               var imageCoordx = matrixxx[4];
               var imageCoordy = matrixxx[5]; // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2);
+              _this3.addArrowUp(imageCoordx, 2);
 
               var matrix = e.target.calcTransformMatrix();
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
-              _this2.siteLayout.imageCoordy = Math.floor(imageCoordy);
-              _this2.siteLayout.imageCoordx = Math.floor(imageCoordx);
+              _this3.siteLayout.imageCoordy = Math.floor(imageCoordy);
+              _this3.siteLayout.imageCoordx = Math.floor(imageCoordx);
               var imgWith = obj.width * obj.scaleX;
               var imgHeight = obj.height * obj.scaleY;
-              _this2.siteLayout.imgWith = Math.floor(imgWith);
-              _this2.siteLayout.imgHeigt = Math.floor(imgHeight);
-              _this2.selected = obj.type;
+              _this3.siteLayout.imgWith = Math.floor(imgWith);
+              _this3.siteLayout.imgHeigt = Math.floor(imgHeight);
+              _this3.selected = obj.type;
               obj.hasRotatingPoint = true;
               obj.transparentCorners = false;
               obj.cornerColor = '#FF7F50'; // e.target.bringToFront()
               // this.canvas.getActiveObject()
 
-              _this2.resetPanels();
+              _this3.resetPanels();
 
-              _this2.getOpacity();
+              _this3.getOpacity();
 
-              _this2.getDistance();
+              _this3.getDistance();
 
               if (obj.type !== 'group' && obj) {
-                _this2.getId();
+                _this3.getId();
 
-                _this2.getOpacity();
+                _this3.getOpacity();
 
-                _this2.getDistance();
+                _this3.getDistance();
 
                 switch (obj.type) {
                   case 'rect':
                   case 'circle':
                   case 'triangle':
-                    _this2.figureEditor = true;
+                    _this3.figureEditor = true;
 
-                    _this2.getFill();
+                    _this3.getFill();
 
                     break;
 
                   case 'i-text':
-                    _this2.textEditor = true; // this.getLineHeight();
+                    _this3.textEditor = true; // this.getLineHeight();
                     // this.getCharSpacing();
 
-                    _this2.getBold();
+                    _this3.getBold();
 
-                    _this2.getFill();
+                    _this3.getFill();
 
-                    _this2.getTextDecoration();
+                    _this3.getTextDecoration();
 
-                    _this2.getTextAlign();
+                    _this3.getTextAlign();
 
-                    _this2.getFontFamily();
+                    _this3.getFontFamily();
 
-                    _this2.bringToFront(); // this.sendToBack()
+                    _this3.bringToFront(); // this.sendToBack()
                     // this.getLineHeight();
 
 
-                    _this2.getCharSpacing();
+                    _this3.getCharSpacing();
 
-                    _this2.getFontSize();
+                    _this3.getFontSize();
 
                     break;
 
                   case 'image':
-                    _this2.getOpacity();
+                    _this3.getOpacity();
 
-                    _this2.getDistance();
+                    _this3.getDistance();
 
                     break;
                 }
@@ -1226,59 +1241,59 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               $(".distance").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrow(imageCoordy, 2);
+              _this3.addArrow(imageCoordy, 2);
 
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2);
+              _this3.addArrowUp(imageCoordx, 2);
 
-              _this2.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'mouse:up:before': function mouseUpBefore(e) {
               console.log('mouse:down');
             },
             'selection:cleared': function selectionCleared(e) {
-              _this2.dataService.canvasSelect = false;
+              _this3.dataService.canvasSelect = false;
               $(".deleteBtn").remove();
               $(".distance").remove();
               var obj = e.target; // console.log('cleared');
 
-              _this2.selected = null;
+              _this3.selected = null;
 
-              _this2.resetPanels(); // console.log('clear');
+              _this3.resetPanels(); // console.log('clear');
 
 
-              _this2.siteLayout.imageCoordx = null;
-              _this2.siteLayout.imageCoordy = null;
-              _this2.siteLayout.imgWith = null;
-              _this2.siteLayout.imgHeigt = null;
+              _this3.siteLayout.imageCoordx = null;
+              _this3.siteLayout.imageCoordy = null;
+              _this3.siteLayout.imgWith = null;
+              _this3.siteLayout.imgHeigt = null;
             },
             'object:rotating': function objectRotating(e) {
               var obj = e.target;
               obj.setCoords();
               obj.saveState();
               var matrix = e.target.calcTransformMatrix();
-              var angle = Math.abs(_this2.canvas.getActiveObject().angle * Math.PI / 180);
+              var angle = Math.abs(_this3.canvas.getActiveObject().angle * Math.PI / 180);
               var sumWidth = obj.getBoundingRect().width;
               var sumHeight = obj.getBoundingRect().height;
               var imageCoordx = matrix[4];
               var imageCoordy = matrix[5];
 
-              var activeObject = _this2.canvas.getActiveObject(); // const nerqnadzicc = Math.sqrt(Math.pow(this.canvas.getActiveObject().width, 2) + Math.pow(this.canvas.getActiveObject().height, 2))
+              var activeObject = _this3.canvas.getActiveObject(); // const nerqnadzicc = Math.sqrt(Math.pow(this.canvas.getActiveObject().width, 2) + Math.pow(this.canvas.getActiveObject().height, 2))
 
 
               var cos = Math.abs(Math.cos(angle));
               var sin = Math.abs(Math.sin(angle));
-              var formatWidth = window.innerWidth - _this2.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this2.dataService.widthKey * window.innerWidth) / _this2.b + (window.innerWidth - _this2.dataService.widthKey * window.innerWidth) / 40);
-              var formatHeight = formatWidth * _this2.c;
+              var formatWidth = window.innerWidth - _this3.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this3.dataService.widthKey * window.innerWidth) / _this3.b + (window.innerWidth - _this3.dataService.widthKey * window.innerWidth) / 40);
+              var formatHeight = formatWidth * _this3.c;
               var checkWidth = window.innerWidth;
 
-              _this2.canvas.getObjects().filter(function (o) {
+              _this3.canvas.getObjects().filter(function (o) {
                 //mobile
                 if (checkWidth < 600) {
                   if (o.get('type') === 'i-text' && sumWidth > formatWidth || o.get('type') === 'i-text' && sumHeight > formatHeight) {
@@ -1315,34 +1330,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               $(".distance").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrow(imageCoordy, 2);
+              _this3.addArrow(imageCoordy, 2);
 
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2);
+              _this3.addArrowUp(imageCoordx, 2);
 
-              _this2.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'path:created': function pathCreated(e) {
               var obj = e.target;
-              _this2.canvasCount += 1;
-              _this2.canvas.isDrawingMode = false; // this.canvas.on('mouse:up', () => this.canvas.setActiveObject());
+              _this3.canvasCount += 1;
+              _this3.canvas.isDrawingMode = false; // this.canvas.on('mouse:up', () => this.canvas.setActiveObject());
               // console.log(this.canvas.item(this.canvasCount - 1));
 
-              _this2.canvas.getObjects().indexOf(e.target); // this.canvas.setActiveObject(this.canvas.item(this.canvasCount- 1));
+              _this3.canvas.getObjects().indexOf(e.target); // this.canvas.setActiveObject(this.canvas.item(this.canvasCount- 1));
 
 
-              _this2.selectItemAfterAdded(_this2.canvas.item(_this2.canvasCount - 1));
+              _this3.selectItemAfterAdded(_this3.canvas.item(_this3.canvasCount - 1));
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             },
             'object:added': function objectAdded(e) {
               var obj = e.target;
@@ -1359,18 +1374,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               $(".deleteBtn").remove(); // console.log('added');
               // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrow(imageCoordy, 2);
+              _this3.addArrow(imageCoordy, 2);
 
               $(".distanceY").remove(); // addDistancePoint(imageCoordy, imageCoordx);
 
-              _this2.addArrowUp(imageCoordx, 2);
+              _this3.addArrowUp(imageCoordx, 2);
 
-              _this2.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
+              _this3.addDeleteBtn(obj.oCoords.mb.x, obj.oCoords.mb.y);
 
               obj.setCoords();
               obj.saveState();
 
-              _this2.canvas.renderAll();
+              _this3.canvas.renderAll();
             }
           }); // --!
           // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
@@ -1385,8 +1400,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           // });
 
           this.canvas.on('mouse:over', function () {
-            var color = _this2.props.drawFill;
-            _this2.canvas.freeDrawingBrush.color = color; // alert("mouse up!");
+            var color = _this3.props.drawFill;
+            _this3.canvas.freeDrawingBrush.color = color; // alert("mouse up!");
             // this.canvas.add(refRect);
             // isMouseDown = false;
             // freeDrawing=false; // **Disables line drawing
@@ -1395,11 +1410,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "defoultUpdate",
         value: function defoultUpdate() {
-          var _this3 = this;
+          var _this4 = this;
 
           $('.owl-theme').on('changed.owl-carousel', function (event) {
             var current = event.item.index;
-            _this3.id = $(event.target).find(".owl-item").eq(current).find("img").attr('id');
+            _this4.id = $(event.target).find(".owl-item").eq(current).find("img").attr('id');
           });
         }
         /*------------------------Block elements------------------------*/
@@ -1425,34 +1440,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "canvasDrawing",
         value: function canvasDrawing(target) {
-          var _this4 = this;
+          var _this5 = this;
 
           $(document).on('click', ".deleteBtn", function (event) {
             event.stopImmediatePropagation();
-            _this4.canvasCount -= 1;
-            console.log(_this4.canvasCount);
+            _this5.canvasCount -= 1;
+            console.log(_this5.canvasCount);
 
-            if (_this4.canvasCount === 0) {
+            if (_this5.canvasCount === 0) {
               // this.siteLayout.isOpasity=true;
               $('.owl-nav').show();
               $(".canvas").css("z-index", 0);
-              _this4.disableBtn = false;
-              _this4.siteLayout.toggle = false;
+              _this5.disableBtn = false;
+              _this5.siteLayout.toggle = false;
               console.log('delete---');
             }
 
-            var activeObject = _this4.canvas.getActiveObject();
+            var activeObject = _this5.canvas.getActiveObject();
 
-            var activeGroup = _this4.canvas.getActiveObjects();
+            var activeGroup = _this5.canvas.getActiveObjects();
 
             if (activeObject) {
-              _this4.canvas.remove(activeObject);
+              _this5.canvas.remove(activeObject);
 
               $(".deleteBtn").remove(); // this.textString = '';
             } else if (activeGroup) {
-              _this4.canvas.discardActiveObject();
+              _this5.canvas.discardActiveObject();
 
-              var self = _this4;
+              var self = _this5;
               activeGroup.forEach(function (object) {
                 self.canvas.remove(object);
               });
@@ -1513,11 +1528,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "reRender",
         value: function reRender() {
-          var _this5 = this;
+          var _this6 = this;
 
           this.canvas.getObjects().filter(function (o) {
             if (o.get('type') === 'i-text') {
-              return _this5.canvas.setActiveObject(o);
+              return _this6.canvas.setActiveObject(o);
             }
           });
 
@@ -1532,11 +1547,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "reRender1",
         value: function reRender1() {
-          var _this6 = this;
+          var _this7 = this;
 
           this.canvas.getObjects().filter(function (o) {
             if (o.get('type') === 'i-text') {
-              return _this6.canvas.setActiveObject(o);
+              return _this7.canvas.setActiveObject(o);
             }
           }); // if (this.canvasCount !== 0) {
           //   // this.selectItemAfterAdded(this.props.textStraight);
@@ -1548,15 +1563,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addText",
         value: function addText() {
-          var _this7 = this;
+          var _this8 = this;
 
           // console.log(this.props.textCurved);
-          this.objectType = true;
-          $(document).on('click', '.deleteBtn', function (event) {
-            _this7.removeSelected();
-
-            _this7.onResize(1);
-          });
+          this.objectType = true; // $(document).on('click', '.deleteBtn', (event) => {
+          //   this.removeSelected();
+          //   document.documentElement.style.setProperty('overflow', 'auto')
+          //   const metaViewport = document.querySelector('meta[name=viewport]')
+          //   metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    });
 
           if (this.props.diametr < 299) {
             console.log('<280');
@@ -1610,16 +1624,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 centeredRotation: true
               }, this.path = path);
               $('#shadowText').on('click', function () {
-                if (!_this7.siteLayout.shadowText) {
+                if (!_this8.siteLayout.shadowText) {
                   text.shadow = null;
-                } else if (_this7.siteLayout.shadowText) {
+                } else if (_this8.siteLayout.shadowText) {
                   // text.setShadow(this.shadowTEXT) old version;
                   // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
-                  text.shadow = new fabric.Shadow(_this7.shadowTEXT); // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
+                  text.shadow = new fabric.Shadow(_this8.shadowTEXT); // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
                   // console.log('text');
                 }
 
-                _this7.canvas.renderAll();
+                _this8.canvas.renderAll();
               });
 
               if (this.dataService.horizontalVertical === true) {
@@ -1781,16 +1795,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
 
               $('#shadowText').on('click', function () {
-                if (!_this7.siteLayout.shadowText) {
+                if (!_this8.siteLayout.shadowText) {
                   _text.shadow = null;
-                } else if (_this7.siteLayout.shadowText) {
+                } else if (_this8.siteLayout.shadowText) {
                   // text.setShadow(this.shadowTEXT) old version;
                   // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
-                  _text.shadow = new fabric.Shadow(_this7.shadowTEXT); // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
+                  _text.shadow = new fabric.Shadow(_this8.shadowTEXT); // text.set('shadow', new fabric.Shadow(this.shadowTEXT));
                   // console.log('text');
                 }
 
-                _this7.canvas.renderAll();
+                _this8.canvas.renderAll();
               }), // console.log(this.a, this.b, this.d);
               this.extend(_text, this.randomId()); // text.charSpacing = pathLength;
 
@@ -1811,51 +1825,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getImgPolaroid",
         value: function getImgPolaroid(event) {
-          var _this8 = this;
+          var _this9 = this;
 
-          $(document).on('click', '.deleteBtn', function (event) {
-            _this8.onResize(1);
-
-            _this8.removeSelected();
-          });
           this.canvas.includeDefaultValues;
           this.objectTypeImage = 'image';
           this.canvasCount += 1;
           var el = event;
           var scale = 1;
           fabric.Image.fromURL(el, function (image) {
-            _this8.image = image;
+            _this9.image = image;
 
             if (image.height > 1300) {
-              _this8.dataService.formatVal = _this8.dataService.formatValue = 'A3';
+              _this9.dataService.formatVal = _this9.dataService.formatValue = 'A3';
 
               if (image.height / image.width > 1.1) {
                 console.log('mage.height / image.width > 1.1');
-                _this8.dataService.horizontalVertical = true;
-                _this8.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
+                _this9.dataService.horizontalVertical = true;
+                _this9.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
 
-                _this8.dataService.formatWithHeight = 1.414;
-                _this8.dataService.formatTopKey = -0.00; // this.dataService.scaleKey = 1;
+                _this9.dataService.formatWithHeight = 1.414;
+                _this9.dataService.formatTopKey = -0.00; // this.dataService.scaleKey = 1;
                 //mobile
 
-                _this8.dataService.formatSizeSwich();
+                _this9.dataService.formatSizeSwich();
 
                 if (window.innerWidth < 600) {
                   scale = 0.4;
-                  console.log(_this8.scaleKey = _this8.d, 'A3');
+                  console.log(_this9.scaleKey = _this9.d, 'A3');
                 } else {
                   scale = 1.05;
                 }
               } else {
                 console.log('mage.height / image.width > 1.1 else');
-                _this8.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
+                _this9.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
 
-                _this8.dataService.horVert = true;
-                _this8.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
+                _this9.dataService.horVert = true;
+                _this9.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
 
-                _this8.dataService.formatTopKey = -0.00;
+                _this9.dataService.formatTopKey = -0.00;
 
-                _this8.dataService.formatSizeSwich(); //mobile
+                _this9.dataService.formatSizeSwich(); //mobile
 
 
                 if (window.innerWidth < 600) {
@@ -1866,17 +1875,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               }
             } else if (image.height > 100 && image.height < 1300) {
-              _this8.dataService.formatVal = _this8.dataService.formatValue = 'A4';
+              _this9.dataService.formatVal = _this9.dataService.formatValue = 'A4';
 
               if (image.height / image.width > 1.1) {
-                _this8.dataService.horizontalVertical = true;
-                _this8.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
+                _this9.dataService.horizontalVertical = true;
+                _this9.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
 
-                _this8.dataService.formatWithHeight = 1.414;
-                _this8.dataService.formatTopKey = 0.08; // this.dataService.scaleKey = 1;
+                _this9.dataService.formatWithHeight = 1.414;
+                _this9.dataService.formatTopKey = 0.08; // this.dataService.scaleKey = 1;
                 //mobile
 
-                _this8.dataService.formatSizeSwich();
+                _this9.dataService.formatSizeSwich();
 
                 if (window.innerWidth < 600) {
                   scale = 0.35;
@@ -1884,14 +1893,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   scale = 1.05;
                 }
               } else {
-                _this8.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
+                _this9.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
 
-                _this8.dataService.horVert = true;
-                _this8.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
+                _this9.dataService.horVert = true;
+                _this9.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
 
-                _this8.dataService.formatTopKey = -0.00;
+                _this9.dataService.formatTopKey = -0.00;
 
-                _this8.dataService.formatSizeSwich(); //mobile
+                _this9.dataService.formatSizeSwich(); //mobile
 
 
                 if (window.innerWidth < 600) {
@@ -1903,7 +1912,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            _this8.dataService.calcEndPrise(); // function sizing() {
+            _this9.dataService.calcEndPrise(); // function sizing() {
             //   if (image.height / image.width > 1.1) {
             //     this.dataService.horizontalVertical = true;
             //     this.dataService.horVert = false;
@@ -1928,8 +1937,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // const image = fabric.util.groupSVGElements(objects, options);
 
 
-            var imageWidth = window.innerWidth - _this8.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this8.dataService.widthKey * window.innerWidth) / _this8.b + (window.innerWidth - _this8.dataService.widthKey * window.innerWidth) / 40);
-            var imageHeight = imageWidth * _this8.c;
+            var imageWidth = window.innerWidth - _this9.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this9.dataService.widthKey * window.innerWidth) / _this9.b + (window.innerWidth - _this9.dataService.widthKey * window.innerWidth) / 40);
+            var imageHeight = imageWidth * _this9.c;
             console.log(imageWidth, 'imageWidth');
             image.set({
               // multiplier: 0.5,
@@ -1942,7 +1951,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               // top: 50,
               angle: 0,
               padding: 0,
-              cornerSize: _this8.canvas.width / 40,
+              cornerSize: _this9.canvas.width / 40,
               hasRotatingPoint: true
             }); // value.shadow.affectStroke = false;
             // image.panToActiveObject()
@@ -1950,7 +1959,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             image.scaleToWidth(imageWidth / scale);
             image.scaleToHeight(imageHeight / scale);
 
-            _this8.extend(image, _this8.randomId());
+            _this9.extend(image, _this9.randomId());
 
             image.filters.push(new fabric.Image.filters.ColorMatrix({
               duration: 200,
@@ -1958,145 +1967,145 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }));
             image.applyFilters();
 
-            _this8.canvas.add(image); // this.canvas.centerObject(image);
+            _this9.canvas.add(image); // this.canvas.centerObject(image);
 
 
-            _this8.canvas.centerObjectH(image);
+            _this9.canvas.centerObjectH(image);
 
-            image.top = _this8.canvas.width / 40 + _this8.canvas.width / _this8.b - _this8.canvas.width * _this8.a;
+            image.top = _this9.canvas.width / 40 + _this9.canvas.width / _this9.b - _this9.canvas.width * _this9.a;
 
-            _this8.canvas.renderAll();
+            _this9.canvas.renderAll();
 
             $('#hue-value').on('change', function () {
               // console.log(this.siteLayout.removeColorValue);
               image.filters = [];
 
-              if (_this8.filterName == 'blackWhite') {
+              if (_this9.filterName == 'blackWhite') {
                 image.filters.push(new fabric.Image.filters.BlackWhite());
-              } else if (_this8.filterName == 'vintage') {
+              } else if (_this9.filterName == 'vintage') {
                 image.filters.push(new fabric.Image.filters.Vintage());
-              } else if (_this8.filterName == 'sepia') {
+              } else if (_this9.filterName == 'sepia') {
                 image.filters.push(new fabric.Image.filters.Sepia());
-              } else if (_this8.filterName == 'invert') {
+              } else if (_this9.filterName == 'invert') {
                 image.filters.push(new fabric.Image.filters.Invert());
-              } else if (_this8.filterName == 'origin') {
+              } else if (_this9.filterName == 'origin') {
                 image.filters = [];
               }
 
               image.filters.push(new fabric.Image.filters.RemoveColor({
-                distance: _this8.props.distance
+                distance: _this9.props.distance
               }));
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             });
             $('#saturation').on('change', function () {
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Saturation({
-                saturation: _this8.siteLayout.saturation
+                saturation: _this9.siteLayout.saturation
               }));
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             });
             $('#blur').on('change', function () {
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Blur({
-                blur: _this8.siteLayout.blur
+                blur: _this9.siteLayout.blur
               }));
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             });
             $('#contrast1').on('change', function () {
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Contrast({
-                contrast: _this8.siteLayout.contrast
+                contrast: _this9.siteLayout.contrast
               }));
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             });
             $('#noise').on('change', function () {
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Noise({
-                noise: _this8.siteLayout.noise
+                noise: _this9.siteLayout.noise
               }));
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }); // console.log(image);
 
             $('#shadowSVG').on('change', function () {
-              var obj = _this8.canvas.getActiveObject();
+              var obj = _this9.canvas.getActiveObject();
 
-              if (_this8.siteLayout.shadowSVG === false) {
+              if (_this9.siteLayout.shadowSVG === false) {
                 image.shadow = null;
-              } else if (_this8.siteLayout.shadowSVG) {
-                image.shadow = new fabric.Shadow(_this8.shadow); // image.setShadow(this.shadow);
+              } else if (_this9.siteLayout.shadowSVG) {
+                image.shadow = new fabric.Shadow(_this9.shadow); // image.setShadow(this.shadow);
                 // console.log(image);
                 // image.shadow = new fabric.Shadow(this.shadow);
                 // image.set('shadow', new fabric.Shadow(this.shadow));
               }
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }), $('#grayscale').on('click', function () {
-              _this8.filterName = 'blackWhite';
-              _this8.props.distance = 0;
-              _this8.siteLayout.saturation = 0;
-              _this8.siteLayout.blur = 0;
-              _this8.siteLayout.noise = 0;
-              _this8.siteLayout.contrast = 0;
+              _this9.filterName = 'blackWhite';
+              _this9.props.distance = 0;
+              _this9.siteLayout.saturation = 0;
+              _this9.siteLayout.blur = 0;
+              _this9.siteLayout.noise = 0;
+              _this9.siteLayout.contrast = 0;
               image.filters = [];
               image.filters.push(new fabric.Image.filters.BlackWhite());
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }), $('#vintage').on('click', function () {
-              _this8.filterName = 'vintage';
-              _this8.props.distance = 0;
-              _this8.siteLayout.saturation = 0;
-              _this8.siteLayout.blur = 0;
-              _this8.siteLayout.noise = 0;
-              _this8.siteLayout.contrast = 0;
+              _this9.filterName = 'vintage';
+              _this9.props.distance = 0;
+              _this9.siteLayout.saturation = 0;
+              _this9.siteLayout.blur = 0;
+              _this9.siteLayout.noise = 0;
+              _this9.siteLayout.contrast = 0;
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Vintage());
               image.applyFilters();
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }), $('#sepia').on('click', function () {
-              _this8.filterName = 'sepia';
-              _this8.props.distance = 0;
-              _this8.siteLayout.saturation = 0;
-              _this8.siteLayout.blur = 0;
-              _this8.siteLayout.noise = 0;
-              _this8.siteLayout.contrast = 0;
+              _this9.filterName = 'sepia';
+              _this9.props.distance = 0;
+              _this9.siteLayout.saturation = 0;
+              _this9.siteLayout.blur = 0;
+              _this9.siteLayout.noise = 0;
+              _this9.siteLayout.contrast = 0;
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Sepia());
               image.applyFilters(); // console.log(image);
               //.filters[0].matrix[0]
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }), $('#invert').on('click', function () {
-              _this8.filterName = 'invert';
-              _this8.props.distance = 0;
-              _this8.siteLayout.saturation = 0;
-              _this8.siteLayout.blur = 0;
-              _this8.siteLayout.noise = 0;
-              _this8.siteLayout.contrast = 0;
+              _this9.filterName = 'invert';
+              _this9.props.distance = 0;
+              _this9.siteLayout.saturation = 0;
+              _this9.siteLayout.blur = 0;
+              _this9.siteLayout.noise = 0;
+              _this9.siteLayout.contrast = 0;
               image.filters = [];
               image.filters.push(new fabric.Image.filters.Invert());
               image.applyFilters(); // console.log(image);
               //.filters[0].matrix[0]
 
-              _this8.canvas.renderAll();
+              _this9.canvas.renderAll();
             }), $('#origin').on('click', function () {
-              _this8.filterName = 'origin';
-              _this8.props.distance = 0;
-              _this8.siteLayout.saturation = 0;
-              _this8.siteLayout.blur = 0;
-              _this8.siteLayout.noise = 0;
-              _this8.siteLayout.contrast = 0;
+              _this9.filterName = 'origin';
+              _this9.props.distance = 0;
+              _this9.siteLayout.saturation = 0;
+              _this9.siteLayout.blur = 0;
+              _this9.siteLayout.noise = 0;
+              _this9.siteLayout.contrast = 0;
               image.filters = []; // if (this.id == "svg") {
               //   console.log("svg");
               //   image.filters = [];
@@ -2124,10 +2133,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               image.applyFilters();
 
-              _this8.canvas.renderAll();
-            }), _this8.selectItemAfterAdded(image);
+              _this9.canvas.renderAll();
+            }), _this9.selectItemAfterAdded(image);
             setTimeout(function () {
-              _this8.canvas.discardActiveObject().renderAll();
+              _this9.canvas.discardActiveObject().renderAll();
             }, 1500); // this.addDeleteBtn(image.oCoords.mb.x, image.oCoords.mb.y);
           }); // event.target.left = 100;
           // event.target.top = 100;
@@ -2141,39 +2150,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addImageOnCanvas",
         value: function addImageOnCanvas(url) {
-          var _this9 = this;
+          var _this10 = this;
 
-          $(document).on('click', '.deleteBtn', function (event) {
-            _this9.removeSelected();
-          });
           $(document).on('click', ".deleteBtn", function (event) {
             event.stopImmediatePropagation();
 
-            var activeObject = _this9.canvas.getActiveObject();
+            var activeObject = _this10.canvas.getActiveObject();
 
-            var activeGroup = _this9.canvas.getActiveObjects();
+            var activeGroup = _this10.canvas.getActiveObjects();
 
-            _this9.canvasCount -= 1; // console.log(this.canvasCount);
+            _this10.canvasCount -= 1; // console.log(this.canvasCount);
 
-            if (_this9.canvasCount === 0) {
+            if (_this10.canvasCount === 0) {
               $('#shadow').prop('checked', false);
-              _this9.siteLayout.shadow = false;
+              _this10.siteLayout.shadow = false;
               $('.owl-nav').show();
               $(".canvas").css("z-index", 0); // this.siteLayout.isCarouselOpen = true;
 
-              _this9.disableBtn = false;
-              _this9.siteLayout.toggle = false;
+              _this10.disableBtn = false;
+              _this10.siteLayout.toggle = false;
             }
 
             if (activeObject) {
-              _this9.canvas.remove(activeObject);
+              _this10.canvas.remove(activeObject);
 
               $(".deleteBtn").remove();
               $(".distance").remove(); // this.textString = '';
             } else if (activeGroup) {
-              _this9.canvas.discardActiveObject();
+              _this10.canvas.discardActiveObject();
 
-              var self = _this9;
+              var self = _this10;
               activeGroup.forEach(function (object) {
                 self.canvas.remove(object);
               });
@@ -2186,56 +2192,56 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var scale = 1.1; // console.log(this.canvasCount);
 
             fabric.Image.fromURL(url, function (image1) {
-              if (_this9.canvasCount === 1) {
+              if (_this10.canvasCount === 1) {
                 if (image1.height > 1300) {
-                  _this9.dataService.formatVal = _this9.dataService.formatValue = 'A3';
+                  _this10.dataService.formatVal = _this10.dataService.formatValue = 'A3';
 
                   if (image1.height / image1.width > 1.1) {
                     console.log('mage.height / image.width > 1.1');
-                    _this9.dataService.horizontalVertical = true;
-                    _this9.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
+                    _this10.dataService.horizontalVertical = true;
+                    _this10.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
 
-                    _this9.dataService.formatWithHeight = 1.414;
-                    _this9.dataService.formatTopKey = -0.03; // this.dataService.scaleKey = 1;
+                    _this10.dataService.formatWithHeight = 1.414;
+                    _this10.dataService.formatTopKey = -0.03; // this.dataService.scaleKey = 1;
 
-                    _this9.dataService.formatSizeSwich();
+                    _this10.dataService.formatSizeSwich();
 
                     scale = 1.05;
                   } else {
                     console.log('mage.height / image.width > 1.1 else');
-                    _this9.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
+                    _this10.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
 
-                    _this9.dataService.horVert = true;
-                    _this9.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
+                    _this10.dataService.horVert = true;
+                    _this10.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
 
-                    _this9.dataService.formatTopKey = -0.03;
+                    _this10.dataService.formatTopKey = -0.03;
 
-                    _this9.dataService.formatSizeSwich();
+                    _this10.dataService.formatSizeSwich();
 
                     scale = 1; // scale = this.dataService.scaleKey;
                   }
                 } else if (image1.height > 100 && image1.height < 1300) {
-                  _this9.dataService.formatVal = _this9.dataService.formatValue = 'A4';
+                  _this10.dataService.formatVal = _this10.dataService.formatValue = 'A4';
 
                   if (image1.height / image1.width > 1.1) {
-                    _this9.dataService.horizontalVertical = true;
-                    _this9.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
+                    _this10.dataService.horizontalVertical = true;
+                    _this10.dataService.horVert = false; // this.dataService.sizePrintKey = 686 / ((686 - 210) / 2);
 
-                    _this9.dataService.formatWithHeight = 1.414;
-                    _this9.dataService.formatTopKey = 0.03; // this.dataService.scaleKey = 1;
+                    _this10.dataService.formatWithHeight = 1.414;
+                    _this10.dataService.formatTopKey = 0.03; // this.dataService.scaleKey = 1;
 
-                    _this9.dataService.formatSizeSwich();
+                    _this10.dataService.formatSizeSwich();
 
                     scale = 1.05;
                   } else {
-                    _this9.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
+                    _this10.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
 
-                    _this9.dataService.horVert = true;
-                    _this9.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
+                    _this10.dataService.horVert = true;
+                    _this10.dataService.formatWithHeight = 0.707; // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
 
-                    _this9.dataService.formatTopKey = -0.03;
+                    _this10.dataService.formatTopKey = -0.03;
 
-                    _this9.dataService.formatSizeSwich();
+                    _this10.dataService.formatSizeSwich();
 
                     scale = 1; // scale = this.dataService.scaleKey;
                   }
@@ -2253,7 +2259,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     // this.dataService.formatSizeSwich();
                     scale = 1.3;
                   } else {
-                    _this9.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
+                    _this10.dataService.horizontalVertical = false; // this.dataService.scaleKey = 1;
                     // this.dataService.horVert = true;
                     // this.dataService.formatWithHeight = 0.707;
                     // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
@@ -2286,10 +2292,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
 
-              _this9.dataService.calcEndPrise();
+              _this10.dataService.calcEndPrise();
 
-              var imageWidth = window.innerWidth - _this9.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this9.dataService.widthKey * window.innerWidth) / _this9.b + (window.innerWidth - _this9.dataService.widthKey * window.innerWidth) / 40);
-              var imageHeight = imageWidth * _this9.c;
+              var imageWidth = window.innerWidth - _this10.dataService.widthKey * window.innerWidth - 2 * ((window.innerWidth - _this10.dataService.widthKey * window.innerWidth) / _this10.b + (window.innerWidth - _this10.dataService.widthKey * window.innerWidth) / 40);
+              var imageHeight = imageWidth * _this10.c;
               image1.set({
                 // originX: 'center',
                 // originY: 'center',
@@ -2298,169 +2304,169 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 quality: 1,
                 angle: 0,
                 padding: 0,
-                cornerSize: _this9.canvas.width / 40,
+                cornerSize: _this10.canvas.width / 40,
                 hasRotatingPoint: true
               });
               image1.scaleToWidth(imageWidth / scale);
               image1.scaleToHeight(imageHeight / scale);
 
-              _this9.extend(image1, _this9.randomId());
+              _this10.extend(image1, _this10.randomId());
 
               image1.filters.push(new fabric.Image.filters.ColorMatrix({
                 matrix: [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
               }));
 
-              _this9.canvas.add(image1);
+              _this10.canvas.add(image1);
 
-              _this9.canvas.centerObjectH(image1);
+              _this10.canvas.centerObjectH(image1);
 
-              image1.top = _this9.canvas.width / 40 + _this9.canvas.width / _this9.b - _this9.canvas.width * _this9.a;
+              image1.top = _this10.canvas.width / 40 + _this10.canvas.width / _this10.b - _this10.canvas.width * _this10.a;
               image1.applyFilters();
 
-              _this9.canvas.renderAll();
+              _this10.canvas.renderAll();
 
               $('#hue-value').on('change', function () {
                 // console.log(this.siteLayout.removeColorValue);
                 image1.filters = [];
 
-                if (_this9.filterName == 'blackWhite') {
+                if (_this10.filterName == 'blackWhite') {
                   image1.filters.push(new fabric.Image.filters.BlackWhite());
-                } else if (_this9.filterName == 'vintage') {
+                } else if (_this10.filterName == 'vintage') {
                   image1.filters.push(new fabric.Image.filters.Vintage());
-                } else if (_this9.filterName == 'sepia') {
+                } else if (_this10.filterName == 'sepia') {
                   image1.filters.push(new fabric.Image.filters.Sepia());
-                } else if (_this9.filterName == 'invert') {
+                } else if (_this10.filterName == 'invert') {
                   image1.filters.push(new fabric.Image.filters.Invert());
-                } else if (_this9.filterName == 'origin') {
+                } else if (_this10.filterName == 'origin') {
                   image1.filters.push(new fabric.Image.filters.ColorMatrix({
                     matrix: [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
                   }));
                 }
 
                 image1.filters.push(new fabric.Image.filters.RemoveColor({
-                  distance: _this9.props.distance
+                  distance: _this10.props.distance
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               });
               $('#saturation').on('change', function () {
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Saturation({
-                  saturation: _this9.siteLayout.saturation
+                  saturation: _this10.siteLayout.saturation
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               });
               $('#blur').on('change', function () {
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Blur({
-                  blur: _this9.siteLayout.blur
+                  blur: _this10.siteLayout.blur
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               });
               $('#contrast1').on('change', function () {
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Contrast({
-                  contrast: _this9.siteLayout.contrast
+                  contrast: _this10.siteLayout.contrast
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               });
               $('#noise').on('change', function () {
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Noise({
-                  noise: _this9.siteLayout.noise
+                  noise: _this10.siteLayout.noise
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               });
               $('#shadow').on('change', function () {
-                var obj = _this9.canvas.getActiveObject();
+                var obj = _this10.canvas.getActiveObject();
 
-                if (_this9.siteLayout.shadow === false) {
+                if (_this10.siteLayout.shadow === false) {
                   image1.shadow = null;
-                } else if (_this9.siteLayout.shadow) {
-                  image1.setShadow(_this9.shadowPNJ); // console.log('mmmm');
+                } else if (_this10.siteLayout.shadow) {
+                  image1.setShadow(_this10.shadowPNJ); // console.log('mmmm');
                 } // this.canvas.toDataURL({
                 //   format: 'png',
                 //   quality: 1
                 // });
 
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               }), $('#grayscale').on('click', function () {
-                _this9.filterName = 'blackWhite';
-                _this9.siteLayout.removeColorValue = 0;
-                _this9.siteLayout.saturation = 0;
-                _this9.siteLayout.blur = 0;
-                _this9.siteLayout.noise = 0;
-                _this9.siteLayout.contrast = 0;
+                _this10.filterName = 'blackWhite';
+                _this10.siteLayout.removeColorValue = 0;
+                _this10.siteLayout.saturation = 0;
+                _this10.siteLayout.blur = 0;
+                _this10.siteLayout.noise = 0;
+                _this10.siteLayout.contrast = 0;
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.BlackWhite());
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               }), $('#vintage').on('click', function () {
-                _this9.filterName = 'vintage';
-                _this9.siteLayout.removeColorValue = 0;
-                _this9.siteLayout.saturation = 0;
-                _this9.siteLayout.blur = 0;
-                _this9.siteLayout.noise = 0;
-                _this9.siteLayout.contrast = 0;
+                _this10.filterName = 'vintage';
+                _this10.siteLayout.removeColorValue = 0;
+                _this10.siteLayout.saturation = 0;
+                _this10.siteLayout.blur = 0;
+                _this10.siteLayout.noise = 0;
+                _this10.siteLayout.contrast = 0;
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Vintage());
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               }), $('#sepia').on('click', function () {
-                _this9.filterName = 'sepia';
-                _this9.siteLayout.removeColorValue = 0;
-                _this9.siteLayout.saturation = 0;
-                _this9.siteLayout.blur = 0;
-                _this9.siteLayout.noise = 0;
-                _this9.siteLayout.contrast = 0;
+                _this10.filterName = 'sepia';
+                _this10.siteLayout.removeColorValue = 0;
+                _this10.siteLayout.saturation = 0;
+                _this10.siteLayout.blur = 0;
+                _this10.siteLayout.noise = 0;
+                _this10.siteLayout.contrast = 0;
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Sepia());
                 image1.applyFilters(); // console.log(image1);
                 //.filters[0].matrix[0]
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               }), $('#invert').on('click', function () {
-                _this9.filterName = 'invert';
-                _this9.siteLayout.removeColorValue = 0;
-                _this9.siteLayout.saturation = 0;
-                _this9.siteLayout.blur = 0;
-                _this9.siteLayout.noise = 0;
-                _this9.siteLayout.contrast = 0;
+                _this10.filterName = 'invert';
+                _this10.siteLayout.removeColorValue = 0;
+                _this10.siteLayout.saturation = 0;
+                _this10.siteLayout.blur = 0;
+                _this10.siteLayout.noise = 0;
+                _this10.siteLayout.contrast = 0;
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.Invert());
                 image1.applyFilters(); // console.log(image1);
                 //.filters[0].matrix[0]
 
-                _this9.canvas.renderAll();
+                _this10.canvas.renderAll();
               }), $('#origin').on('click', function () {
-                _this9.filterName = 'origin';
-                _this9.siteLayout.removeColorValue = 0;
-                _this9.siteLayout.saturation = 0;
-                _this9.siteLayout.blur = 0;
-                _this9.siteLayout.noise = 0;
-                _this9.siteLayout.contrast = 0;
+                _this10.filterName = 'origin';
+                _this10.siteLayout.removeColorValue = 0;
+                _this10.siteLayout.saturation = 0;
+                _this10.siteLayout.blur = 0;
+                _this10.siteLayout.noise = 0;
+                _this10.siteLayout.contrast = 0;
                 image1.filters = [];
                 image1.filters.push(new fabric.Image.filters.ColorMatrix({
                   matrix: [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
                 }));
                 image1.applyFilters();
 
-                _this9.canvas.renderAll();
-              }), _this9.selectItemAfterAdded(image1);
+                _this10.canvas.renderAll();
+              }), _this10.selectItemAfterAdded(image1);
               setTimeout(function () {
-                _this9.canvas.discardActiveObject().renderAll();
+                _this10.canvas.discardActiveObject().renderAll();
               }, 1500);
             });
           }
@@ -2469,36 +2475,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addFigure",
         value: function addFigure(figure) {
-          var _this10 = this;
+          var _this11 = this;
 
           this.canvasCount += 1;
           console.log(this.canvasCount, 'figure');
           $(document).on('click', ".deleteBtn", function (event) {
             event.stopImmediatePropagation();
-            _this10.canvasCount -= 1;
+            _this11.canvasCount -= 1;
 
-            var activeObject = _this10.canvas.getActiveObject();
+            var activeObject = _this11.canvas.getActiveObject();
 
-            var activeGroup = _this10.canvas.getActiveObjects(); // console.log(this.canvasCount);
+            var activeGroup = _this11.canvas.getActiveObjects(); // console.log(this.canvasCount);
 
 
-            if (_this10.canvasCount === 0) {
-              _this10.siteLayout.firstImage = 0; // this.siteLayout.isOpasity=true;
+            if (_this11.canvasCount === 0) {
+              _this11.siteLayout.firstImage = 0; // this.siteLayout.isOpasity=true;
 
               $('.owl-nav').show();
               $(".canvas").css("z-index", 0);
-              _this10.disableBtn = false;
-              _this10.siteLayout.toggle = false;
+              _this11.disableBtn = false;
+              _this11.siteLayout.toggle = false;
             }
 
             if (activeObject) {
-              _this10.canvas.remove(activeObject);
+              _this11.canvas.remove(activeObject);
 
               $(".deleteBtn").remove(); // this.textString = '';
             } else if (activeGroup) {
-              _this10.canvas.discardActiveObject();
+              _this11.canvas.discardActiveObject();
 
-              var self = _this10;
+              var self = _this11;
               activeGroup.forEach(function (object) {
                 self.canvas.remove(object);
               });
@@ -2559,19 +2565,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           $('#shadow').on('click', function () {
             // console.log('figure');
-            var obj = _this10.canvas.getActiveObject();
+            var obj = _this11.canvas.getActiveObject();
 
-            if (!_this10.siteLayout.shadow) {
+            if (!_this11.siteLayout.shadow) {
               add.shadow = null;
-            } else if (_this10.siteLayout.shadow) {
-              add.setShadow(_this10.shadowFigur);
+            } else if (_this11.siteLayout.shadow) {
+              add.setShadow(_this11.shadowFigur);
             } // this.canvas.toDataURL({
             //   format: 'png',
             //   quality: 1
             // });
 
 
-            _this10.canvas.renderAll();
+            _this11.canvas.renderAll();
           }), this.extend(add, this.randomId());
           this.canvas.add(add);
           this.canvas.centerObjectH(add);
@@ -2583,13 +2589,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "readUrl",
         value: function readUrl(event) {
-          var _this11 = this;
+          var _this12 = this;
 
           if (event.target.files && event.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (readerEvent) {
-              _this11.url = readerEvent.target.result;
+              _this12.url = readerEvent.target.result;
             };
 
             reader.readAsDataURL(event.target.files[0]);
@@ -3239,7 +3245,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendToBack",
         value: function sendToBack() {
-          var _this12 = this;
+          var _this13 = this;
 
           var activeObject = this.canvas.getActiveObject();
           var activeGroup = this.canvas.getActiveObjects();
@@ -3254,7 +3260,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             activeGroup.forEach(function (object) {
               object.sendToBack();
 
-              _this12.canvas.renderAll();
+              _this13.canvas.renderAll();
             });
           }
         }
@@ -3777,11 +3783,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this13 = this;
+          var _this14 = this;
 
           this.form.disable();
           this.aSub = this.auth.login(this.form.value).subscribe(function () {
-            return _this13.router.navigate(['/main'], {
+            return _this14.router.navigate(['/main'], {
               queryParams: {
                 registered: true
               }
@@ -3792,7 +3798,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _shared_classes_material_service__WEBPACK_IMPORTED_MODULE_2__["Material"].mat(error.error.message);
 
-            _this13.form.enable();
+            _this14.form.enable();
           });
         }
       }]);
@@ -4348,11 +4354,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this14 = this;
+          var _this15 = this;
 
           this.form.disable();
           this.aSub = this.auth.register(this.form.value).subscribe(function () {
-            _this14.router.navigate(['/login'], {
+            _this15.router.navigate(['/login'], {
               queryParams: {
                 registered: true
               }
@@ -4362,7 +4368,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _shared_classes_material_service__WEBPACK_IMPORTED_MODULE_2__["Material"].mat(error.error.Message);
 
-            _this14.form.enable();
+            _this15.form.enable();
           });
         }
       }]);
@@ -5117,7 +5123,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       // myService.gago = 'bobo';
       // myService.setMyGago('gago');
       function DataService(produtsService) {
-        var _this15 = this;
+        var _this16 = this;
 
         _classCallCheck(this, DataService);
 
@@ -5161,7 +5167,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.initCalculations();
         this.initFromServer();
         this.produtsService.fetch().subscribe(function (res) {
-          _this15.products = res;
+          _this16.products = res;
         });
       }
 
@@ -5777,13 +5783,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "login",
         value: function login(user) {
-          var _this16 = this;
+          var _this17 = this;
 
           return this.http.post('/api/auth/login', user).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function (_ref) {
             var token = _ref.token;
             localStorage.setItem('auth-token', token);
 
-            _this16.setToken(token);
+            _this17.setToken(token);
           }));
         }
       }, {
@@ -8309,14 +8315,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "Themes",
         value: function Themes() {
-          var _this17 = this;
+          var _this18 = this;
 
           this.firstImage = 2;
           this.IMG.nativeElement.innerHTML = this.images[0].imageSrc; // this.firstImage = this.images[0].imageSrc;
           // this.categories = []
 
           this.catecoriesService.Themes(this.category).subscribe(function (res) {
-            _this17.images = res;
+            _this18.images = res;
           }); // $('.owl-nav').show();
           // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           // this.router.onSameUrlNavigation = 'reload';
@@ -8337,12 +8343,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "initFromServer",
         value: function initFromServer() {
-          var _this18 = this;
+          var _this19 = this;
 
           this.catecoriesService.Themes(this.category).subscribe(function (res) {
-            _this18.images = res;
-            console.log(_this18.images);
-            _this18.firstImageCarousel = res[0].imageSrc;
+            _this19.images = res;
+            console.log(_this19.images);
+            _this19.firstImageCarousel = res[0].imageSrc;
             var addresses = res; // Some array I got from async call
 
             var uniqueAddresses = Array.from(new Set(addresses.map(function (a) {
@@ -8352,31 +8358,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return a.name === name;
               });
             });
-            _this18.categories = uniqueAddresses;
+            _this19.categories = uniqueAddresses;
             console.log(uniqueAddresses);
           }); //   this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
           //     this.router.navigate(['main']);
           // })
 
           this.produtsService.fetch().subscribe(function (res) {
-            _this18.products = res;
-            _this18.firstBackCanvasImage = res[1].type;
-            _this18.dataService.products = res;
-            _this18.orderDatas.productTypeName = _this18.products[1].name;
+            _this19.products = res;
+            _this19.firstBackCanvasImage = res[1].type;
+            _this19.dataService.products = res;
+            _this19.orderDatas.productTypeName = _this19.products[1].name;
           });
           this.productscolorService.fetch().subscribe(function (res) {
-            _this18.productBrands = res;
-            _this18.productBrandsLinke0 = res[0].linkeBrand;
-            _this18.productBrandsSrc0 = res[0].src;
+            _this19.productBrands = res;
+            _this19.productBrandsLinke0 = res[0].linkeBrand;
+            _this19.productBrandsSrc0 = res[0].src;
           });
           this.fontService.fetch().subscribe(function (res) {
-            _this18.fonts = res;
+            _this19.fonts = res;
           });
           this.dataService.formatValue1.subscribe(function (res) {
-            _this18.formatValue = res;
+            _this19.formatValue = res;
           });
           this.dataService.horVertt.subscribe(function (res) {
-            _this18.horVert = res;
+            _this19.horVert = res;
           });
           var checkWidth = window.innerWidth;
           this.canvasHtmlWidth = this.dataService.canvasHtmlWidth;
@@ -8564,13 +8570,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setCanvasImage",
         value: function setCanvasImage() {
-          var _this19 = this;
+          var _this20 = this;
 
           // this.arrColor.length = 0;
           this.dataService.indexBrandType = this.indexBrandType;
           this.dataService.products = this.products;
           var productType = this.products.filter(function (element) {
-            return element.type === _this19.canvas.props.canvasImage;
+            return element.type === _this20.canvas.props.canvasImage;
           });
           this.dataService.formatSizeSwich();
           this.arrColor = productType[0].hex;
@@ -8605,12 +8611,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "productBrandColor",
         value: function productBrandColor() {
-          var _this20 = this;
+          var _this21 = this;
 
           this.canvas.productsTypeColor(); // this.productBrandColors.length = 0;
 
           var productBrandName = this.productBrands.filter(function (element) {
-            return element.name === _this20.canvas.props.brandName;
+            return element.name === _this21.canvas.props.brandName;
           });
           var productBrandColors = productBrandName[0].productColor;
           this.productBrandColors = this.arrColor.filter(function (o1) {
@@ -8622,10 +8628,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "productBrandSize",
         value: function productBrandSize() {
-          var _this21 = this;
+          var _this22 = this;
 
           var productBrandSize = this.productBrands.filter(function (element) {
-            return element.name === _this21.canvas.props.brandName;
+            return element.name === _this22.canvas.props.brandName;
           });
           this.productBrandSizes = productBrandSize[0].size;
         }
@@ -11429,41 +11435,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getUpdatedMessage",
         value: function getUpdatedMessage() {
-          var _this22 = this;
+          var _this23 = this;
 
           this.dataService.canvasDivSelect.subscribe(function (res) {
-            _this22.canvasSelect = res; // console.log(res);
+            _this23.canvasSelect = res; // console.log(res);
 
-            _this22.setFormatHeightTop();
+            _this23.setFormatHeightTop();
           });
           this.dataService.formatValue1.subscribe(function (res) {
-            _this22.formatValue = res; // console.log(res);
+            _this23.formatValue = res; // console.log(res);
             // this.setFormatHeightTop();
           }); // this.canvas.setHeight(this.canvasHtmlHeight);
           // this.canv = this.dataService.canvasSelect
 
           this.dataService.formatA4Horizontal.subscribe(function (res) {
-            _this22.sizePrintKey = res; // console.log(res);
+            _this23.sizePrintKey = res; // console.log(res);
             // this.setFormatHeightTop();
           });
           this.dataService.scaleKeyy.subscribe(function (res) {
-            _this22.scaleKey = res;
+            _this23.scaleKey = res;
             console.log(res, 'RES'); // this.setFormatHeightTop();
           });
           this.dataService.formatA4Vertical.subscribe(function (res) {
-            _this22.formatWithHeight = res; // console.log(res);
+            _this23.formatWithHeight = res; // console.log(res);
             // this.setFormatHeightTop();
           });
           this.dataService.formatTop.subscribe(function (res) {
-            _this22.positionTopKey = res; // console.log(res);
+            _this23.positionTopKey = res; // console.log(res);
             // this.setFormatHeightTop();
           });
           this.dataService.endPriseValue.subscribe(function (res) {
-            _this22.endPrise = res; // console.log(res);
+            _this23.endPrise = res; // console.log(res);
             // this.setFormatHeightTop();
           });
           this.dataService.horVertt.subscribe(function (res) {
-            _this22.horVert = res; // console.log(res);
+            _this23.horVert = res; // console.log(res);
             // this.setFormatHeightTop();
           }); // this.setFormatHeightTop();
         }
