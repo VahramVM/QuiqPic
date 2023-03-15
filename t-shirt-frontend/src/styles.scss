@@ -23,7 +23,8 @@ body {
  height: auto; 
  width:100%;
  position: fixed;
-//  overflow: auto;
+ overflow-y: scroll;
+ max-height: 100%;
 }
 
 html {

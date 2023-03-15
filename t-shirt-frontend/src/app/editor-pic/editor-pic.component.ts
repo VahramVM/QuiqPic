@@ -1628,7 +1628,7 @@ export class EditorPicComponent implements AfterViewInit {
           //mobile
           this.dataService.formatSizeSwich();
           if (window.innerWidth < 600) {
-            scale = 0.36;
+            scale = 0.35;
           } else {
             scale = 1.05;
           }
@@ -2531,8 +2531,8 @@ export class EditorPicComponent implements AfterViewInit {
               sel.scaleToWidth(formatHeight * scaleKey / 0.8);
 
             } else {
-              sel.scaleToWidth(formatWidth * scaleKey / 1);
-              sel.scaleToHeight(formatHeight * scaleKey / 1);
+              sel.scaleToWidth(formatWidth * scaleKey / 1.1);
+              sel.scaleToHeight(formatHeight * scaleKey / 1.1);
 
             }
           }
