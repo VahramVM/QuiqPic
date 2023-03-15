@@ -9,6 +9,3 @@ if (environment_1.environment.production) {
     core_1.enableProdMode();
 }
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule)["catch"](function (err) { return console.error(err); });
-document.documentElement.style.setProperty('overflow', 'auto');
-var metaViewport = document.querySelector('meta[name=viewport]');
-metaViewport.setAttribute('content', 'height=' + 'px, width=device-width, initial-scale=1.0');

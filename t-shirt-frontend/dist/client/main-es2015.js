@@ -111,6 +111,9 @@ class AppComponent {
         if (correntToken !== null) {
             this.auth.setToken(correntToken);
         }
+        //     document.documentElement.style.setProperty('overflow', 'auto')
+        //  const metaViewport = document.querySelector(‘meta[name=viewport]’)
+        //  metaViewport.setAttribute('content', 'height=' + initialHeight + 'px, width=device-width, initial-scale=1.0')
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_shared_layouts_servises_services__WEBPACK_IMPORTED_MODULE_1__["AuthServices"])); };
@@ -7301,9 +7304,6 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].produc
 }
 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(err => console.error(err));
-document.documentElement.style.setProperty('overflow', 'auto');
-const metaViewport = document.querySelector('meta[name=viewport]');
-metaViewport.setAttribute('content', 'height=' + 'px, width=device-width, initial-scale=1.0');
 
 
 /***/ }),

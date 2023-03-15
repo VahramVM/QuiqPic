@@ -14,6 +14,4 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 
- document.documentElement.style.setProperty('overflow', 'auto')
- const metaViewport = document.querySelector('meta[name=viewport]')
- metaViewport.setAttribute('content', 'height=' + 'px, width=device-width, initial-scale=1.0')
+ 
