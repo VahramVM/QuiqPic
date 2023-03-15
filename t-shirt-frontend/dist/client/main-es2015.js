@@ -430,16 +430,6 @@ class EditorPicComponent {
         // this.setCanvasImage1();
         // this.canvas1.renderAll();
     }
-    ngOnInit() {
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        //Add 'implements OnInit' to the class.
-        $(document).on('click', '.deleteBtn', (event) => {
-            this.removeSelected();
-            // document.documentElement.style.setProperty('overflow', 'auto')
-            // const metaViewport = document.querySelector('meta[name=viewport]')
-            // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
-        });
-    }
     ngAfterViewInit() {
         // setup front side canvas
         // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -1158,6 +1148,9 @@ class EditorPicComponent {
     addText() {
         // console.log(this.props.textCurved);
         this.objectType = true;
+        $(document).on('click', '.deleteBtn', (event) => {
+            this.removeSelected();
+        });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';
@@ -1401,6 +1394,9 @@ class EditorPicComponent {
     }
     // Block "Add images"
     getImgPolaroid(event) {
+        $(document).on('click', '.deleteBtn', (event) => {
+            this.removeSelected();
+        });
         this.canvas.includeDefaultValues;
         this.objectTypeImage = 'image';
         this.canvasCount += 1;
@@ -1459,7 +1455,7 @@ class EditorPicComponent {
                     //mobile
                     this.dataService.formatSizeSwich();
                     if (window.innerWidth < 600) {
-                        scale = 0.35;
+                        scale = 0.36;
                     }
                     else {
                         scale = 1.05;
@@ -1716,6 +1712,9 @@ class EditorPicComponent {
     }
     // Block "Upload Image"
     addImageOnCanvas(url) {
+        $(document).on('click', '.deleteBtn', (event) => {
+            this.removeSelected();
+        });
         $(document).on('click', ".deleteBtn", (event) => {
             event.stopImmediatePropagation();
             const activeObject = this.canvas.getActiveObject();
@@ -2610,38 +2609,42 @@ class EditorPicComponent {
         //   this.disableBtn = false;
         //   this.canvasCount -= 1;
         // }
-        // console.log(this.canvasCount);
-        this.objectType = false;
-        // this.dataService.scaleKey = 1;
-        this.props.diametr = 300;
-        if (this.canvas.getActiveObject().type === 'i-text') {
-            this.intCountText -= 1;
-            // console.log(this.intCountText);
-        }
         const activeObject = this.canvas.getActiveObject();
         const activeGroup = this.canvas.getActiveObjects();
-        this.canvasCount -= 1;
-        this.siteLayout.isCarouselOpen = true;
+        // console.log(this.canvasCount);
+        // this.dataService.scaleKey = 1;
+        this.props.diametr = 300;
+        this.objectType = false;
+        if (activeObject) {
+            this.canvas.remove(activeObject);
+            this.canvasCount -= 1;
+            // this.textString = '';
+            console.log('REMOVE');
+        }
+        else if (activeGroup) {
+            // console.log('group');
+            this.canvas.discardActiveObject();
+            activeGroup.forEach((object) => {
+                this.canvas.remove(object);
+            });
+        }
+        else if (activeObject.type === 'i-text') {
+            this.intCountText -= 1;
+        }
+        // if (activeObject.type === 'i-text') {
+        //   this.intCountText -= 1;
+        //   // console.log(this.intCountText);
+        // } 
+        // console.log(activeObject.get('type'), activeObject.type, 'sssss');
         // this.siteLayout.firstImage = 2;
         if (this.canvasCount === 0) {
+            this.siteLayout.isCarouselOpen = true;
             $('#shadowSVG').prop('checked', false);
             this.siteLayout.shadowSVG = false;
             $('.owl-nav').show();
             $(".canvas").css("z-index", 0);
             this.siteLayout.toggle = false;
             this.disableBtn = false;
-        }
-        if (activeObject) {
-            this.canvas.remove(activeObject);
-            // this.textString = '';
-        }
-        else if (activeGroup) {
-            // console.log('group');
-            this.canvas.discardActiveObject();
-            const self = this;
-            activeGroup.forEach((object) => {
-                self.canvas.remove(object);
-            });
         }
     }
     bringToFront() {

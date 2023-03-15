@@ -81,7 +81,6 @@ export class EditorPicComponent implements AfterViewInit {
     this.canvas.renderAll();
     console.log('resizzeeee');
 
-
     // this.canvas1.setWidth(this.siteLayout.canvasHtmlWidth);
     // this.canvas1.setHeight(this.siteLayout.canvasHtmlHeight);
     // this.setCanvasImage1();
@@ -240,19 +239,6 @@ export class EditorPicComponent implements AfterViewInit {
     //   res => this.canvasCount = res      
     // );
 
-  }
-
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    $(document).on('click', '.deleteBtn', (event) => {
-
-      this.removeSelected();
-      // document.documentElement.style.setProperty('overflow', 'auto')
-      // const metaViewport = document.querySelector('meta[name=viewport]')
-      // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
-    });
   }
 
 
@@ -1227,6 +1213,13 @@ export class EditorPicComponent implements AfterViewInit {
     // console.log(this.props.textCurved);
     this.objectType = true;
 
+
+    $(document).on('click', '.deleteBtn', (event) => {
+
+      this.removeSelected();
+    });
+
+
     if (this.props.diametr < 299) {
 
       console.log('<280');
@@ -1562,6 +1555,12 @@ export class EditorPicComponent implements AfterViewInit {
 
   public getImgPolaroid(event: any): void {
 
+    $(document).on('click', '.deleteBtn', (event) => {
+
+      this.removeSelected();
+
+    });
+
     this.canvas.includeDefaultValues;
     this.objectTypeImage = 'image'
 
@@ -1627,7 +1626,7 @@ export class EditorPicComponent implements AfterViewInit {
           //mobile
           this.dataService.formatSizeSwich();
           if (window.innerWidth < 600) {
-            scale = 0.35;
+            scale = 0.36;
           } else {
             scale = 1.05;
           }
@@ -1958,6 +1957,12 @@ export class EditorPicComponent implements AfterViewInit {
   // Block "Upload Image"
 
   public addImageOnCanvas(url): void {
+
+    $(document).on('click', '.deleteBtn', (event) => {
+
+      this.removeSelected();
+
+    });
 
 
     $(document).on('click', ".deleteBtn", (event) => {
@@ -3049,7 +3054,6 @@ export class EditorPicComponent implements AfterViewInit {
 
   public removeSelected(): void {
 
-
     // if (this.canvasCount === 1 && this.objectTypeImage === 'image') {
 
     //   this.canvas.remove(...this.canvas.getObjects());
@@ -3066,28 +3070,48 @@ export class EditorPicComponent implements AfterViewInit {
 
     // }
 
+    const activeObject = this.canvas.getActiveObject();
+    const activeGroup = this.canvas.getActiveObjects();
 
     // console.log(this.canvasCount);
-    this.objectType = false;
     // this.dataService.scaleKey = 1;
     this.props.diametr = 300;
 
 
-    if (this.canvas.getActiveObject().type === 'i-text') {
+
+
+    this.objectType = false;
+
+
+
+
+    if (activeObject) {
+      this.canvas.remove(activeObject);
+      this.canvasCount -= 1;
+      // this.textString = '';
+      console.log('REMOVE');
+
+    } else if (activeGroup) {
+      // console.log('group');
+      this.canvas.discardActiveObject();
+      activeGroup.forEach((object) => {
+        this.canvas.remove(object);
+      });
+    } else if (activeObject.type === 'i-text') {
       this.intCountText -= 1;
-      // console.log(this.intCountText);
     }
 
+    // if (activeObject.type === 'i-text') {
+    //   this.intCountText -= 1;
+    //   // console.log(this.intCountText);
+    // } 
 
-    const activeObject = this.canvas.getActiveObject();
-    const activeGroup = this.canvas.getActiveObjects();
+    // console.log(activeObject.get('type'), activeObject.type, 'sssss');
 
-    this.canvasCount -= 1;
-    this.siteLayout.isCarouselOpen = true;
     // this.siteLayout.firstImage = 2;
 
     if (this.canvasCount === 0) {
-
+      this.siteLayout.isCarouselOpen = true;
       $('#shadowSVG').prop('checked', false);
       this.siteLayout.shadowSVG = false;
       $('.owl-nav').show();
@@ -3095,17 +3119,6 @@ export class EditorPicComponent implements AfterViewInit {
       this.siteLayout.toggle = false;
       this.disableBtn = false;
 
-    }
-    if (activeObject) {
-      this.canvas.remove(activeObject);
-      // this.textString = '';
-    } else if (activeGroup) {
-      // console.log('group');
-      this.canvas.discardActiveObject();
-      const self = this;
-      activeGroup.forEach((object) => {
-        self.canvas.remove(object);
-      });
     }
 
   }

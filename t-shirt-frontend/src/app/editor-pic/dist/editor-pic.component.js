@@ -141,17 +141,6 @@ var EditorPicComponent = /** @class */ (function () {
         // this.setCanvasImage1();
         // this.canvas1.renderAll();
     };
-    EditorPicComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        //Add 'implements OnInit' to the class.
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-            // document.documentElement.style.setProperty('overflow', 'auto')
-            // const metaViewport = document.querySelector('meta[name=viewport]')
-            // metaViewport.setAttribute('content', 'height=' + window.innerHeight + 'px, width=device-width, initial-scale=0.99')    
-        });
-    };
     EditorPicComponent.prototype.ngAfterViewInit = function () {
         // setup front side canvas
         // this.props.canvasImage = this.siteLayout.firstBackCanvasImage;
@@ -876,6 +865,9 @@ var EditorPicComponent = /** @class */ (function () {
         var _this = this;
         // console.log(this.props.textCurved);
         this.objectType = true;
+        $(document).on('click', '.deleteBtn', function (event) {
+            _this.removeSelected();
+        });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';
@@ -1120,6 +1112,9 @@ var EditorPicComponent = /** @class */ (function () {
     // Block "Add images"
     EditorPicComponent.prototype.getImgPolaroid = function (event) {
         var _this = this;
+        $(document).on('click', '.deleteBtn', function (event) {
+            _this.removeSelected();
+        });
         this.canvas.includeDefaultValues;
         this.objectTypeImage = 'image';
         this.canvasCount += 1;
@@ -1178,7 +1173,7 @@ var EditorPicComponent = /** @class */ (function () {
                     //mobile
                     _this.dataService.formatSizeSwich();
                     if (window.innerWidth < 600) {
-                        scale = 0.35;
+                        scale = 0.36;
                     }
                     else {
                         scale = 1.05;
@@ -1436,6 +1431,9 @@ var EditorPicComponent = /** @class */ (function () {
     // Block "Upload Image"
     EditorPicComponent.prototype.addImageOnCanvas = function (url) {
         var _this = this;
+        $(document).on('click', '.deleteBtn', function (event) {
+            _this.removeSelected();
+        });
         $(document).on('click', ".deleteBtn", function (event) {
             event.stopImmediatePropagation();
             var activeObject = _this.canvas.getActiveObject();
@@ -2323,6 +2321,7 @@ var EditorPicComponent = /** @class */ (function () {
     /*System*/
     EditorPicComponent.prototype.removeSelected = function () {
         // if (this.canvasCount === 1 && this.objectTypeImage === 'image') {
+        var _this = this;
         //   this.canvas.remove(...this.canvas.getObjects());
         //   $(".deleteBtn").remove();
         //   $(".distance").remove();
@@ -2334,38 +2333,42 @@ var EditorPicComponent = /** @class */ (function () {
         //   this.disableBtn = false;
         //   this.canvasCount -= 1;
         // }
-        // console.log(this.canvasCount);
-        this.objectType = false;
-        // this.dataService.scaleKey = 1;
-        this.props.diametr = 300;
-        if (this.canvas.getActiveObject().type === 'i-text') {
-            this.intCountText -= 1;
-            // console.log(this.intCountText);
-        }
         var activeObject = this.canvas.getActiveObject();
         var activeGroup = this.canvas.getActiveObjects();
-        this.canvasCount -= 1;
-        this.siteLayout.isCarouselOpen = true;
+        // console.log(this.canvasCount);
+        // this.dataService.scaleKey = 1;
+        this.props.diametr = 300;
+        this.objectType = false;
+        if (activeObject) {
+            this.canvas.remove(activeObject);
+            this.canvasCount -= 1;
+            // this.textString = '';
+            console.log('REMOVE');
+        }
+        else if (activeGroup) {
+            // console.log('group');
+            this.canvas.discardActiveObject();
+            activeGroup.forEach(function (object) {
+                _this.canvas.remove(object);
+            });
+        }
+        else if (activeObject.type === 'i-text') {
+            this.intCountText -= 1;
+        }
+        // if (activeObject.type === 'i-text') {
+        //   this.intCountText -= 1;
+        //   // console.log(this.intCountText);
+        // } 
+        // console.log(activeObject.get('type'), activeObject.type, 'sssss');
         // this.siteLayout.firstImage = 2;
         if (this.canvasCount === 0) {
+            this.siteLayout.isCarouselOpen = true;
             $('#shadowSVG').prop('checked', false);
             this.siteLayout.shadowSVG = false;
             $('.owl-nav').show();
             $(".canvas").css("z-index", 0);
             this.siteLayout.toggle = false;
             this.disableBtn = false;
-        }
-        if (activeObject) {
-            this.canvas.remove(activeObject);
-            // this.textString = '';
-        }
-        else if (activeGroup) {
-            // console.log('group');
-            this.canvas.discardActiveObject();
-            var self_4 = this;
-            activeGroup.forEach(function (object) {
-                self_4.canvas.remove(object);
-            });
         }
     };
     EditorPicComponent.prototype.bringToFront = function () {

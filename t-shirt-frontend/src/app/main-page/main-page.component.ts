@@ -16,7 +16,9 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private service: AuthServices,
-    private router: Router, private order: OrderDatasService, private data: DataService) { }
+    private router: Router, 
+    private order: OrderDatasService, 
+    private data: DataService) { }
 
   ngOnInit(): void {
     // console.log(this.site.isCarouselOpen);
