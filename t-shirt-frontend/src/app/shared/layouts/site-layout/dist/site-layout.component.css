@@ -54,7 +54,7 @@
 }
 
 .toolNav {
-  top: 30px;
+  top: 33px;
   /* margin-left: 250px; */
   margin-right: 0px;
   /* width: 400px; */
@@ -461,7 +461,7 @@ span {
     border: 0px dashed #ffffff;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1000px) {
   .mobile {
     margin-top: -3%;
     border: 0px dashed #ffffff;
@@ -474,11 +474,29 @@ span {
     height: auto;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1000px) {
   .mobileImageLeft {
     margin-left: 24%;
     width: 60%;
     height: auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .cleanApply {
+    bottom: 37%;
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .cleanApply {
+    bottom: 0;
+    position: fixed;
+    z-index: 2;
+    left: 55%;
+    transform: translate(-50%, -50%);
   }
 }
 #show {

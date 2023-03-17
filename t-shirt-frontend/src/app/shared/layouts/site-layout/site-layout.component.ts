@@ -101,6 +101,7 @@ export class SiteLayoutComponent implements AfterViewInit {
   public indexBrandType: number = null;
   public firstImageBrand = null;
   public allColors = true;
+  public checkWith: boolean;
 
   public length = null;
   public colorDefoult: string = '';
@@ -375,7 +376,7 @@ export class SiteLayoutComponent implements AfterViewInit {
   }
 
   changeOptions() {
-    this.customOptions = { ...this.customOptions,  items: this.items, margin: this.margin, stagePadding: this.stagePadding} // this will make the carousel refresh
+    this.customOptions = { ...this.customOptions, items: this.items, margin: this.margin, stagePadding: this.stagePadding } // this will make the carousel refresh
   }
 
   funk() {
@@ -518,13 +519,14 @@ export class SiteLayoutComponent implements AfterViewInit {
       this.margin = 90;
       this.stagePadding = 90;
       console.log('window.innerWidth < 600!!');
-      
+      this.checkWith = true;
+
     } else {
       this.items = 3;
       this.margin = 60;
       this.stagePadding = null;
       console.log('window.innerWidth > 600!!');
-
+      this.checkWith = false;
     }
 
     this.changeOptions();

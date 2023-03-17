@@ -115,8 +115,8 @@
         </div>
 
 
-        <div *ngIf="canvas.canvasCount !== 0" class="col s7 m3 l4 xl10 offset-s0 offset-m9 offset-l6 offset-xl6"
-            style="margin-top: 110%; position: absolute; z-index: 2; width: 180px; height: 100px;">
+        <div *ngIf="canvas.canvasCount !== 0" class="cleanApply"
+            >
             <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                 class="btn btn-danger" [disabled]="canvas.selected" (click)="confirmClear(); isCarouselOpen = true">
                 <i aria-hidden="true"></i> Clean
@@ -227,8 +227,10 @@
             </button> -->
         </div>
 
+    
+        <!-- opasityshadow -->
 
-        <div *ngIf="canvas.canvasCount !== 0"
+        <!-- <div *ngIf="canvas.canvasCount !== 0"
             style="margin-left: 25%; position: absolute; margin-top: 120%; z-index: 3;">
             <div style="z-index: 10;">
                 <input type="range" [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
@@ -237,7 +239,9 @@
                 <input id="shadowSVG" type="checkbox" (change)="shadowSVG = !shadowSVG;" class="filled-in" />
                 <i class="fa fa-cloud" style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
             </label>
-        </div>
+        </div> -->
+
+
         <!-- <owl-carousel [options]="SlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >  
             <div class="item" *ngFor="let img of Images">  
             <div style="align-content: center">  
@@ -306,13 +310,621 @@
         </div>
 
 
-        <div
+        <div *ngIf="checkWith"
             style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;">
             <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"
                 id="nav-mobile" class="center-align hide-on-med-and-up ">
                 <ul class="tabs tabs-fixed-width tab-demo z-depth-1"
                     style="height: 40px; background-color:rgb(255, 255, 255);">
-                    <li class="tab"><a id="ilo" href="#test1"> <i class="small material-icons"
+                    <li class="tab"><a id="ilo" href="#futerSide1"> <i class="small material-icons"
+                                [ngStyle]="{'padding-top': '3px'}">color_lens</i>
+                        </a></li>
+                    <li class="tab"><a href="#futerSide2"> <i class="small material-icons"
+                                [ngStyle]="{'padding-top': '3px'}">photo</i>
+                        </a></li>
+                    <li class="tab"><a href="#futerSide3"> <i class="small material-icons"
+                                [ngStyle]="{'padding-top': '3px'}">text_formaty</i>
+                        </a></li>
+                </ul>
+
+                <div id="futerSide1" class="col s12 offset-s0">
+
+                    <div class="colorConteiner left-align">
+                        <!-- <button type="button" class="colorButton" (click)="isOpen = !isOpen" cdkOverlayOrigin
+                            [style.background]="selectColor || 'none'">Color</button> -->
+
+                        <!-- <ng-template #display>
+                            Select color
+                        </ng-template> -->
+
+
+                        <div
+                            style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 2%;">
+                            <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
+                                *ngFor="let imageProduct of products; let i = index" (click)=" 
+                                canvas.props.canvasImage = imageProduct.type; 
+                                canvas.props.canvasFill = productBrandColors[0]; 
+                                allColors = true;
+                                orderDatas.productTypeName = imageProduct.name;
+                                orderDatas.productColor = '';
+                                indexBrandType = i;
+                                setCanvasImage();  
+                                productsTypeColor();" (colorPickerChange)="setCanvasFill()">
+                                <img class="productType" [src]="imageProduct.type1">
+                                <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
+                                <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
+                            </div> <br>
+                        </div>
+
+                        <!-- <div class="card small" *ngFor="let imageProduct of products"
+                                    (click)="canvas.props.canvasImage = imageProduct.type; setCanvasImage()"
+                                    (colorPickerChange)="setCanvasFill()">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" [src]="imageProduct.type">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title activator grey-text text-darken-4">Card Title<i
+                                                class="material-icons right">more_vert</i></span>
+                                        <p><a href="#">This is a link</a></p>
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">Card Title<i
+                                                class="material-icons right">close</i></span>
+                                        <p>Here is some more information about this product that is only revealed once
+                                            clicked on.</p>
+                                    </div>
+                                </div> -->
+
+
+
+                        <div style="margin-top: 5%;" class="card">
+                            <div class="card-content" style="height: 120px; width: 100%;">
+                                <a
+                                    [href]="indexBrand === null ? productBrands[0].linkeBrand : productBrands[indexBrand].linkeBrand">
+                                    <img style="width: 40%; height: auto;  display: flex;
+                                    justify-content: center; margin-top: 0%;
+                                    align-items: center;" class="activator"
+                                        [src]="indexBrand === null ? productBrands[0].src: productBrands[indexBrand].src">
+                                </a>
+                            </div>
+                            <br>
+                            <div class="card-tabs">
+
+                                <ul class="tabs tabs-fixed-width">
+                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
+                                            canvas.props.brandName = productBrand.name;
+                                            orderDatas.brendName = productBrand.name;
+                                            productBrandColor(); 
+                                            productBrandSize();
+                                            setCanvasImage();  
+                                            productsTypeColor();
+                                            " class="tab"><a href="#test1[i]">{{productBrand.name}}</a>
+                                    </li>
+                                    <!-- <li class="tab"><a class="active" href="#test5">Test 2</a></li>
+                                    <li class="tab"><a href="#test6">Test 3</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="card-content grey lighten-4">
+                                <div style="margin-top: 0%;" class="" role="dialog" aria-label="Color picker">
+                                    <div *ngIf="allColors">
+                                        <div class="card-panel hoverable" *ngFor="let color of arrColor" role="option"
+                                            [style.background]="color" [attr.aria-selected]="color == selectColor"
+                                            (click)="
+                                            canvas.props.canvasFill = color; 
+                                            orderDatas.productColor = color;
+                                            setCanvasFill()" (colorPickerChange)="setCanvasFill()">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!allColors">
+                                        <div class="card-panel hoverable" *ngFor="let colorBrand of productBrandColors"
+                                            role="option" [style.background]="colorBrand"
+                                            [attr.aria-selected]="colorBrand == selectColor" (click)="
+                                            canvas.props.canvasFill = colorBrand;
+                                            orderDatas.productColor = colorBrand; 
+                                            setCanvasFill()">
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 5%;" class="row">
+                                        <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;"
+                                            class="col s5 m3 l2 offset-s0 offset-m0 offset-l0">
+                                            <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)"
+                                                [disabled]="size.value" type="radio" name="sizeKey" value="big"
+                                                [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
+                                            <div style="font-size: 120%; text-align: center; width: 120%;">
+                                                <b> {{size.key}} </b>
+                                            </div>
+                                        </label>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <!-- <div class="card-panel hoverable" *ngFor="let imageProduct of products"
+                                    (click)="canvas.props.canvasImage = imageProduct.type; setCanvasImage()"
+                                    (colorPickerChange)="setCanvasFill()">
+                                    <img [src]="imageProduct.type" style="width: 15%; margin-left: 8%;"
+                                        [alt]="imageProduct.alt" [title]="imageProduct.title"> op
+
+                                </div> -->
+
+
+
+
+                                <!-- <div class="custom-item-title">Background Image (url)</div> -->
+                                <!-- <div class="custom-item-body">
+                                        <input type="text" class="form-control" placeholder="http://example.jpg"
+                                            [(ngModel)]="canvas.props.canvasImage" (keyup)="setCanvasImage()">
+                                    </div> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s12" *ngIf="!canvas.selected">
+                        <!-- <div class="card-header">Canvas</div> -->
+                        <div class="card-body">
+                            <div class="custom-item" *ngIf="canvas.props.canvasImage">
+                                <!-- <div class="custom-item-title">Background Color</div> -->
+                                <div class="custom-item-body">
+
+                                    <input #inputColor type="text" class="form-control" [cpPosition]="'bottom'"
+                                        [(colorPicker)]="canvas.props.canvasFill"
+                                        [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill"
+                                        (colorPickerChange)="setCanvasFill()">
+                                </div>
+                            </div>
+                            <div class="custom-item">
+                                <div class="custom-item-title">Background Image (url)</div>
+                                <div class="custom-item-body">
+                                    <input type="text" class="form-control" placeholder="http://example.jpg"
+                                        [(ngModel)]="canvas.props.canvasImage" (keyup)="setCanvasImage()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="futerSide2" class="active row">
+
+                    <!-- Filters imges -->
+                    <div class="col offset-s0" style="margin-top: 10px;">
+                        <label class="col s2" style="margin: 5px;">
+                            <input id="origin" type="radio" name="test" value="origin" checked>
+                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Origin.png">
+                        </label>
+                        <label class="col s2" style="margin: 5px;">
+                            <input id="grayscale" type="radio" name="test" value="grayscale">
+                            <img class="hoverable" width="60px" height="60px" src="../assets/img/BlackWhite.png">
+                        </label>
+                        <label class="col s2" style="margin: 5px;">
+                            <input id="vintage" type="radio" name="test" value="vintage">
+                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Vintage.png">
+                        </label>
+                        <label class="col s2" style="margin: 5px;">
+                            <input id="sepia" type="radio" name="test" value="sepia">
+                            <img class="hoverable" width="60px" height="60px" src="../assets/img/oldstyle.png">
+                        </label>
+                        <label class="col s2" style="margin: 5px;">
+                            <input id="invert" type="radio" name="test" value="invert">
+                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Negative.png">
+                        </label>
+                    </div>
+                    <br>
+                    <label class="col s3 offset-s0;" style="margin-top: 10px; cursor:pointer">
+                        <input id="shadow" type="checkbox" (change)="shadow
+                         = !shadow" class="filled-in" [disabled]="canvas.canvasCount == 0" />
+                        <i class="fa fa-cloud"
+                            style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
+                    </label>
+
+
+
+
+                    <!-- <input type="range" [(ngModel)]="canvas.props.opacity" (change)="setOpacity()"> -->
+
+                    <!-- <label> <input type="range" id="hue-value" [(ngModel)]="canvas.props.distance" (change)="setDistance()" value="0.02" min="0" max="1"
+                        step="0.01">Value</label>
+                            {{canvas.props.distance}} -->
+
+                    <div class="col s12 offset-s0" style="padding-top: 5px;">
+                        <div class="col s2">Distance</div>
+                        <div class="col s8">
+                            <input type="range" id="hue-value" [(ngModel)]="canvas.props.distance"
+                                (ngModelChange)="setDistance()" value="0" min="0" max="1" step="0.0001">
+                        </div>
+                        <div>{{canvas.props.distance}}</div>
+                    </div>
+                    <div class="col s12 offset-s0" style="padding-top: 0px;">
+                        <div class="col s2">Saturation</div>
+                        <div class="col s8">
+                            <input type="range" id="saturation" [(ngModel)]="saturation" value="0" min="-1" max="1"
+                                step="0.0001">
+                        </div>
+                        <div>{{saturation}}</div>
+                    </div>
+                    <div class="col s12 offset-s0" style="padding-top: 0px;">
+                        <div class="col s2">Blur</div>
+                        <div class="col s8">
+                            <input type="range" id="blur" [(ngModel)]="blur" value="0" min="0" max="1" step="0.0001">
+                        </div>
+                        <div>{{blur}}</div>
+                    </div>
+                    <div class="col s12 offset-s0" style="padding-top: 0px;">
+                        <div class="col s2">Contrast</div>
+                        <div class="col s8">
+                            <input type="range" id="contrast1" [(ngModel)]="contrast" value="0" min="-1" max="1"
+                                step="0.0001">
+                        </div>
+                        <div>{{contrast}}</div>
+                    </div>
+                    <div class="col s12 offset-s0" style="padding-top: 0px;">
+                        <div class="col s2">Noise</div>
+                        <div class="col s8">
+                            <input type="range" id="noise" [(ngModel)]="noise" value="100" min="0" max="1000"
+                                step="0.0001">
+                        </div>
+                        <div>{{noise}}</div>
+                    </div>
+                    <!-- /Filters imges -->
+
+
+                    <div style="background-color:rgb(228, 232, 243); padding-top: 10px;" id="nav-mobile"
+                        class="tabBox center-align hide-on-med-and-up col s12">
+                        <ul class="tabs tabs-fixed-width tab-demo z-depth-1" style="height: 40px;">
+                            <li class="tab"><a class="active" href="#tab11"> <i class="small material-icons"
+                                        [ngStyle]="{'padding-top': '4px'}">monochrome_photos</i>
+                                </a></li>
+                            <li class="tab"><a href="#tab22"> <i class="small material-icons"
+                                        [ngStyle]="{'padding-top': '4px'}">extension</i>
+                                </a></li>
+                            <li class="tab"><a href="#tab33"> <i class="small material-icons"
+                                        [ngStyle]="{'padding-top': '4px'}">text_format</i>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div id="tab11">
+                        <div class="">
+                            <!-- <input type="file"  (change)="readUrl($event);"> -->
+                            <div class="file-field input-field col s12">
+                                <div *ngIf="isOpasity1" (click)="addImageOnCanvas(canvas.url); "
+                                    style="border-style: dashed; opacity: 0.4; margin-top: 0px;">
+                                    <i class="large material-icons" [ngStyle]="{'padding-top': '4px'}">move_to_inbox</i>
+                                    <input type="file" class="input"
+                                        (change)="readUrl($event); routerlink();   isOpasity1 = false" multiple>
+                                </div>
+                            </div>
+                            <!-- </input type="file"  (change)="readUrl($event);"> -->
+
+                            <!-- <img class="card-header">Upload image -->
+                            <div id="testImage" class="col s4 offset-s3" style="margin-top: -20px;">
+                                <img *ngIf="canvas.url" class="images-item-upload" [src]="canvas.url"
+                                    style="width: 130px; "
+                                    (click)="addImageOnCanvas(canvas.url);  isOpasity = true; toggle = true">
+                                <!-- <div class="tabs tabs-fixed-width tab-demo ">
+                                    <li class="tab"><a href="#test1"> tab 
+                                        </a></li>
+                                </div>
+                                <a [routerLink]="[ '#test1' ]">name1</a>
+                                <a  href="#test1"  > name </a> -->
+                            </div>
+                            <button *ngIf="isOpasity" type="button" class="col s3 offset-s1 btn #ef5350 red lighten-1"
+                                (click)="removeWhite(canvas.url); isOpasity1 = true; isOpasity = false">
+                                <i aria-hidden="true"></i>
+                                Remove
+                            </button>
+                            <!-- </img class="card-header">Upload image -->
+
+                            <div class="col s12 offset-s0"
+                                *ngIf="isOpasity && canvas.selected && canvas.selected.type != 'group'">
+
+                                <div class="col s12 offset-s0" style="padding-top: 0px;">
+                                    <div class="col s2">Opacity</div>
+                                    <div class="col s8">
+                                        <input type="range" [(ngModel)]="canvas.props.opacity"
+                                            (ngModelChange)="setOpacity()">
+                                    </div>
+                                    <div>{{canvas.props.opacity}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab22" class="row">
+
+                        <!-- <div class="card-header">Add figure</div> -->
+                        <div style="margin-left: 60px; width: 280px; margin-top: 350px; " role="group" aria-label="...">
+
+                            <img class="col s3" id="square" (click)="addFigure('square'); toggle = true ;" width="40px"
+                                height="55px" src="../assets/img/square.png" alt="">
+
+                            <img class="col s3" id="triangle" (click)="addFigure('triangle'); toggle = true;"
+                                width="45px" height="55px" src="../assets/img/threeangle.png" ciricle.png alt="">
+
+                            <img class="col s3" id="circle" (click)="addFigure('circle'); toggle = true;" width="40px"
+                                height="55px" src="../assets/img/ciricle.png" alt="">
+
+                        </div>
+
+                        <div class="col s12 offset-s0" *ngIf="canvas.selected && canvas.selected.type != 'group'">
+
+                            <div class="col s2">Opacity</div>
+                            <div class="col s8">
+                                <input type="range" [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
+                            </div>
+                            <div>{{canvas.props.opacity}}</div>
+
+
+                            <div class="col s10 offset-s0"
+                                *ngIf="canvas.selected && canvas.textEditor || canvas.selected && canvas.figureEditor">
+                                <div class="col s2" style="padding-top: 0px;">Fill</div>
+
+                                <div class="col s8">
+                                    <input type="text" class="form-control" style="height:20px; top: 5px;"
+                                        [cpPosition]="'top'" [(colorPicker)]="canvas.props.fill"
+                                        [style.background]="canvas.props.fill" [value]="canvas.props.fill"
+                                        (colorPickerChange)="setFill()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab33" class="col s12">3</div>
+
+                </div>
+
+                <div id="futerSide3" class="col s12">
+                    <!-- Add text for T-shirt with tools -->
+
+                    <div class="row">
+
+                        <div style="margin-top: 20px; float:left">
+                            <div class="input-field col s3" style="margin-top: 5px">
+                                <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
+                                    class="btn btn-outline-primary"
+                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 "
+                                    (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false">
+                                    <i class="large material-icons" aria-hidden="true">done_all</i>
+                                </button>
+                            </div>
+                            <!-- <div [attr.disabled]="canvas.textString === '' ">
+                            <i  id="addText" 
+                                (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false"
+                                style="cursor: pointer;" class="material-icons prefix">add_box
+                            </i>
+                           </div> -->
+                            <div class="input-field col s8" style="margin-top: 0px">
+                                <input id="icon_prefix2" type="text" class="materialize-textarea"
+                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
+                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 ">
+                                <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
+                                <label for="icon_prefix2">Input text</label>
+                            </div>
+                        </div>
+                        <label class="col s3" style="margin-top: 20px; cursor: pointer;">
+                            <input id="shadowText" type="checkbox" (change)="shadowText = !shadowText"
+                                class="filled-in" />
+                            <i class="fa fa-cloud"
+                                style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
+                        </label>
+
+                        <div class="row">
+                            <div class="col s12" *ngIf="canvas.selected  && canvas.selected.type == 'group'">
+                                Group Selected
+                            </div>
+                            <div class="col s12" *ngIf="!canvas.selected">
+                                <div [ngStyle]="{'margin-top': '-20px'}"> No items selected</div>
+                            </div>
+                            <!-- <div class="col s12" *ngIf="canvas.selected && canvas.selected.type != 'group'">
+                                    <div class="custom-item-title">ID</div>
+                                                <div class="custom-item-body">
+                                                    <input type="text" class="form-control" [(ngModel)]="canvas.props.id"
+                                                        (keyup)="setId()">
+                                                </div>
+                                </div> -->
+
+
+                            <div class="col s5 offset-s0">
+                                <!-- *ngIf="canvas.selected && canvas.textEditor" -->
+                                <div class="col s2" [ngStyle]="{'margin-top': '20px'}">Fill</div>
+
+                                <div class="col s8 offset-s1">
+                                    <input [attr.disabled]="!canvas.textEditor ? '' : null"
+                                        [ngStyle]="{'margin-top': '20px'}" type="text" class="form-control"
+                                        [cpPosition]="'bottom'" [(colorPicker)]="canvas.props.fill"
+                                        [style.background]="canvas.props.fill" [value]="canvas.props.fill"
+                                        (colorPickerChange)="setFill()">
+                                </div>
+                            </div>
+
+                            <div class="col s7 offset-s0">
+                                <!-- *ngIf="canvas.selected && canvas.textEditor" -->
+                                <div class="col s2 offset-s0" [ngStyle]="{'margin-top': '20px'}">Font
+                                </div>
+                                <div class="col s8 offset-s1">
+                                    <select [attr.disabled]="!canvas.textEditor ? '' : null"
+                                        [ngStyle]="{'margin-top': '20px'}" class="browser-default"
+                                        [(ngModel)]="canvas.props.fontFamily" (change)="setFontFamily()">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="helvetica" selected>Helvetica</option>
+                                        <option *ngFor="let font of fonts" [ngStyle]="{'font-family': font.value}"
+                                            value="{{font.value}}">{{font.name}}</option>
+                                        <!-- <option value="arial">Arial</option>
+                                        <option value="Comic Sans MS" selected>Comic Sans MS</option>
+                                        <option style="font-family:verdana;" value="verdana">Verdana</option>
+                                        <option style="font-family:courier;" value="courier">Courier</option>
+                                        <option value="Roboto">Roboto</option>
+                                        <option value="Open Sans MT">Open Sans MT</option>
+                                        <option value="Script">Script</option>
+                                        <option value="Lato">Lato</option>
+                                        <option value="Bellefair">Bellefair</option>
+                                        <option value="ShelleyVolante BT">ShelleyVolante BT</option>
+                                        <option style="font-family:fantasy;" value="fantasy">fantasy</option>
+                                        <option value="Open Sans Condensed MT">Open Sans Condensed</option>
+                                        <option value="Bookman Old Style">Bookman Old Style</option>
+                                        <option value="Exotc350 Bd BT">Exotc350 Bd BT</option>
+                                        <option style="font-family:Kaufmann BT;" value="Kaufmann BT">Kaufmann BT</option>
+                                        <option style="font-family:Calisto Mt;" value="Calisto Mt">Calisto MT</option>
+                                        <option value="Brush Script Mt">Brush Script MT</option>
+                                        <option value="TypoUpright BT">TypoUpright BT</option>
+                                        <option value="Lucida Handwriting">Lucida Handwriting</option>
+                                        <option value="grapalat">grapalat</option>
+                                        <option value="Sylfaen">Sylfaen</option>
+                                        <option value="Briberra">Briberra</option>
+
+                                        <option value="ArialArmST Italic">ArialArmST Italic</option> -->
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col s12 offset-s0 " style="padding-top: 20px;">
+
+                                <div class="col s12 offset-s0 z-depth-2">
+
+                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
+                                        [class.myClass]="isClickedBold" [ngClass]="{'active': canvas.props.fontWeight }"
+                                        (click)="setBold(); isClickedBold = !isClickedBold">
+                                        <i class="material-icons">format_bold</i>
+                                    </a>
+                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class=" btn-flat"
+                                        [class.myClass]="isClickedItalic"
+                                        [ngClass]="{'active': canvas.props.fontStyle }"
+                                        (click)="setFontStyle(); isClickedItalic = !isClickedItalic">
+                                        <i class="material-icons">format_italic</i>
+                                    </a>
+
+                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
+                                        [class.myClass]="isClickedOverline"
+                                        (click)="setTextDecoration('overline'); !isClickedOverline = !isClickedOverline">
+                                        <i class="material-icons">vertical_align_top</i>
+                                    </a>
+                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
+                                        [class.myClass]="isClickedUnderline"
+                                        (click)="setTextDecoration('underline'); !isClickedUnderline = !isClickedUnderline">
+                                        <i class="material-icons">vertical_align_bottom</i>
+                                    </a>
+                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
+                                        [class.myClass]="isClickedCenterline"
+                                        (click)="setTextDecoration('line-through'); !isClickedCenterline = !isClickedCenterline">
+                                        <i class="material-icons">vertical_align_center</i>
+                                    </a>
+
+
+                                    <button [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat waves-teal"
+                                        [ngClass]="{'active': canvas.props.textAlign == 'left' }"
+                                        (click)="setTextAlign('left')">
+                                        <i class="material-icons">format_align_left</i>
+                                    </button>
+
+                                    <button [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat waves-teal"
+                                        [ngClass]="{'active': canvas.props.textAlign == 'center' }"
+                                        (click)="setTextAlign('center')">
+                                        <i class="material-icons">format_align_right</i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col s12 offset-s0" style="padding-top: 25px;">
+                                <div class="col s2">Opasity</div>
+                                <div class="col s8">
+                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
+                                        [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
+                                </div>
+                                <div>{{canvas.props.opacity}}</div>
+                            </div>
+
+                            <div class="col s12 offset-s0" style="padding-top: 20px;">
+
+                                <div class="col s2">Char Spacing</div>
+                                <div class="col s8">
+                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
+                                        (ngModelChange)="setCharSpacing()" [(ngModel)]="canvas.props.charSpacing"
+                                        step="10" min="-200" max="300">
+                                </div>
+                                <div>{{canvas.props.charSpacing}}</div>
+                            </div>
+
+                            <div class="col s12 offset-s0" style="padding-top: 20px;">
+
+                                <div class="col s2">Arc</div>
+                                <div class="col s8">
+                                    <form action="#">
+                                        <div style="float:left">
+                                            <label>
+                                                <input style="margin-left: 1%;" (change)="canvas.props.textCurved = 1; "
+                                                    (click)="canvas.reRender()" name="group1" type="radio" checked />
+                                                <span>Straight</span>
+                                            </label>
+
+                                            <label>
+                                                <input style="margin-left: 10px;"
+                                                    [disabled]="canvas.intCountText > 1 && canvas.intCountText !== 0 "
+                                                    (change)="canvas.props.textCurved = 2"
+                                                    (click)="canvas.reRender1(); canvas.props.diametr = 300"
+                                                    name="group1" type="radio" />
+                                                <span>Bend</span>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- <div>{{canvas.props.diametr}}</div> -->
+                            </div>
+
+
+
+                            <div *ngIf="canvas.props.textCurved !== 1" class="col s12 offset-s0"
+                                style="padding-top: 20px;">
+
+                                <div class="col s2">Diameter</div>
+                                <div class="col s8">
+                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
+                                        [(ngModel)]="canvas.props.diametr" (ngModelChange)="canvas.addText()" step="3"
+                                        min="80" max="300">
+                                </div>
+                                <!-- <div>{{canvas.props.diametr}}</div> -->
+                            </div>
+
+                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.props.diametr < 300"
+                                class="col s12 offset-s0" style="padding-top: 20px;">
+
+                                <div class="col s2">Font Size</div>
+                                <div class="col s8">
+                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
+                                        [(ngModel)]="canvas.props.fontSize" (ngModelChange)="setFontSize()" step="1"
+                                        min="1" max="80">
+                                </div>
+                                <!-- <div>{{canvas.props.fontSize}}</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add text for T-shirt with tools -->
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- /T-shirt display box with canvas box -->
+
+        <!-- Right side for design specific with tools -->
+        <div *ngIf="!checkWith" class="toolNav col s5 m3 l4 xl4 offset-s7 offset-m9 offset-l8 offset-xl8">
+
+            <!-- Tabs box -->
+
+            <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"
+                id="nav-mobile" class="center-align hide-on-med-and-down ">
+                <ul class="tabs tabs-fixed-width tab-demo z-depth-1"
+                    style="height: 40px; background-color:rgb(255, 255, 255);">
+                    <li class="tab"><a href="#test1"> <i class="small material-icons"
                                 [ngStyle]="{'padding-top': '3px'}">color_lens</i>
                         </a></li>
                     <li class="tab"><a href="#test2"> <i class="small material-icons"
@@ -397,7 +1009,7 @@
                                             " class="tab"><a href="#test1[i]">{{productBrand.name}}</a>
                                     </li>
                                     <!-- <li class="tab"><a class="active" href="#test5">Test 2</a></li>
-                                    <li class="tab"><a href="#test6">Test 3</a></li> -->
+                                            <li class="tab"><a  href="#test6">Test 3</a></li> -->
                                 </ul>
                             </div>
                             <div class="card-content grey lighten-4">
@@ -673,614 +1285,6 @@
                 </div>
 
                 <div id="test3" class="col s12">
-                    <!-- Add text for T-shirt with tools -->
-
-                    <div class="row">
-
-                        <div style="margin-top: 20px; float:left">
-                            <div class="input-field col s3" style="margin-top: 5px">
-                                <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
-                                    class="btn btn-outline-primary"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 "
-                                    (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false">
-                                    <i class="large material-icons" aria-hidden="true">done_all</i>
-                                </button>
-                            </div>
-                            <!-- <div [attr.disabled]="canvas.textString === '' ">
-                            <i  id="addText" 
-                                (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false"
-                                style="cursor: pointer;" class="material-icons prefix">add_box
-                            </i>
-                           </div> -->
-                            <div class="input-field col s8" style="margin-top: 0px">
-                                <input id="icon_prefix2" type="text" class="materialize-textarea"
-                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 ">
-                                <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
-                                <label for="icon_prefix2">Input text</label>
-                            </div>
-                        </div>
-                        <label class="col s3" style="margin-top: 20px; cursor: pointer;">
-                            <input id="shadowText" type="checkbox" (change)="shadowText = !shadowText"
-                                class="filled-in" />
-                            <i class="fa fa-cloud"
-                                style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
-                        </label>
-
-                        <div class="row">
-                            <div class="col s12" *ngIf="canvas.selected  && canvas.selected.type == 'group'">
-                                Group Selected
-                            </div>
-                            <div class="col s12" *ngIf="!canvas.selected">
-                                <div [ngStyle]="{'margin-top': '-20px'}"> No items selected</div>
-                            </div>
-                            <!-- <div class="col s12" *ngIf="canvas.selected && canvas.selected.type != 'group'">
-                                    <div class="custom-item-title">ID</div>
-                                                <div class="custom-item-body">
-                                                    <input type="text" class="form-control" [(ngModel)]="canvas.props.id"
-                                                        (keyup)="setId()">
-                                                </div>
-                                </div> -->
-
-
-                            <div class="col s5 offset-s0">
-                                <!-- *ngIf="canvas.selected && canvas.textEditor" -->
-                                <div class="col s2" [ngStyle]="{'margin-top': '20px'}">Fill</div>
-
-                                <div class="col s8 offset-s1">
-                                    <input [attr.disabled]="!canvas.textEditor ? '' : null"
-                                        [ngStyle]="{'margin-top': '20px'}" type="text" class="form-control"
-                                        [cpPosition]="'bottom'" [(colorPicker)]="canvas.props.fill"
-                                        [style.background]="canvas.props.fill" [value]="canvas.props.fill"
-                                        (colorPickerChange)="setFill()">
-                                </div>
-                            </div>
-
-                            <div class="col s7 offset-s0">
-                                <!-- *ngIf="canvas.selected && canvas.textEditor" -->
-                                <div class="col s2 offset-s0" [ngStyle]="{'margin-top': '20px'}">Font
-                                </div>
-                                <div class="col s8 offset-s1">
-                                    <select [attr.disabled]="!canvas.textEditor ? '' : null"
-                                        [ngStyle]="{'margin-top': '20px'}" class="browser-default"
-                                        [(ngModel)]="canvas.props.fontFamily" (change)="setFontFamily()">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="helvetica" selected>Helvetica</option>
-                                        <option *ngFor="let font of fonts" [ngStyle]="{'font-family': font.value}"
-                                            value="{{font.value}}">{{font.name}}</option>
-                                        <!-- <option value="arial">Arial</option>
-                                        <option value="Comic Sans MS" selected>Comic Sans MS</option>
-                                        <option style="font-family:verdana;" value="verdana">Verdana</option>
-                                        <option style="font-family:courier;" value="courier">Courier</option>
-                                        <option value="Roboto">Roboto</option>
-                                        <option value="Open Sans MT">Open Sans MT</option>
-                                        <option value="Script">Script</option>
-                                        <option value="Lato">Lato</option>
-                                        <option value="Bellefair">Bellefair</option>
-                                        <option value="ShelleyVolante BT">ShelleyVolante BT</option>
-                                        <option style="font-family:fantasy;" value="fantasy">fantasy</option>
-                                        <option value="Open Sans Condensed MT">Open Sans Condensed</option>
-                                        <option value="Bookman Old Style">Bookman Old Style</option>
-                                        <option value="Exotc350 Bd BT">Exotc350 Bd BT</option>
-                                        <option style="font-family:Kaufmann BT;" value="Kaufmann BT">Kaufmann BT</option>
-                                        <option style="font-family:Calisto Mt;" value="Calisto Mt">Calisto MT</option>
-                                        <option value="Brush Script Mt">Brush Script MT</option>
-                                        <option value="TypoUpright BT">TypoUpright BT</option>
-                                        <option value="Lucida Handwriting">Lucida Handwriting</option>
-                                        <option value="grapalat">grapalat</option>
-                                        <option value="Sylfaen">Sylfaen</option>
-                                        <option value="Briberra">Briberra</option>
-
-                                        <option value="ArialArmST Italic">ArialArmST Italic</option> -->
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col s12 offset-s0 " style="padding-top: 20px;">
-
-                                <div class="col s12 offset-s0 z-depth-2">
-
-                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
-                                        [class.myClass]="isClickedBold" [ngClass]="{'active': canvas.props.fontWeight }"
-                                        (click)="setBold(); isClickedBold = !isClickedBold">
-                                        <i class="material-icons">format_bold</i>
-                                    </a>
-                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class=" btn-flat"
-                                        [class.myClass]="isClickedItalic"
-                                        [ngClass]="{'active': canvas.props.fontStyle }"
-                                        (click)="setFontStyle(); isClickedItalic = !isClickedItalic">
-                                        <i class="material-icons">format_italic</i>
-                                    </a>
-
-                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
-                                        [class.myClass]="isClickedOverline"
-                                        (click)="setTextDecoration('overline'); !isClickedOverline = !isClickedOverline">
-                                        <i class="material-icons">vertical_align_top</i>
-                                    </a>
-                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
-                                        [class.myClass]="isClickedUnderline"
-                                        (click)="setTextDecoration('underline'); !isClickedUnderline = !isClickedUnderline">
-                                        <i class="material-icons">vertical_align_bottom</i>
-                                    </a>
-                                    <a [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat"
-                                        [class.myClass]="isClickedCenterline"
-                                        (click)="setTextDecoration('line-through'); !isClickedCenterline = !isClickedCenterline">
-                                        <i class="material-icons">vertical_align_center</i>
-                                    </a>
-
-
-                                    <button [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat waves-teal"
-                                        [ngClass]="{'active': canvas.props.textAlign == 'left' }"
-                                        (click)="setTextAlign('left')">
-                                        <i class="material-icons">format_align_left</i>
-                                    </button>
-
-                                    <button [attr.disabled]="!canvas.textEditor ? '' : null" class="btn-flat waves-teal"
-                                        [ngClass]="{'active': canvas.props.textAlign == 'center' }"
-                                        (click)="setTextAlign('center')">
-                                        <i class="material-icons">format_align_right</i>
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="col s12 offset-s0" style="padding-top: 25px;">
-                                <div class="col s2">Opasity</div>
-                                <div class="col s8">
-                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
-                                        [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
-                                </div>
-                                <div>{{canvas.props.opacity}}</div>
-                            </div>
-
-                            <div class="col s12 offset-s0" style="padding-top: 20px;">
-
-                                <div class="col s2">Char Spacing</div>
-                                <div class="col s8">
-                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
-                                        (ngModelChange)="setCharSpacing()" [(ngModel)]="canvas.props.charSpacing"
-                                        step="10" min="-200" max="300">
-                                </div>
-                                <div>{{canvas.props.charSpacing}}</div>
-                            </div>
-
-                            <div class="col s12 offset-s0" style="padding-top: 20px;">
-
-                                <div class="col s2">Arc</div>
-                                <div class="col s8">
-                                    <form action="#">
-                                        <div style="float:left">
-                                            <label>
-                                                <input style="margin-left: 1%;" (change)="canvas.props.textCurved = 1; "
-                                                    (click)="canvas.reRender()" name="group1" type="radio" checked />
-                                                <span>Straight</span>
-                                            </label>
-
-                                            <label>
-                                                <input style="margin-left: 10px;"
-                                                    [disabled]="canvas.intCountText > 1 && canvas.intCountText !== 0 "
-                                                    (change)="canvas.props.textCurved = 2"
-                                                    (click)="canvas.reRender1(); canvas.props.diametr = 300"
-                                                    name="group1" type="radio" />
-                                                <span>Bend</span>
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- <div>{{canvas.props.diametr}}</div> -->
-                            </div>
-
-
-
-                            <div *ngIf="canvas.props.textCurved !== 1" class="col s12 offset-s0"
-                                style="padding-top: 20px;">
-
-                                <div class="col s2">Diameter</div>
-                                <div class="col s8">
-                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
-                                        [(ngModel)]="canvas.props.diametr" (ngModelChange)="canvas.addText()" step="3"
-                                        min="80" max="300">
-                                </div>
-                                <!-- <div>{{canvas.props.diametr}}</div> -->
-                            </div>
-
-                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.props.diametr < 300"
-                                class="col s12 offset-s0" style="padding-top: 20px;">
-
-                                <div class="col s2">Font Size</div>
-                                <div class="col s8">
-                                    <input [attr.disabled]="!canvas.textEditor ? '' : null" type="range"
-                                        [(ngModel)]="canvas.props.fontSize" (ngModelChange)="setFontSize()" step="1"
-                                        min="1" max="80">
-                                </div>
-                                <!-- <div>{{canvas.props.fontSize}}</div> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add text for T-shirt with tools -->
-                </div>
-
-
-            </div>
-        </div>
-
-
-        <!-- /T-shirt display box with canvas box -->
-
-        <!-- Right side for design specific with tools -->
-        <div class="toolNav col s5 m3 l4 xl4 offset-s7 offset-m9 offset-l8 offset-xl8">
-
-            <!-- Tabs box -->
-
-            <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"
-                id="nav-mobile" class="center-align hide-on-med-and-down ">
-                <ul class="tabs tabs-fixed-width tab-demo z-depth-1"
-                    style="height: 40px; background-color:rgb(255, 255, 255);">
-                    <li class="tab"><a id="ilo" href="#futerSide1"> <i class="small material-icons"
-                                [ngStyle]="{'padding-top': '3px'}">color_lens</i>
-                        </a></li>
-                    <li class="tab"><a href="#futerSide2"> <i class="small material-icons"
-                                [ngStyle]="{'padding-top': '3px'}">photo</i>
-                        </a></li>
-                    <li class="tab"><a href="#futerSide3"> <i class="small material-icons"
-                                [ngStyle]="{'padding-top': '3px'}">text_format</i>
-                        </a></li>
-                </ul>
-
-                <div id="futerSide1" class="col s12 offset-s0">
-
-                    <div class="colorConteiner left-align">
-                        <!-- <button type="button" class="colorButton" (click)="isOpen = !isOpen" cdkOverlayOrigin
-                            [style.background]="selectColor || 'none'">Color</button> -->
-
-                        <!-- <ng-template #display>
-                            Select color
-                        </ng-template> -->
-
-
-                        <div
-                            style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 2%;">
-                            <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
-                                *ngFor="let imageProduct of products; let i = index" (click)=" 
-                                canvas.props.canvasImage = imageProduct.type; 
-                                canvas.props.canvasFill = productBrandColors[0]; 
-                                allColors = true;
-                                orderDatas.productTypeName = imageProduct.name;
-                                orderDatas.productColor = '';
-                                indexBrandType = i;
-                                setCanvasImage();  
-                                productsTypeColor();" (colorPickerChange)="setCanvasFill()">
-                                <img class="productType" [src]="imageProduct.type1">
-                                <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
-                                <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
-                            </div> <br>
-                        </div>
-
-                        <!-- <div class="card small" *ngFor="let imageProduct of products"
-                                    (click)="canvas.props.canvasImage = imageProduct.type; setCanvasImage()"
-                                    (colorPickerChange)="setCanvasFill()">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" [src]="imageProduct.type">
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title activator grey-text text-darken-4">Card Title<i
-                                                class="material-icons right">more_vert</i></span>
-                                        <p><a href="#">This is a link</a></p>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i
-                                                class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once
-                                            clicked on.</p>
-                                    </div>
-                                </div> -->
-
-
-
-                        <div style="margin-top: 5%;" class="card">
-                            <div class="card-content" style="height: 120px; width: 100%;">
-                                <a
-                                    [href]="indexBrand === null ? productBrands[0].linkeBrand : productBrands[indexBrand].linkeBrand">
-                                    <img style="width: 40%; height: auto;  display: flex;
-                                    justify-content: center; margin-top: 0%;
-                                    align-items: center;" class="activator"
-                                        [src]="indexBrand === null ? productBrands[0].src: productBrands[indexBrand].src">
-                                </a>
-                            </div>
-                            <br>
-                            <div class="card-tabs">
-
-                                <ul class="tabs tabs-fixed-width">
-                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
-                                            canvas.props.brandName = productBrand.name;
-                                            orderDatas.brendName = productBrand.name;
-                                            productBrandColor(); 
-                                            productBrandSize();
-                                            setCanvasImage();  
-                                            productsTypeColor();
-                                            " class="tab"><a href="#test1[i]">{{productBrand.name}}</a>
-                                    </li>
-                                    <!-- <li class="tab"><a class="active" href="#test5">Test 2</a></li>
-                                            <li class="tab"><a  href="#test6">Test 3</a></li> -->
-                                </ul>
-                            </div>
-                            <div class="card-content grey lighten-4">
-                                <div style="margin-top: 0%;" class="" role="dialog" aria-label="Color picker">
-                                    <div *ngIf="allColors">
-                                        <div class="card-panel hoverable" *ngFor="let color of arrColor" role="option"
-                                            [style.background]="color" [attr.aria-selected]="color == selectColor"
-                                            (click)="
-                                            canvas.props.canvasFill = color; 
-                                            orderDatas.productColor = color;
-                                            setCanvasFill()" (colorPickerChange)="setCanvasFill()">
-                                        </div>
-                                    </div>
-                                    <div *ngIf="!allColors">
-                                        <div class="card-panel hoverable" *ngFor="let colorBrand of productBrandColors"
-                                            role="option" [style.background]="colorBrand"
-                                            [attr.aria-selected]="colorBrand == selectColor" (click)="
-                                            canvas.props.canvasFill = colorBrand;
-                                            orderDatas.productColor = colorBrand; 
-                                            setCanvasFill()">
-                                        </div>
-                                    </div>
-
-                                    <div style="margin-top: 5%;" class="row">
-                                        <label *ngFor="let size of productBrandSizes | keyvalue:ret; let i = index;"
-                                            class="col s5 m3 l2 offset-s0 offset-m0 offset-l0">
-                                            <input (click)="orderDatas.productSize = size.key; sizeValuePass(size.key)"
-                                                [disabled]="size.value" type="radio" name="sizeKey" value="big"
-                                                [checked]="orderDatas.productSize === '' ? size.key === 'M' : size.key === orderDatas.productSize">
-                                            <div style="font-size: 120%; text-align: center; width: 120%;">
-                                                <b> {{size.key}} </b>
-                                            </div>
-                                        </label>
-
-                                    </div>
-
-
-                                </div>
-
-
-                                <!-- <div class="card-panel hoverable" *ngFor="let imageProduct of products"
-                                    (click)="canvas.props.canvasImage = imageProduct.type; setCanvasImage()"
-                                    (colorPickerChange)="setCanvasFill()">
-                                    <img [src]="imageProduct.type" style="width: 15%; margin-left: 8%;"
-                                        [alt]="imageProduct.alt" [title]="imageProduct.title"> op
-
-                                </div> -->
-
-
-
-
-                                <!-- <div class="custom-item-title">Background Image (url)</div> -->
-                                <!-- <div class="custom-item-body">
-                                        <input type="text" class="form-control" placeholder="http://example.jpg"
-                                            [(ngModel)]="canvas.props.canvasImage" (keyup)="setCanvasImage()">
-                                    </div> -->
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col s12" *ngIf="!canvas.selected">
-                        <!-- <div class="card-header">Canvas</div> -->
-                        <div class="card-body">
-                            <div class="custom-item" *ngIf="canvas.props.canvasImage">
-                                <!-- <div class="custom-item-title">Background Color</div> -->
-                                <div class="custom-item-body">
-
-                                    <input #inputColor type="text" class="form-control" [cpPosition]="'bottom'"
-                                        [(colorPicker)]="canvas.props.canvasFill"
-                                        [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill"
-                                        (colorPickerChange)="setCanvasFill()">
-                                </div>
-                            </div>
-                            <div class="custom-item">
-                                <div class="custom-item-title">Background Image (url)</div>
-                                <div class="custom-item-body">
-                                    <input type="text" class="form-control" placeholder="http://example.jpg"
-                                        [(ngModel)]="canvas.props.canvasImage" (keyup)="setCanvasImage()">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="futerSide2" class="active row">
-
-                    <!-- Filters imges -->
-                    <div class="col offset-s0" style="margin-top: 10px;">
-                        <label class="col s2" style="margin: 5px;">
-                            <input id="origin" type="radio" name="test" value="big" checked>
-                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Origin.png">
-                        </label>
-                        <label class="col s2" style="margin: 5px;">
-                            <input id="grayscale" type="radio" name="test" value="big">
-                            <img class="hoverable" width="60px" height="60px" src="../assets/img/BlackWhite.png">
-                        </label>
-                        <label class="col s2" style="margin: 5px;">
-                            <input id="vintage" type="radio" name="test" value="grayscale">
-                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Vintage.png">
-                        </label>
-                        <label class="col s2" style="margin: 5px;">
-                            <input id="sepia" type="radio" name="test" value="sepia">
-                            <img class="hoverable" width="60px" height="60px" src="../assets/img/oldstyle.png">
-                        </label>
-                        <label class="col s2" style="margin: 5px;">
-                            <input id="invert" type="radio" name="test" value="invert">
-                            <img class="hoverable" width="60px" height="60px" src="../assets/img/Negative.png">
-                        </label>
-                    </div>
-                    <br>
-                    <label class="col s3 offset-s0;" style="margin-top: 10px; cursor:pointer">
-                        <input id="shadow" type="checkbox" (change)="shadow
-                         = !shadow" class="filled-in" [disabled]="canvas.canvasCount == 0" />
-                        <i class="fa fa-cloud"
-                            style="font-size:40px; color:#009688;text-shadow:12px 8px 4px #4d4a4a;"></i>
-                    </label>
-
-
-
-
-                    <!-- <input type="range" [(ngModel)]="canvas.props.opacity" (change)="setOpacity()"> -->
-
-                    <!-- <label> <input type="range" id="hue-value" [(ngModel)]="canvas.props.distance" (change)="setDistance()" value="0.02" min="0" max="1"
-                        step="0.01">Value</label>
-                            {{canvas.props.distance}} -->
-
-                    <div class="col s12 offset-s0" style="padding-top: 5px;">
-                        <div class="col s2">Distance</div>
-                        <div class="col s8">
-                            <input type="range" id="hue-value" [(ngModel)]="canvas.props.distance"
-                                (ngModelChange)="setDistance()" value="0" min="0" max="1" step="0.0001">
-                        </div>
-                        <div>{{canvas.props.distance}}</div>
-                    </div>
-                    <div class="col s12 offset-s0" style="padding-top: 0px;">
-                        <div class="col s2">Saturation</div>
-                        <div class="col s8">
-                            <input type="range" id="saturation" [(ngModel)]="saturation" value="0" min="-1" max="1"
-                                step="0.0001">
-                        </div>
-                        <div>{{saturation}}</div>
-                    </div>
-                    <div class="col s12 offset-s0" style="padding-top: 0px;">
-                        <div class="col s2">Blur</div>
-                        <div class="col s8">
-                            <input type="range" id="blur" [(ngModel)]="blur" value="0" min="0" max="1" step="0.0001">
-                        </div>
-                        <div>{{blur}}</div>
-                    </div>
-                    <div class="col s12 offset-s0" style="padding-top: 0px;">
-                        <div class="col s2">Contrast</div>
-                        <div class="col s8">
-                            <input type="range" id="contrast1" [(ngModel)]="contrast" value="0" min="-1" max="1"
-                                step="0.0001">
-                        </div>
-                        <div>{{contrast}}</div>
-                    </div>
-                    <div class="col s12 offset-s0" style="padding-top: 0px;">
-                        <div class="col s2">Noise</div>
-                        <div class="col s8">
-                            <input type="range" id="noise" [(ngModel)]="noise" value="100" min="0" max="1000"
-                                step="0.0001">
-                        </div>
-                        <div>{{noise}}</div>
-                    </div>
-                    <!-- /Filters imges -->
-
-
-                    <div style="background-color:rgb(228, 232, 243); padding-top: 10px;" id="nav-mobile"
-                        class="tabBox center-align hide-on-med-and-down col s12">
-                        <ul class="tabs tabs-fixed-width tab-demo z-depth-1" style="height: 40px;">
-                            <li class="tab"><a class="active" href="#tab1"> <i class="small material-icons"
-                                        [ngStyle]="{'padding-top': '4px'}">monochrome_photos</i>
-                                </a></li>
-                            <li class="tab"><a href="#tab2"> <i class="small material-icons"
-                                        [ngStyle]="{'padding-top': '4px'}">extension</i>
-                                </a></li>
-                            <li class="tab"><a href="#tab3"> <i class="small material-icons"
-                                        [ngStyle]="{'padding-top': '4px'}">text_format</i>
-                                </a></li>
-                        </ul>
-                    </div>
-                    <div id="tab1">
-                        <div class="">
-                            <!-- <input type="file"  (change)="readUrl($event);"> -->
-                            <div class="file-field input-field col s12">
-                                <div *ngIf="isOpasity1" (click)="addImageOnCanvas(canvas.url); "
-                                    style="border-style: dashed; opacity: 0.4; margin-top: 0px;">
-                                    <i class="large material-icons" [ngStyle]="{'padding-top': '4px'}">move_to_inbox</i>
-                                    <input type="file" class="input"
-                                        (change)="readUrl($event); routerlink();   isOpasity1 = false" multiple>
-                                </div>
-                            </div>
-                            <!-- </input type="file"  (change)="readUrl($event);"> -->
-
-                            <!-- <img class="card-header">Upload image -->
-                            <div id="testImage" class="col s4 offset-s3" style="margin-top: -20px;">
-                                <img *ngIf="canvas.url" class="images-item-upload" [src]="canvas.url"
-                                    style="width: 130px; "
-                                    (click)="addImageOnCanvas(canvas.url);  isOpasity = true; toggle = true">
-                                <!-- <div class="tabs tabs-fixed-width tab-demo ">
-                                    <li class="tab"><a href="#test1"> tab 
-                                        </a></li>
-                                </div>
-                                <a [routerLink]="[ '#test1' ]">name1</a>
-                                <a  href="#test1"  > name </a> -->
-                            </div>
-                            <button *ngIf="isOpasity" type="button" class="col s3 offset-s1 btn #ef5350 red lighten-1"
-                                (click)="removeWhite(canvas.url); isOpasity1 = true; isOpasity = false">
-                                <i aria-hidden="true"></i>
-                                Remove
-                            </button>
-                            <!-- </img class="card-header">Upload image -->
-
-                            <div class="col s12 offset-s0"
-                                *ngIf="isOpasity && canvas.selected && canvas.selected.type != 'group'">
-
-                                <div class="col s12 offset-s0" style="padding-top: 0px;">
-                                    <div class="col s2">Opacity</div>
-                                    <div class="col s8">
-                                        <input type="range" [(ngModel)]="canvas.props.opacity"
-                                            (ngModelChange)="setOpacity()">
-                                    </div>
-                                    <div>{{canvas.props.opacity}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab2" class="row">
-
-                        <!-- <div class="card-header">Add figure</div> -->
-                        <div style="margin-left: 60px; width: 280px; margin-top: 350px; " role="group" aria-label="...">
-
-                            <img class="col s3" id="square" (click)="addFigure('square'); toggle = true ;" width="40px"
-                                height="55px" src="../assets/img/square.png" alt="">
-
-                            <img class="col s3" id="triangle" (click)="addFigure('triangle'); toggle = true;"
-                                width="45px" height="55px" src="../assets/img/threeangle.png" ciricle.png alt="">
-
-                            <img class="col s3" id="circle" (click)="addFigure('circle'); toggle = true;" width="40px"
-                                height="55px" src="../assets/img/ciricle.png" alt="">
-
-                        </div>
-
-                        <div class="col s12 offset-s0" *ngIf="canvas.selected && canvas.selected.type != 'group'">
-
-                            <div class="col s2">Opacity</div>
-                            <div class="col s8">
-                                <input type="range" [(ngModel)]="canvas.props.opacity" (ngModelChange)="setOpacity()">
-                            </div>
-                            <div>{{canvas.props.opacity}}</div>
-
-
-                            <div class="col s10 offset-s0"
-                                *ngIf="canvas.selected && canvas.textEditor || canvas.selected && canvas.figureEditor">
-                                <div class="col s2" style="padding-top: 0px;">Fill</div>
-
-                                <div class="col s8">
-                                    <input type="text" class="form-control" style="height:20px; top: 5px;"
-                                        [cpPosition]="'top'" [(colorPicker)]="canvas.props.fill"
-                                        [style.background]="canvas.props.fill" [value]="canvas.props.fill"
-                                        (colorPickerChange)="setFill()">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab3" class="col s12">3</div>
-
-                </div>
-
-                <div id="futerSide3" class="col s12">
                     <!-- Add text for T-shirt with tools -->
 
                     <div class="row">

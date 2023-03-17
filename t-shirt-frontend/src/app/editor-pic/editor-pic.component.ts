@@ -239,6 +239,12 @@ export class EditorPicComponent implements AfterViewInit {
     //   res => this.canvasCount = res      
     // );
 
+    $(document).on('click', ".deleteBtn", (event) => {
+
+      this.removeSelected();
+
+    });
+
   }
 
 
@@ -1214,10 +1220,10 @@ export class EditorPicComponent implements AfterViewInit {
     this.objectType = true;
 
 
-    $(document).on('click', '.deleteBtn', (event) => {
+    // $(document).on('click', '.deleteBtn', (event) => {
 
-      this.removeSelected();
-    });
+    //   this.removeSelected();
+    // });
 
 
     if (this.props.diametr < 299) {
@@ -1555,11 +1561,11 @@ export class EditorPicComponent implements AfterViewInit {
 
   public getImgPolaroid(event: any): void {
 
-    $(document).on('click', '.deleteBtn', (event) => {
+    // $(document).on('click', '.deleteBtn', (event) => {
 
-      this.removeSelected();
+    //   this.removeSelected();
 
-    });
+    // });
 
     this.canvas.includeDefaultValues;
     this.objectTypeImage = 'image'
@@ -1680,7 +1686,7 @@ export class EditorPicComponent implements AfterViewInit {
       //   }
 
       // }
-
+      const activeObject = this.canvas.getActiveObject();
 
       // const image = fabric.util.groupSVGElements(objects, options);
       const imageWidth = (window.innerWidth - this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - this.dataService.widthKey * window.innerWidth) / this.b + (window.innerWidth - this.dataService.widthKey * window.innerWidth) / 40);
@@ -1697,18 +1703,18 @@ export class EditorPicComponent implements AfterViewInit {
         // shadow: this.shadow,
         // strokeWidth: 3,
         // stroke: '#000',
-        left: 130,
+        // left: 130,
         // top: 50,
+        quality: 1,
         angle: 0,
         padding: 0,
+        centeredScaling: true,
         cornerSize: this.canvas.width / 40,
         hasRotatingPoint: true,
         // top: this.canvas.height / 3.7,
         // originX: 'left',
         // width: 100,
         // height: 100 
-        // originY:s 'center'
-
       });
       // value.shadow.affectStroke = false;
       // image.panToActiveObject()
@@ -1735,42 +1741,74 @@ export class EditorPicComponent implements AfterViewInit {
 
       this.canvas.renderAll();
 
+      // $('#hue-value').on('change', () => {
+      //   // console.log(this.siteLayout.removeColorValue);
+      //   image.filters = [];
+      //   if (this.filterName == 'blackWhite') {
+      //     image.filters.push(new fabric.Image.filters.BlackWhite());
+      //   } else if (this.filterName == 'vintage') {
+      //     image.filters.push(new fabric.Image.filters.Vintage());
+      //   } else if (this.filterName == 'sepia') {
+      //     image.filters.push(new fabric.Image.filters.Sepia());
+      //   } else if (this.filterName == 'invert') {
+      //     image.filters.push(new fabric.Image.filters.Invert());
+      //   } else if (this.filterName == 'origin') {
+      //     image.filters = [];
+      //   }
+      //   image.filters.push(new fabric.Image.filters.RemoveColor({
+      //     distance: this.props.distance,
+      //     // color: "red",
+      //     // threshold: 0.2,
+      //   }
+      //   ));
+      //   image.applyFilters();
+      //   this.canvas.renderAll();
+      // });
+
+      let customFilter = [1, 0, 0, 0, 0,
+        0, 1, 0, 0, 0,
+        0, 0, 1, 0, 0,
+        0, 0, 1, 1, 0]
+
       $('#hue-value').on('change', () => {
-        // console.log(this.siteLayout.removeColorValue);
+
+        // image.filters.push(new fabric.Image.filters.BlackWhite());
         image.filters = [];
-        if (this.filterName == 'blackWhite') {
-          image.filters.push(new fabric.Image.filters.BlackWhite());
-        } else if (this.filterName == 'vintage') {
-          image.filters.push(new fabric.Image.filters.Vintage());
-        } else if (this.filterName == 'sepia') {
-          image.filters.push(new fabric.Image.filters.Sepia());
-        } else if (this.filterName == 'invert') {
-          image.filters.push(new fabric.Image.filters.Invert());
-        } else if (this.filterName == 'origin') {
-          image.filters = [];
-        }
+        image.filters.push(new fabric.Image.filters.ColorMatrix({
+          matrix: customFilter
+        }));
         image.filters.push(new fabric.Image.filters.RemoveColor({
           distance: this.props.distance,
-          // color: "red",
-          // threshold: 0.2,
+          //     // color: "red",
+          //     // threshold: 0.2,
         }
         ));
         image.applyFilters();
         this.canvas.renderAll();
       });
 
+
       $('#saturation').on('change', () => {
         image.filters = [];
+
+        image.filters.push(new fabric.Image.filters.ColorMatrix({
+          matrix: customFilter
+        }));
         image.filters.push(new fabric.Image.filters.Saturation({
           saturation: this.siteLayout.saturation
         }
         ));
+
         image.applyFilters();
         this.canvas.renderAll();
       });
 
       $('#blur').on('change', () => {
         image.filters = [];
+
+        image.filters.push(new fabric.Image.filters.ColorMatrix({
+          matrix: customFilter
+        }));
         image.filters.push(new fabric.Image.filters.Blur({
           blur: this.siteLayout.blur
         }
@@ -1782,6 +1820,9 @@ export class EditorPicComponent implements AfterViewInit {
       $('#contrast1').on('change', () => {
 
         image.filters = [];
+        image.filters.push(new fabric.Image.filters.ColorMatrix({
+          matrix: customFilter
+        }));
         image.filters.push(new fabric.Image.filters.Contrast({
           contrast: this.siteLayout.contrast
         }
@@ -1793,6 +1834,9 @@ export class EditorPicComponent implements AfterViewInit {
       $('#noise').on('change', () => {
 
         image.filters = [];
+        image.filters.push(new fabric.Image.filters.ColorMatrix({
+          matrix: customFilter
+        }));
         image.filters.push(new fabric.Image.filters.Noise({
           noise: this.siteLayout.noise
         }
@@ -1834,7 +1878,10 @@ export class EditorPicComponent implements AfterViewInit {
           this.siteLayout.contrast = 0;
 
           image.filters = [];
-
+          customFilter = [0.3, 0.6, 0.1, 0, 0,
+            0.3, 0.6, 0.1, 0, 0,
+            0.3, 0.6, 0.1, 0, 0,
+            0, 0, 0, 1, 0,]
           image.filters.push(new fabric.Image.filters.BlackWhite());
           image.applyFilters();
           this.canvas.renderAll();
@@ -1849,7 +1896,10 @@ export class EditorPicComponent implements AfterViewInit {
           this.siteLayout.contrast = 0;
 
           image.filters = [];
-
+          customFilter = [0.6279345635605994, 0.3202183420819367, -0.03965408211312453, 0, 0,
+            0.02578397704808868, 0.6441188644374771, 0.03259127616149294, 0, 0,
+            0.0466055556782719, -0.0851232987247891, 0.5241648018700465, 0, 0,
+            0, 0, 0, 1, 0,]
           image.filters.push(new fabric.Image.filters.Vintage());
           image.applyFilters();
           this.canvas.renderAll();
@@ -1864,7 +1914,10 @@ export class EditorPicComponent implements AfterViewInit {
           this.siteLayout.contrast = 0;
 
           image.filters = [];
-
+          customFilter = [0.393, 0.7689999, 0.18899999, 0, 0,
+            0.349, 0.6859999, 0.16799999, 0, 0,
+            0.272, 0.5339999, 0.13099999, 0, 0,
+            0, 0, 0, 1, 0,]
           image.filters.push(new fabric.Image.filters.Sepia());
           image.applyFilters();
           // console.log(image);
@@ -1881,7 +1934,10 @@ export class EditorPicComponent implements AfterViewInit {
           this.siteLayout.contrast = 0;
 
           image.filters = [];
-
+          customFilter = [-1, 0, 0, 1, 0,
+            0, -1, 0, 1, 0,
+            0, 0, -1, 1, 0,
+            0, 0, 0, 1, 0,];
           image.filters.push(new fabric.Image.filters.Invert());
           image.applyFilters();
           // console.log(image);
@@ -1898,7 +1954,12 @@ export class EditorPicComponent implements AfterViewInit {
           this.siteLayout.contrast = 0;
 
           image.filters = [];
-
+          image.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: [1, 0, 0, 0, 0,
+              0, 1, 0, 0, 0,
+              0, 0, 1, 0, 0,
+              0, 0, 1, 1, 0]
+          }));
           // if (this.id == "svg") {
           //   console.log("svg");
           //   image.filters = [];
@@ -1958,45 +2019,11 @@ export class EditorPicComponent implements AfterViewInit {
 
   public addImageOnCanvas(url): void {
 
-    $(document).on('click', '.deleteBtn', (event) => {
+    // $(document).on('click', '.deleteBtn', (event) => {
 
-      this.removeSelected();
+    //   this.removeSelected();
 
-    });
-
-
-    $(document).on('click', ".deleteBtn", (event) => {
-
-      event.stopImmediatePropagation()
-
-      const activeObject = this.canvas.getActiveObject();
-      const activeGroup = this.canvas.getActiveObjects();
-      this.canvasCount -= 1;
-      // console.log(this.canvasCount);
-      if (this.canvasCount === 0) {
-        $('#shadow').prop('checked', false);
-        this.siteLayout.shadow = false;
-        $('.owl-nav').show();
-        $(".canvas").css("z-index", 0);
-        // this.siteLayout.isCarouselOpen = true;
-        this.disableBtn = false;
-        this.siteLayout.toggle = false;
-      }
-
-      if (activeObject) {
-        this.canvas.remove(activeObject);
-        $(".deleteBtn").remove();
-        $(".distance").remove();
-        // this.textString = '';
-      } else if (activeGroup) {
-        this.canvas.discardActiveObject();
-        const self = this;
-        activeGroup.forEach((object) => {
-          self.canvas.remove(object);
-        });
-      }
-    });
-
+    // });
 
 
     if (url) {
@@ -2021,7 +2048,13 @@ export class EditorPicComponent implements AfterViewInit {
               this.dataService.formatTopKey = -0.03;
               // this.dataService.scaleKey = 1;
               this.dataService.formatSizeSwich();
-              scale = 1.05;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.4;
+                console.log(this.scaleKey = this.d, 'A3');
+              } else {
+                scale = 1.05;
+              }
             } else {
               console.log('mage.height / image.width > 1.1 else');
               this.dataService.horizontalVertical = false;
@@ -2029,9 +2062,14 @@ export class EditorPicComponent implements AfterViewInit {
               this.dataService.horVert = true;
               this.dataService.formatWithHeight = 0.707;
               // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
-              this.dataService.formatTopKey = -0.03;
+              this.dataService.formatTopKey = -0.00;
               this.dataService.formatSizeSwich();
-              scale = 1;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.36;
+              } else {
+                scale = 1;
+              }
 
               // scale = this.dataService.scaleKey;
             }
@@ -2050,16 +2088,26 @@ export class EditorPicComponent implements AfterViewInit {
               this.dataService.formatTopKey = 0.03;
               // this.dataService.scaleKey = 1;
               this.dataService.formatSizeSwich();
-              scale = 1.05;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.36;
+              } else {
+                scale = 1.05;
+              }
             } else {
               this.dataService.horizontalVertical = false;
               // this.dataService.scaleKey = 1;
               this.dataService.horVert = true;
               this.dataService.formatWithHeight = 0.707;
               // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
-              this.dataService.formatTopKey = -0.03;
+              this.dataService.formatTopKey = -0.00;
               this.dataService.formatSizeSwich();
-              scale = 1;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.335;
+              } else {
+                scale = 1;
+              }
 
               // scale = this.dataService.scaleKey;
             }
@@ -2107,7 +2155,12 @@ export class EditorPicComponent implements AfterViewInit {
               // this.dataService.formatTopKey = 0.03;
               // this.dataService.scaleKey = 1;
               // this.dataService.formatSizeSwich();
-              scale = 1.3;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.36;
+              } else {
+                scale = 1.05;
+              }
             } else {
               // this.dataService.horizontalVertical = false;
               // this.dataService.scaleKey = 1;
@@ -2116,7 +2169,12 @@ export class EditorPicComponent implements AfterViewInit {
               // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
               // this.dataService.formatTopKey = -0.06;
               // this.dataService.formatSizeSwich();
-              scale = 2.3;
+              //mobile
+              if (window.innerWidth < 600) {
+                scale = 0.335;
+              } else {
+                scale = 1;
+              }
 
               // scale = this.dataService.scaleKey;
             }
@@ -2137,6 +2195,7 @@ export class EditorPicComponent implements AfterViewInit {
           quality: 1,
           angle: 0,
           padding: 0,
+          centeredScaling: true,
           cornerSize: this.canvas.width / 40,
           hasRotatingPoint: true
         });
@@ -2158,27 +2217,50 @@ export class EditorPicComponent implements AfterViewInit {
         image1.applyFilters();
         this.canvas.renderAll();
 
+        // $('#hue-value').on('change', () => {
+        //   // console.log(this.siteLayout.removeColorValue);
+        //   image1.filters = [];
+        //   if (this.filterName == 'blackWhite') {
+        //     image1.filters.push(new fabric.Image.filters.BlackWhite());
+        //   } else if (this.filterName == 'vintage') {
+        //     image1.filters.push(new fabric.Image.filters.Vintage());
+        //   } else if (this.filterName == 'sepia') {
+        //     image1.filters.push(new fabric.Image.filters.Sepia());
+        //   } else if (this.filterName == 'invert') {
+        //     image1.filters.push(new fabric.Image.filters.Invert());
+        //   } else if (this.filterName == 'origin') {
+        //     image1.filters.push(new fabric.Image.filters.ColorMatrix({
+        //       matrix: [1, 0, 0, 0, 0,
+        //         0, 1, 0, 0, 0,
+        //         0, 0, 1, 0, 0,
+        //         0, 0, 0, 1, 0]
+        //     }));
+        //   }
+        //   image1.filters.push(new fabric.Image.filters.RemoveColor({
+        //     distance: this.props.distance
+        //   }
+        //   ));
+        //   image1.applyFilters();
+        //   this.canvas.renderAll();
+        // });
+
+
+        let customFilter = [1, 0, 0, 0, 0,
+          0, 1, 0, 0, 0,
+          0, 0, 1, 0, 0,
+          0, 0, 1, 1, 0]
+
         $('#hue-value').on('change', () => {
-          // console.log(this.siteLayout.removeColorValue);
+
+          // image.filters.push(new fabric.Image.filters.BlackWhite());
           image1.filters = [];
-          if (this.filterName == 'blackWhite') {
-            image1.filters.push(new fabric.Image.filters.BlackWhite());
-          } else if (this.filterName == 'vintage') {
-            image1.filters.push(new fabric.Image.filters.Vintage());
-          } else if (this.filterName == 'sepia') {
-            image1.filters.push(new fabric.Image.filters.Sepia());
-          } else if (this.filterName == 'invert') {
-            image1.filters.push(new fabric.Image.filters.Invert());
-          } else if (this.filterName == 'origin') {
-            image1.filters.push(new fabric.Image.filters.ColorMatrix({
-              matrix: [1, 0, 0, 0, 0,
-                0, 1, 0, 0, 0,
-                0, 0, 1, 0, 0,
-                0, 0, 0, 1, 0]
-            }));
-          }
+          image1.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: customFilter
+          }));
           image1.filters.push(new fabric.Image.filters.RemoveColor({
-            distance: this.props.distance
+            distance: this.props.distance,
+            //     // color: "red",
+            //     // threshold: 0.2,
           }
           ));
           image1.applyFilters();
@@ -2188,18 +2270,23 @@ export class EditorPicComponent implements AfterViewInit {
         $('#saturation').on('change', () => {
           image1.filters = [];
 
+          image1.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: customFilter
+          }));
           image1.filters.push(new fabric.Image.filters.Saturation({
-
             saturation: this.siteLayout.saturation
           }
           ));
           image1.applyFilters();
-
           this.canvas.renderAll();
         });
 
         $('#blur').on('change', () => {
           image1.filters = [];
+
+          image1.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: customFilter
+          }));
           image1.filters.push(new fabric.Image.filters.Blur({
             blur: this.siteLayout.blur
           }
@@ -2211,6 +2298,9 @@ export class EditorPicComponent implements AfterViewInit {
         $('#contrast1').on('change', () => {
 
           image1.filters = [];
+          image1.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: customFilter
+          }));
           image1.filters.push(new fabric.Image.filters.Contrast({
             contrast: this.siteLayout.contrast
           }
@@ -2222,6 +2312,9 @@ export class EditorPicComponent implements AfterViewInit {
         $('#noise').on('change', () => {
 
           image1.filters = [];
+          image1.filters.push(new fabric.Image.filters.ColorMatrix({
+            matrix: customFilter
+          }));
           image1.filters.push(new fabric.Image.filters.Noise({
             noise: this.siteLayout.noise
           }
@@ -2259,7 +2352,10 @@ export class EditorPicComponent implements AfterViewInit {
             this.siteLayout.contrast = 0;
 
             image1.filters = [];
-
+            customFilter = [0.3, 0.6, 0.1, 0, 0,
+              0.3, 0.6, 0.1, 0, 0,
+              0.3, 0.6, 0.1, 0, 0,
+              0, 0, 0, 1, 0,]
             image1.filters.push(new fabric.Image.filters.BlackWhite());
             image1.applyFilters();
             this.canvas.renderAll();
@@ -2272,7 +2368,10 @@ export class EditorPicComponent implements AfterViewInit {
             this.siteLayout.blur = 0;
             this.siteLayout.noise = 0;
             this.siteLayout.contrast = 0;
-
+            customFilter = [0.6279345635605994, 0.3202183420819367, -0.03965408211312453, 0, 0,
+              0.02578397704808868, 0.6441188644374771, 0.03259127616149294, 0, 0,
+              0.0466055556782719, -0.0851232987247891, 0.5241648018700465, 0, 0,
+              0, 0, 0, 1, 0,]
             image1.filters = [];
 
             image1.filters.push(new fabric.Image.filters.Vintage());
@@ -2289,7 +2388,10 @@ export class EditorPicComponent implements AfterViewInit {
             this.siteLayout.contrast = 0;
 
             image1.filters = [];
-
+            customFilter = [0.393, 0.7689999, 0.18899999, 0, 0,
+              0.349, 0.6859999, 0.16799999, 0, 0,
+              0.272, 0.5339999, 0.13099999, 0, 0,
+              0, 0, 0, 1, 0,]
             image1.filters.push(new fabric.Image.filters.Sepia());
             image1.applyFilters();
             // console.log(image1);
@@ -2306,7 +2408,10 @@ export class EditorPicComponent implements AfterViewInit {
             this.siteLayout.contrast = 0;
 
             image1.filters = [];
-
+            customFilter = [-1, 0, 0, 1, 0,
+              0, -1, 0, 1, 0,
+              0, 0, -1, 1, 0,
+              0, 0, 0, 1, 0,];
             image1.filters.push(new fabric.Image.filters.Invert());
             image1.applyFilters();
             // console.log(image1);
@@ -2328,7 +2433,7 @@ export class EditorPicComponent implements AfterViewInit {
               matrix: [1, 0, 0, 0, 0,
                 0, 1, 0, 0, 0,
                 0, 0, 1, 0, 0,
-                0, 0, 0, 1, 0]
+                0, 0, 1, 1, 0]
             }));
             image1.applyFilters();
             this.canvas.renderAll();
@@ -2351,41 +2456,12 @@ export class EditorPicComponent implements AfterViewInit {
 
 
     this.canvasCount += 1;
-    console.log(this.canvasCount, 'figure');
 
+    // $(document).on('click', ".deleteBtn", (event) => {
 
-    $(document).on('click', ".deleteBtn", (event) => {
+    //   this.removeSelected();
 
-
-      event.stopImmediatePropagation();
-
-      this.canvasCount -= 1;
-      const activeObject = this.canvas.getActiveObject();
-      const activeGroup = this.canvas.getActiveObjects();
-      // console.log(this.canvasCount);
-      if (this.canvasCount === 0) {
-        this.siteLayout.firstImage = 0;
-        // this.siteLayout.isOpasity=true;
-        $('.owl-nav').show();
-        $(".canvas").css("z-index", 0);
-        this.disableBtn = false;
-        this.siteLayout.toggle = false;
-
-      }
-
-      if (activeObject) {
-        this.canvas.remove(activeObject);
-        $(".deleteBtn").remove();
-
-        // this.textString = '';
-      } else if (activeGroup) {
-        this.canvas.discardActiveObject();
-        const self = this;
-        activeGroup.forEach((object) => {
-          self.canvas.remove(object);
-        });
-      }
-    });
+    // });
 
 
     let add: any;

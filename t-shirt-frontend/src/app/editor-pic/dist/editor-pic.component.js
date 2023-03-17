@@ -127,6 +127,9 @@ var EditorPicComponent = /** @class */ (function () {
         // this.dataService.canvasCount1.subscribe(
         //   res => this.canvasCount = res      
         // );
+        $(document).on('click', ".deleteBtn", function (event) {
+            _this.removeSelected();
+        });
     }
     EditorPicComponent.prototype.onResize = function (event) {
         // --!
@@ -865,9 +868,9 @@ var EditorPicComponent = /** @class */ (function () {
         var _this = this;
         // console.log(this.props.textCurved);
         this.objectType = true;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-        });
+        // $(document).on('click', '.deleteBtn', (event) => {
+        //   this.removeSelected();
+        // });
         if (this.props.diametr < 299) {
             console.log('<280');
             this.props.inputDisabled = 'inputDisabled';
@@ -1111,10 +1114,10 @@ var EditorPicComponent = /** @class */ (function () {
     };
     // Block "Add images"
     EditorPicComponent.prototype.getImgPolaroid = function (event) {
+        // $(document).on('click', '.deleteBtn', (event) => {
         var _this = this;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-        });
+        //   this.removeSelected();
+        // });
         this.canvas.includeDefaultValues;
         this.objectTypeImage = 'image';
         this.canvasCount += 1;
@@ -1220,6 +1223,7 @@ var EditorPicComponent = /** @class */ (function () {
             //     // scale = this.dataService.scaleKey;
             //   }
             // }
+            var activeObject = _this.canvas.getActiveObject();
             // const image = fabric.util.groupSVGElements(objects, options);
             var imageWidth = (window.innerWidth - _this.dataService.widthKey * window.innerWidth) - 2 * ((window.innerWidth - _this.dataService.widthKey * window.innerWidth) / _this.b + (window.innerWidth - _this.dataService.widthKey * window.innerWidth) / 40);
             var imageHeight = imageWidth * _this.c;
@@ -1231,10 +1235,12 @@ var EditorPicComponent = /** @class */ (function () {
                 // shadow: this.shadow,
                 // strokeWidth: 3,
                 // stroke: '#000',
-                left: 130,
+                // left: 130,
                 // top: 50,
+                quality: 1,
                 angle: 0,
                 padding: 0,
+                centeredScaling: true,
                 cornerSize: _this.canvas.width / 40,
                 hasRotatingPoint: true
             });
@@ -1256,24 +1262,39 @@ var EditorPicComponent = /** @class */ (function () {
             _this.canvas.centerObjectH(image);
             image.top = _this.canvas.width / 40 + _this.canvas.width / _this.b - _this.canvas.width * _this.a;
             _this.canvas.renderAll();
+            // $('#hue-value').on('change', () => {
+            //   // console.log(this.siteLayout.removeColorValue);
+            //   image.filters = [];
+            //   if (this.filterName == 'blackWhite') {
+            //     image.filters.push(new fabric.Image.filters.BlackWhite());
+            //   } else if (this.filterName == 'vintage') {
+            //     image.filters.push(new fabric.Image.filters.Vintage());
+            //   } else if (this.filterName == 'sepia') {
+            //     image.filters.push(new fabric.Image.filters.Sepia());
+            //   } else if (this.filterName == 'invert') {
+            //     image.filters.push(new fabric.Image.filters.Invert());
+            //   } else if (this.filterName == 'origin') {
+            //     image.filters = [];
+            //   }
+            //   image.filters.push(new fabric.Image.filters.RemoveColor({
+            //     distance: this.props.distance,
+            //     // color: "red",
+            //     // threshold: 0.2,
+            //   }
+            //   ));
+            //   image.applyFilters();
+            //   this.canvas.renderAll();
+            // });
+            var customFilter = [1, 0, 0, 0, 0,
+                0, 1, 0, 0, 0,
+                0, 0, 1, 0, 0,
+                0, 0, 1, 1, 0];
             $('#hue-value').on('change', function () {
-                // console.log(this.siteLayout.removeColorValue);
+                // image.filters.push(new fabric.Image.filters.BlackWhite());
                 image.filters = [];
-                if (_this.filterName == 'blackWhite') {
-                    image.filters.push(new fabric.Image.filters.BlackWhite());
-                }
-                else if (_this.filterName == 'vintage') {
-                    image.filters.push(new fabric.Image.filters.Vintage());
-                }
-                else if (_this.filterName == 'sepia') {
-                    image.filters.push(new fabric.Image.filters.Sepia());
-                }
-                else if (_this.filterName == 'invert') {
-                    image.filters.push(new fabric.Image.filters.Invert());
-                }
-                else if (_this.filterName == 'origin') {
-                    image.filters = [];
-                }
+                image.filters.push(new fabric.Image.filters.ColorMatrix({
+                    matrix: customFilter
+                }));
                 image.filters.push(new fabric.Image.filters.RemoveColor({
                     distance: _this.props.distance
                 }));
@@ -1282,6 +1303,9 @@ var EditorPicComponent = /** @class */ (function () {
             });
             $('#saturation').on('change', function () {
                 image.filters = [];
+                image.filters.push(new fabric.Image.filters.ColorMatrix({
+                    matrix: customFilter
+                }));
                 image.filters.push(new fabric.Image.filters.Saturation({
                     saturation: _this.siteLayout.saturation
                 }));
@@ -1290,6 +1314,9 @@ var EditorPicComponent = /** @class */ (function () {
             });
             $('#blur').on('change', function () {
                 image.filters = [];
+                image.filters.push(new fabric.Image.filters.ColorMatrix({
+                    matrix: customFilter
+                }));
                 image.filters.push(new fabric.Image.filters.Blur({
                     blur: _this.siteLayout.blur
                 }));
@@ -1298,6 +1325,9 @@ var EditorPicComponent = /** @class */ (function () {
             });
             $('#contrast1').on('change', function () {
                 image.filters = [];
+                image.filters.push(new fabric.Image.filters.ColorMatrix({
+                    matrix: customFilter
+                }));
                 image.filters.push(new fabric.Image.filters.Contrast({
                     contrast: _this.siteLayout.contrast
                 }));
@@ -1306,6 +1336,9 @@ var EditorPicComponent = /** @class */ (function () {
             });
             $('#noise').on('change', function () {
                 image.filters = [];
+                image.filters.push(new fabric.Image.filters.ColorMatrix({
+                    matrix: customFilter
+                }));
                 image.filters.push(new fabric.Image.filters.Noise({
                     noise: _this.siteLayout.noise
                 }));
@@ -1335,6 +1368,10 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.siteLayout.noise = 0;
                     _this.siteLayout.contrast = 0;
                     image.filters = [];
+                    customFilter = [0.3, 0.6, 0.1, 0, 0,
+                        0.3, 0.6, 0.1, 0, 0,
+                        0.3, 0.6, 0.1, 0, 0,
+                        0, 0, 0, 1, 0,];
                     image.filters.push(new fabric.Image.filters.BlackWhite());
                     image.applyFilters();
                     _this.canvas.renderAll();
@@ -1347,6 +1384,10 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.siteLayout.noise = 0;
                     _this.siteLayout.contrast = 0;
                     image.filters = [];
+                    customFilter = [0.6279345635605994, 0.3202183420819367, -0.03965408211312453, 0, 0,
+                        0.02578397704808868, 0.6441188644374771, 0.03259127616149294, 0, 0,
+                        0.0466055556782719, -0.0851232987247891, 0.5241648018700465, 0, 0,
+                        0, 0, 0, 1, 0,];
                     image.filters.push(new fabric.Image.filters.Vintage());
                     image.applyFilters();
                     _this.canvas.renderAll();
@@ -1359,6 +1400,10 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.siteLayout.noise = 0;
                     _this.siteLayout.contrast = 0;
                     image.filters = [];
+                    customFilter = [0.393, 0.7689999, 0.18899999, 0, 0,
+                        0.349, 0.6859999, 0.16799999, 0, 0,
+                        0.272, 0.5339999, 0.13099999, 0, 0,
+                        0, 0, 0, 1, 0,];
                     image.filters.push(new fabric.Image.filters.Sepia());
                     image.applyFilters();
                     // console.log(image);
@@ -1373,6 +1418,10 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.siteLayout.noise = 0;
                     _this.siteLayout.contrast = 0;
                     image.filters = [];
+                    customFilter = [-1, 0, 0, 1, 0,
+                        0, -1, 0, 1, 0,
+                        0, 0, -1, 1, 0,
+                        0, 0, 0, 1, 0,];
                     image.filters.push(new fabric.Image.filters.Invert());
                     image.applyFilters();
                     // console.log(image);
@@ -1387,6 +1436,12 @@ var EditorPicComponent = /** @class */ (function () {
                     _this.siteLayout.noise = 0;
                     _this.siteLayout.contrast = 0;
                     image.filters = [];
+                    image.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: [1, 0, 0, 0, 0,
+                            0, 1, 0, 0, 0,
+                            0, 0, 1, 0, 0,
+                            0, 0, 1, 1, 0]
+                    }));
                     // if (this.id == "svg") {
                     //   console.log("svg");
                     //   image.filters = [];
@@ -1430,39 +1485,10 @@ var EditorPicComponent = /** @class */ (function () {
     };
     // Block "Upload Image"
     EditorPicComponent.prototype.addImageOnCanvas = function (url) {
+        // $(document).on('click', '.deleteBtn', (event) => {
         var _this = this;
-        $(document).on('click', '.deleteBtn', function (event) {
-            _this.removeSelected();
-        });
-        $(document).on('click', ".deleteBtn", function (event) {
-            event.stopImmediatePropagation();
-            var activeObject = _this.canvas.getActiveObject();
-            var activeGroup = _this.canvas.getActiveObjects();
-            _this.canvasCount -= 1;
-            // console.log(this.canvasCount);
-            if (_this.canvasCount === 0) {
-                $('#shadow').prop('checked', false);
-                _this.siteLayout.shadow = false;
-                $('.owl-nav').show();
-                $(".canvas").css("z-index", 0);
-                // this.siteLayout.isCarouselOpen = true;
-                _this.disableBtn = false;
-                _this.siteLayout.toggle = false;
-            }
-            if (activeObject) {
-                _this.canvas.remove(activeObject);
-                $(".deleteBtn").remove();
-                $(".distance").remove();
-                // this.textString = '';
-            }
-            else if (activeGroup) {
-                _this.canvas.discardActiveObject();
-                var self_2 = _this;
-                activeGroup.forEach(function (object) {
-                    self_2.canvas.remove(object);
-                });
-            }
-        });
+        //   this.removeSelected();
+        // });
         if (url) {
             this.canvasCount += 1;
             // console.log(url);
@@ -1481,7 +1507,14 @@ var EditorPicComponent = /** @class */ (function () {
                             _this.dataService.formatTopKey = -0.03;
                             // this.dataService.scaleKey = 1;
                             _this.dataService.formatSizeSwich();
-                            scale_1 = 1.05;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.4;
+                                console.log(_this.scaleKey = _this.d, 'A3');
+                            }
+                            else {
+                                scale_1 = 1.05;
+                            }
                         }
                         else {
                             console.log('mage.height / image.width > 1.1 else');
@@ -1490,9 +1523,15 @@ var EditorPicComponent = /** @class */ (function () {
                             _this.dataService.horVert = true;
                             _this.dataService.formatWithHeight = 0.707;
                             // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
-                            _this.dataService.formatTopKey = -0.03;
+                            _this.dataService.formatTopKey = -0.00;
                             _this.dataService.formatSizeSwich();
-                            scale_1 = 1;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.36;
+                            }
+                            else {
+                                scale_1 = 1;
+                            }
                             // scale = this.dataService.scaleKey;
                         }
                     }
@@ -1506,7 +1545,13 @@ var EditorPicComponent = /** @class */ (function () {
                             _this.dataService.formatTopKey = 0.03;
                             // this.dataService.scaleKey = 1;
                             _this.dataService.formatSizeSwich();
-                            scale_1 = 1.05;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.36;
+                            }
+                            else {
+                                scale_1 = 1.05;
+                            }
                         }
                         else {
                             _this.dataService.horizontalVertical = false;
@@ -1514,9 +1559,15 @@ var EditorPicComponent = /** @class */ (function () {
                             _this.dataService.horVert = true;
                             _this.dataService.formatWithHeight = 0.707;
                             // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
-                            _this.dataService.formatTopKey = -0.03;
+                            _this.dataService.formatTopKey = -0.00;
                             _this.dataService.formatSizeSwich();
-                            scale_1 = 1;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.335;
+                            }
+                            else {
+                                scale_1 = 1;
+                            }
                             // scale = this.dataService.scaleKey;
                         }
                     }
@@ -1556,7 +1607,13 @@ var EditorPicComponent = /** @class */ (function () {
                             // this.dataService.formatTopKey = 0.03;
                             // this.dataService.scaleKey = 1;
                             // this.dataService.formatSizeSwich();
-                            scale_1 = 1.3;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.36;
+                            }
+                            else {
+                                scale_1 = 1.05;
+                            }
                         }
                         else {
                             // this.dataService.horizontalVertical = false;
@@ -1566,7 +1623,13 @@ var EditorPicComponent = /** @class */ (function () {
                             // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
                             // this.dataService.formatTopKey = -0.06;
                             // this.dataService.formatSizeSwich();
-                            scale_1 = 2.3;
+                            //mobile
+                            if (window.innerWidth < 600) {
+                                scale_1 = 0.335;
+                            }
+                            else {
+                                scale_1 = 1;
+                            }
                             // scale = this.dataService.scaleKey;
                         }
                     }
@@ -1582,6 +1645,7 @@ var EditorPicComponent = /** @class */ (function () {
                     quality: 1,
                     angle: 0,
                     padding: 0,
+                    centeredScaling: true,
                     cornerSize: _this.canvas.width / 40,
                     hasRotatingPoint: true
                 });
@@ -1599,29 +1663,42 @@ var EditorPicComponent = /** @class */ (function () {
                 image1.top = _this.canvas.width / 40 + _this.canvas.width / _this.b - _this.canvas.width * _this.a;
                 image1.applyFilters();
                 _this.canvas.renderAll();
+                // $('#hue-value').on('change', () => {
+                //   // console.log(this.siteLayout.removeColorValue);
+                //   image1.filters = [];
+                //   if (this.filterName == 'blackWhite') {
+                //     image1.filters.push(new fabric.Image.filters.BlackWhite());
+                //   } else if (this.filterName == 'vintage') {
+                //     image1.filters.push(new fabric.Image.filters.Vintage());
+                //   } else if (this.filterName == 'sepia') {
+                //     image1.filters.push(new fabric.Image.filters.Sepia());
+                //   } else if (this.filterName == 'invert') {
+                //     image1.filters.push(new fabric.Image.filters.Invert());
+                //   } else if (this.filterName == 'origin') {
+                //     image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                //       matrix: [1, 0, 0, 0, 0,
+                //         0, 1, 0, 0, 0,
+                //         0, 0, 1, 0, 0,
+                //         0, 0, 0, 1, 0]
+                //     }));
+                //   }
+                //   image1.filters.push(new fabric.Image.filters.RemoveColor({
+                //     distance: this.props.distance
+                //   }
+                //   ));
+                //   image1.applyFilters();
+                //   this.canvas.renderAll();
+                // });
+                var customFilter = [1, 0, 0, 0, 0,
+                    0, 1, 0, 0, 0,
+                    0, 0, 1, 0, 0,
+                    0, 0, 1, 1, 0];
                 $('#hue-value').on('change', function () {
-                    // console.log(this.siteLayout.removeColorValue);
+                    // image.filters.push(new fabric.Image.filters.BlackWhite());
                     image1.filters = [];
-                    if (_this.filterName == 'blackWhite') {
-                        image1.filters.push(new fabric.Image.filters.BlackWhite());
-                    }
-                    else if (_this.filterName == 'vintage') {
-                        image1.filters.push(new fabric.Image.filters.Vintage());
-                    }
-                    else if (_this.filterName == 'sepia') {
-                        image1.filters.push(new fabric.Image.filters.Sepia());
-                    }
-                    else if (_this.filterName == 'invert') {
-                        image1.filters.push(new fabric.Image.filters.Invert());
-                    }
-                    else if (_this.filterName == 'origin') {
-                        image1.filters.push(new fabric.Image.filters.ColorMatrix({
-                            matrix: [1, 0, 0, 0, 0,
-                                0, 1, 0, 0, 0,
-                                0, 0, 1, 0, 0,
-                                0, 0, 0, 1, 0]
-                        }));
-                    }
+                    image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: customFilter
+                    }));
                     image1.filters.push(new fabric.Image.filters.RemoveColor({
                         distance: _this.props.distance
                     }));
@@ -1630,6 +1707,9 @@ var EditorPicComponent = /** @class */ (function () {
                 });
                 $('#saturation').on('change', function () {
                     image1.filters = [];
+                    image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: customFilter
+                    }));
                     image1.filters.push(new fabric.Image.filters.Saturation({
                         saturation: _this.siteLayout.saturation
                     }));
@@ -1638,6 +1718,9 @@ var EditorPicComponent = /** @class */ (function () {
                 });
                 $('#blur').on('change', function () {
                     image1.filters = [];
+                    image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: customFilter
+                    }));
                     image1.filters.push(new fabric.Image.filters.Blur({
                         blur: _this.siteLayout.blur
                     }));
@@ -1646,6 +1729,9 @@ var EditorPicComponent = /** @class */ (function () {
                 });
                 $('#contrast1').on('change', function () {
                     image1.filters = [];
+                    image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: customFilter
+                    }));
                     image1.filters.push(new fabric.Image.filters.Contrast({
                         contrast: _this.siteLayout.contrast
                     }));
@@ -1654,6 +1740,9 @@ var EditorPicComponent = /** @class */ (function () {
                 });
                 $('#noise').on('change', function () {
                     image1.filters = [];
+                    image1.filters.push(new fabric.Image.filters.ColorMatrix({
+                        matrix: customFilter
+                    }));
                     image1.filters.push(new fabric.Image.filters.Noise({
                         noise: _this.siteLayout.noise
                     }));
@@ -1683,6 +1772,10 @@ var EditorPicComponent = /** @class */ (function () {
                         _this.siteLayout.noise = 0;
                         _this.siteLayout.contrast = 0;
                         image1.filters = [];
+                        customFilter = [0.3, 0.6, 0.1, 0, 0,
+                            0.3, 0.6, 0.1, 0, 0,
+                            0.3, 0.6, 0.1, 0, 0,
+                            0, 0, 0, 1, 0,];
                         image1.filters.push(new fabric.Image.filters.BlackWhite());
                         image1.applyFilters();
                         _this.canvas.renderAll();
@@ -1694,6 +1787,10 @@ var EditorPicComponent = /** @class */ (function () {
                         _this.siteLayout.blur = 0;
                         _this.siteLayout.noise = 0;
                         _this.siteLayout.contrast = 0;
+                        customFilter = [0.6279345635605994, 0.3202183420819367, -0.03965408211312453, 0, 0,
+                            0.02578397704808868, 0.6441188644374771, 0.03259127616149294, 0, 0,
+                            0.0466055556782719, -0.0851232987247891, 0.5241648018700465, 0, 0,
+                            0, 0, 0, 1, 0,];
                         image1.filters = [];
                         image1.filters.push(new fabric.Image.filters.Vintage());
                         image1.applyFilters();
@@ -1707,6 +1804,10 @@ var EditorPicComponent = /** @class */ (function () {
                         _this.siteLayout.noise = 0;
                         _this.siteLayout.contrast = 0;
                         image1.filters = [];
+                        customFilter = [0.393, 0.7689999, 0.18899999, 0, 0,
+                            0.349, 0.6859999, 0.16799999, 0, 0,
+                            0.272, 0.5339999, 0.13099999, 0, 0,
+                            0, 0, 0, 1, 0,];
                         image1.filters.push(new fabric.Image.filters.Sepia());
                         image1.applyFilters();
                         // console.log(image1);
@@ -1721,6 +1822,10 @@ var EditorPicComponent = /** @class */ (function () {
                         _this.siteLayout.noise = 0;
                         _this.siteLayout.contrast = 0;
                         image1.filters = [];
+                        customFilter = [-1, 0, 0, 1, 0,
+                            0, -1, 0, 1, 0,
+                            0, 0, -1, 1, 0,
+                            0, 0, 0, 1, 0,];
                         image1.filters.push(new fabric.Image.filters.Invert());
                         image1.applyFilters();
                         // console.log(image1);
@@ -1739,7 +1844,7 @@ var EditorPicComponent = /** @class */ (function () {
                             matrix: [1, 0, 0, 0, 0,
                                 0, 1, 0, 0, 0,
                                 0, 0, 1, 0, 0,
-                                0, 0, 0, 1, 0]
+                                0, 0, 1, 1, 0]
                         }));
                         image1.applyFilters();
                         _this.canvas.renderAll();
@@ -1755,34 +1860,9 @@ var EditorPicComponent = /** @class */ (function () {
     EditorPicComponent.prototype.addFigure = function (figure) {
         var _this = this;
         this.canvasCount += 1;
-        console.log(this.canvasCount, 'figure');
-        $(document).on('click', ".deleteBtn", function (event) {
-            event.stopImmediatePropagation();
-            _this.canvasCount -= 1;
-            var activeObject = _this.canvas.getActiveObject();
-            var activeGroup = _this.canvas.getActiveObjects();
-            // console.log(this.canvasCount);
-            if (_this.canvasCount === 0) {
-                _this.siteLayout.firstImage = 0;
-                // this.siteLayout.isOpasity=true;
-                $('.owl-nav').show();
-                $(".canvas").css("z-index", 0);
-                _this.disableBtn = false;
-                _this.siteLayout.toggle = false;
-            }
-            if (activeObject) {
-                _this.canvas.remove(activeObject);
-                $(".deleteBtn").remove();
-                // this.textString = '';
-            }
-            else if (activeGroup) {
-                _this.canvas.discardActiveObject();
-                var self_3 = _this;
-                activeGroup.forEach(function (object) {
-                    self_3.canvas.remove(object);
-                });
-            }
-        });
+        // $(document).on('click', ".deleteBtn", (event) => {
+        //   this.removeSelected();
+        // });
         var add;
         switch (figure) {
             case 'rectangle':

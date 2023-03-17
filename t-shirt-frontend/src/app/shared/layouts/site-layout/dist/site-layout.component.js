@@ -340,12 +340,14 @@ var SiteLayoutComponent = /** @class */ (function () {
             this.margin = 90;
             this.stagePadding = 90;
             console.log('window.innerWidth < 600!!');
+            this.checkWith = true;
         }
         else {
             this.items = 3;
             this.margin = 60;
             this.stagePadding = null;
             console.log('window.innerWidth > 600!!');
+            this.checkWith = false;
         }
         this.changeOptions();
     };
