@@ -19,7 +19,7 @@ var shoping_page_component_1 = require("./shoping-page/shoping-page.component");
 var routes = [
     {
         path: '', component: auth_layout_component_1.AuthLayoutComponent, children: [
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
+            { path: '', redirectTo: '/register', pathMatch: 'full' },
             { path: 'login', component: login_page_component_1.LoginPageComponent },
             { path: 'register', component: register_page_component_1.RegisterPageComponent },
         ]

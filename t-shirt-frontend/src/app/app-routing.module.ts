@@ -12,7 +12,7 @@ import { ShopingPageComponent } from './shoping-page/shoping-page.component';
 const routes: Routes = [
   {
     path: '', component: AuthLayoutComponent, children: [
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: '', redirectTo: '/register', pathMatch: 'full' },
       { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent },
 

@@ -685,7 +685,6 @@
                             <div class="input-field col s3" style="margin-top: 5px">
                                 <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
                                     class="btn btn-outline-primary"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 "
                                     (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false">
                                     <i class="large material-icons" aria-hidden="true">done_all</i>
                                 </button>
@@ -699,7 +698,7 @@
                             <div class="input-field col s8" style="margin-top: 0px">
                                 <input id="icon_prefix2" type="text" class="materialize-textarea"
                                     [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 ">
+                                    >
                                 <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
                                 <label for="icon_prefix2">Input text</label>
                             </div>
@@ -866,7 +865,7 @@
 
                                             <label>
                                                 <input style="margin-left: 10px;"
-                                                    [disabled]="canvas.intCountText > 1 && canvas.intCountText !== 0 "
+                                                    [disabled]="canvas.canvasCount > 1"
                                                     (change)="canvas.props.textCurved = 2"
                                                     (click)="canvas.reRender1(); canvas.props.diametr = 300"
                                                     name="group1" type="radio" />
@@ -1293,7 +1292,6 @@
                             <div class="input-field col s3" style="margin-top: 5px">
                                 <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
                                     class="btn btn-outline-primary"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 "
                                     (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false">
                                     <i class="large material-icons" aria-hidden="true">done_all</i>
                                 </button>
@@ -1307,7 +1305,7 @@
                             <div class="input-field col s8" style="margin-top: 0px">
                                 <input id="icon_prefix2" type="text" class="materialize-textarea"
                                     [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
-                                    [disabled]=" canvas.props.inputDisabled === 'inputDisabled' &&  canvas.props.textCurved === 2 && canvas.intCountText !== 0 ">
+                                    >
                                 <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
                                 <label for="icon_prefix2">Input text</label>
                             </div>
@@ -1474,7 +1472,7 @@
 
                                             <label>
                                                 <input style="margin-left: 10px;"
-                                                    [disabled]="canvas.intCountText > 1 && canvas.intCountText !== 0 "
+                                                    [disabled]="canvas.canvasCount > 1"
                                                     (change)="canvas.props.textCurved = 2"
                                                     (click)="canvas.reRender1(); canvas.props.diametr = 300"
                                                     name="group1" type="radio" />
@@ -1488,7 +1486,7 @@
 
 
 
-                            <div *ngIf="canvas.props.textCurved !== 1" class="col s12 offset-s0"
+                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.canvasCount < 2" class="col s12 offset-s0"
                                 style="padding-top: 20px;">
 
                                 <div class="col s2">Diameter</div>

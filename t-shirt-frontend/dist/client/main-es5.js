@@ -126,7 +126,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       component: _shared_layouts_auth_layout_auth_layout_component__WEBPACK_IMPORTED_MODULE_3__["AuthLayoutComponent"],
       children: [{
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/register',
         pathMatch: 'full'
       }, {
         path: 'login',
@@ -1522,7 +1522,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           });
 
-          if (this.intCountText !== 0) {
+          if (this.intCountText !== 0 && this.canvasCount !== 0) {
             this.canvas.remove(this.canvas.getActiveObject());
             this.canvas.add(this.props.textStraight);
             this.selectItemAfterAdded(this.props.textStraight); // this.canvas.setActiveObject(this.props.textStraight);
@@ -1605,7 +1605,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // width: 50,
                 cornerSize: this.canvas.width / 40,
                 padding: this.textPadding,
-                centeredRotation: true
+                centeredRotation: true,
+                centerTransform: true,
+                centeredScaling: true // charSpacing: 50,
+                // pathStartOffset: 80,
+                // centerTransform: true,
+                // textAlign: 'center',
+                // pathSide: 'right',
+                // strokeDashOffset: 30, 
+                // originX: 'center',
+                // originY: 'center',
+
               }, this.path = path);
               $('#shadowText').on('click', function () {
                 if (!_this7.siteLayout.shadowText) {
@@ -1619,13 +1629,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 _this7.canvas.renderAll();
               });
+              var scale = 2;
 
               if (this.dataService.horizontalVertical === true) {
-                text.scaleToHeight(textHeight / this.d / 0.3);
-                text.scaleToWidth(textWidth / this.d / 0.3);
+                if (window.innerWidth < 600) {
+                  text.scaleToHeight(textHeight / 0.5);
+                  text.scaleToWidth(textWidth / 0.5);
+                } else {
+                  text.scaleToHeight(textHeight / 1.2);
+                  text.scaleToWidth(textWidth / 1.2);
+                }
               } else {
-                text.scaleToHeight(textHeight / this.d / 1.5);
-                text.scaleToWidth(textWidth / this.d / 1.5);
+                if (window.innerWidth < 600) {
+                  text.scaleToHeight(textHeight / 0.4);
+                  text.scaleToWidth(textWidth / 0.4);
+                } else {
+                  text.scaleToHeight(textHeight / 1.1);
+                  text.scaleToWidth(textWidth / 1.1);
+                } // scale = this.dataService.scaleKey;
+
               } //   text.scaleToHeight(textHeight / this.d / 1.5);
               // text.scaleToWidth(textWidth / this.d / 1.5);
               // console.log(this.a, this.b, this.d);
@@ -1651,36 +1673,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               this.intCountText += 1;
               this.canvasCount += 1; // console.log(this.canvasCount, 'this.props.diametr === 300');
             }
-
-            console.log('>280', 'sff'); // $(document).on('click', ".deleteBtn", (event) => {
-            //   this.siteLayout.activatebutton = true;
-            //   event.stopImmediatePropagation()
-            //   this.canvasCount -= 1;
-            //   // this.intCountText -= 1;
-            //   console.log(this.canvasCount, ".deleteBtn");
-            //   // console.log(this.canvasCount);
-            //   if (this.canvasCount === 0) {
-            //     this.siteLayout.firstImage = 0;
-            //     $('.owl-nav').show();
-            //     $(".canvas").css("z-index", 0);
-            //     this.siteLayout.toggle = false;
-            //     this.disableBtn = false;
-            //   }
-            //   const activeObject = this.canvas.getActiveObject();
-            //   const activeGroup = this.canvas.getActiveObjects();
-            //   if (activeObject) {
-            //     this.canvas.remove(activeObject);
-            //     $(".deleteBtn").remove();
-            //     $(".distance").remove();
-            //     // this.textString = '';
-            //   } else if (activeGroup) {
-            //     this.canvas.discardActiveObject();
-            //     const self = this;
-            //     activeGroup.forEach((object) => {
-            //       self.canvas.remove(object);
-            //     });
-            //   }
-            // });
 
             var _path = new fabric.Path("'M 69 435 A ".concat(this.props.diametr, " ").concat(this.props.diametr, " 0 0 1 271 420 '"), {
               strokeWidth: 1,
@@ -1726,7 +1718,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // width: 50,
                 cornerSize: this.canvas.width / 40,
                 padding: this.textPadding,
-                centeredRotation: true
+                centeredRotation: true,
+                centerTransform: true,
+                centeredScaling: true
               });
 
               this.props.textStraight = _text; // if (text.height > 1300) {
@@ -1735,7 +1729,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               //   this.dataService.formatVal = this.dataService.formatValue = 'A4';
               // }
 
-              var scale = 1;
+              var _scale = 1;
 
               if (this.dataService.horizontalVertical === true) {
                 // this.dataService.horizontalVertical = false;
@@ -1745,7 +1739,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // this.dataService.formatTopKey = 0.03;
                 // this.dataService.scaleKey = 1;
                 // this.dataService.formatSizeSwich();
-                scale = 2;
+                _scale = 2;
 
                 if (window.innerWidth < 600) {
                   _text.scaleToHeight(_textHeight / 0.5);
@@ -1764,7 +1758,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 // this.dataService.sizePrintKey = 686 / ((686 - 297) / 2);
                 // this.dataService.formatTopKey = -0.03;
                 // this.dataService.formatSizeSwich();
-                scale = 2;
+                _scale = 2;
 
                 if (window.innerWidth < 600) {
                   _text.scaleToHeight(_textHeight / 0.4);
@@ -8174,15 +8168,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](79, _c11));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](80, _c11));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](81, _c11));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](82, _c11));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](83, _c11));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
@@ -8210,7 +8204,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](34, 78, ctx_r12.productBrandSizes, ctx_r12.ret));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](34, 76, ctx_r12.productBrandSizes, ctx_r12.ret));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
@@ -8262,15 +8256,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](82, _c8));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](83, _c8));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](84, _c8));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](85, _c8));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](86, _c8));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
@@ -8292,13 +8286,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _r8.selected && _r8.selected.type != "group");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](11);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.props.inputDisabled === "inputDisabled" && _r8.props.textCurved === 2 && _r8.intCountText !== 0);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", _r8.textString)("disabled", _r8.props.inputDisabled === "inputDisabled" && _r8.props.textCurved === 2 && _r8.intCountText !== 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", _r8.textString);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
 
@@ -8310,23 +8300,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](87, _c12));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](85, _c12));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵstyleProp"]("background", _r8.props.fill, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefaultStyleSanitizer"]);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](88, _c12))("cpPosition", "bottom")("colorPicker", _r8.props.fill)("value", _r8.props.fill);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](86, _c12))("cpPosition", "bottom")("colorPicker", _r8.props.fill)("value", _r8.props.fill);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](89, _c12));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](87, _c12));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](90, _c12))("ngModel", _r8.props.fontFamily);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](88, _c12))("ngModel", _r8.props.fontFamily);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -8338,7 +8328,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("myClass", ctx_r12.isClickedBold);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](91, _c13, _r8.props.fontWeight));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](89, _c13, _r8.props.fontWeight));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -8346,7 +8336,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("myClass", ctx_r12.isClickedItalic);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](93, _c13, _r8.props.fontStyle));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](91, _c13, _r8.props.fontStyle));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -8370,13 +8360,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](95, _c13, _r8.props.textAlign == "left"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](93, _c13, _r8.props.textAlign == "left"));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](97, _c13, _r8.props.textAlign == "center"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](95, _c13, _r8.props.textAlign == "center"));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -8402,7 +8392,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](12);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.intCountText > 1 && _r8.intCountText !== 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.canvasCount > 1);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
@@ -10212,15 +10202,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](79, _c11));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](80, _c11));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](81, _c11));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](82, _c11));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](83, _c11));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
@@ -10248,7 +10238,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](34, 78, ctx_r13.productBrandSizes, ctx_r13.ret));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](34, 76, ctx_r13.productBrandSizes, ctx_r13.ret));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
@@ -10300,15 +10290,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](82, _c8));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](83, _c8));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](84, _c8));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](85, _c8));
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](86, _c8));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
@@ -10330,13 +10320,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _r8.selected && _r8.selected.type != "group");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](11);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.props.inputDisabled === "inputDisabled" && _r8.props.textCurved === 2 && _r8.intCountText !== 0);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", _r8.textString)("disabled", _r8.props.inputDisabled === "inputDisabled" && _r8.props.textCurved === 2 && _r8.intCountText !== 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", _r8.textString);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
 
@@ -10348,23 +10334,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](87, _c12));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](85, _c12));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵstyleProp"]("background", _r8.props.fill, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefaultStyleSanitizer"]);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](88, _c12))("cpPosition", "bottom")("colorPicker", _r8.props.fill)("value", _r8.props.fill);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](86, _c12))("cpPosition", "bottom")("colorPicker", _r8.props.fill)("value", _r8.props.fill);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](89, _c12));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](87, _c12));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](90, _c12))("ngModel", _r8.props.fontFamily);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](88, _c12))("ngModel", _r8.props.fontFamily);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -10376,7 +10362,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("myClass", ctx_r13.isClickedBold);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](91, _c13, _r8.props.fontWeight));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](89, _c13, _r8.props.fontWeight));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -10384,7 +10370,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("myClass", ctx_r13.isClickedItalic);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](93, _c13, _r8.props.fontStyle));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](91, _c13, _r8.props.fontStyle));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -10408,13 +10394,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](95, _c13, _r8.props.textAlign == "left"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](93, _c13, _r8.props.textAlign == "left"));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](97, _c13, _r8.props.textAlign == "center"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction1"](95, _c13, _r8.props.textAlign == "center"));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("disabled", !_r8.textEditor ? "" : null);
 
@@ -10440,11 +10426,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](12);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.intCountText > 1 && _r8.intCountText !== 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", _r8.canvasCount > 1);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _r8.props.textCurved !== 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _r8.props.textCurved !== 1 && _r8.canvasCount < 2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
@@ -11205,7 +11191,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 28,
       vars: 17,
-      consts: [[1, "full-width"], [1, "row"], [1, "col", "s12", "m6", "l3", "xl2", "offset-s1", "offset-m3", "offset-l2", "offset-xl2"], [1, "imgBox"], [1, "col", "s12", "m12", "l12", "xl12", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "top", "-0.2%"], ["role", "group", "aria-label", "...", 1, "btn-group", 2, "position", "absolute", "z-index", "5", "top", "0"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to back", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to front", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["class", "btn-small indigo lighten-3", "style", "cursor: pointer; width: 80px; height: 28px;", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", "class", "btn-small #00e676", "style", "height: 28px;", 3, "click", 4, "ngIf"], ["style", "overflow-y: scroll; max-width: 100%;\n                overflow-x: hidden; width: 250px; max-height: 300px; z-index: 1; margin-top: 5px; position: relative; padding: 10px 10px 0px 0px; background-color: #3d365a73", 4, "ngIf"], ["class", "cleanApply", 4, "ngIf"], [1, "divv", 2, "display", "none"], ["imagePath", ""], [1, "col", "offset-s1", "offset-m4", "offset-l3", "offset-xl6", 2, "margin-top", "2%", "position", "absolute", "z-index", "1"], [1, "canvas", 3, "ngStyle"], ["canvas", ""], [1, "owlCarousel", "mobile", "owl-theme", "selectPic", "col", "s12", "m12", "l8", "xl8", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "position", "absolute", "z-index", "0", 3, "ngClass", "resize"], ["id", "myCarousel", 3, "options", "translated"], ["owlElement", ""], [4, "ngFor", "ngForOf"], ["carouselSlide", "", "id", "image.id"], ["style", "overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;", 4, "ngIf"], ["class", "toolNav col s5 m3 l4 xl4 offset-s7 offset-m9 offset-l8 offset-xl8", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to back", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], ["aria-hidden", "true", 1, "large", "material-icons"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to front", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], [1, "btn-small", "indigo", "lighten-3", 2, "cursor", "pointer", "width", "80px", "height", "28px"], ["for", "", 2, "top", "50%", "float", "left", "margin", "0", "margin-left", "-8px", "font-size", "large", "font-family", "Arial, Helvetica, sans-serif", "color", "#ffffff"], [2, "margin-left", "10px"], ["src", "../assets/img/oie_aHdWpUcmnmvA.png", 2, "margin-top", "3%", "display", "inline-block", "margin", "0px", "cursor", "pointer", "border-radius", "5%", 3, "ngClass"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", 1, "btn-small", "#00e676", 2, "height", "28px", 3, "click"], ["aria-hidden", "true", 1, "material-icons", "right"], [2, "overflow-y", "scroll", "max-width", "100%", "overflow-x", "hidden", "width", "250px", "max-height", "300px", "z-index", "1", "margin-top", "5px", "position", "relative", "padding", "10px 10px 0px 0px", "background-color", "#3d365a73"], ["class", "colorBox;  offset-m4 offset-l3 offset-xl5", "style", "margin: 0;", 3, "click", 4, "ngFor", "ngForOf"], [1, "colorBox;", "offset-m4", "offset-l3", "offset-xl5", 2, "margin", "0", 3, "click"], [1, "imageDiv", 2, "margin", "-5px"], ["for", "", 2, "top", "50%", "transform", "translateY(-50%)", "margin", "0", "left", "13px", "position", "relative", "font-family", "Arial, Helvetica, sans-serif", "color", "#ffffff"], ["alt", "", 1, "imageBox", 2, "top", "-45%", "margin", "0", "position", "relative", "margin-left", "80%", 3, "src"], [2, "border", "1px solid rgba(255, 255, 255, 0.507)"], [1, "cleanApply"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clean Canvas", "type", "button", 1, "btn", "btn-danger", 3, "disabled", "click"], ["aria-hidden", "true"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send", "type", "button", 1, "btn", "btn-danger", 3, "disabled", "click"], ["carouselSlide", "", 3, "id"], [1, "mobileImageLeft", 2, "margin-left", "22%"], [3, "src"], ["data-toggle", "tooltip", "style", "margin-top: 0px;", "class", "but btn-small #00e676 green accent-4 black-text", 3, "click", 4, "ngIf"], ["data-toggle", "tooltip", 1, "but", "btn-small", "#00e676", "green", "accent-4", "black-text", 2, "margin-top", "0px", 3, "click"], [1, "check", "material-icons", 2, "margin-left", "-9px", "margin-top", "-0px"], [2, "overflow-y", "scroll", "width", "100%", "max-width", "100%", "overflow-x", "hidden", "max-height", "400px", "position", "absolute", "overflow-x", "hidden", "margin-top", "130%"], ["id", "nav-mobile", 1, "center-align", "hide-on-med-and-up", 2, "background-color", "rgb(228, 232, 243)", "height", "580px", "overflow-y", "hidden", "overflow-x", "hidden"], [1, "tabs", "tabs-fixed-width", "tab-demo", "z-depth-1", 2, "height", "40px", "background-color", "rgb(255, 255, 255)"], [1, "tab"], ["id", "ilo", "href", "#futerSide1"], [1, "small", "material-icons", 3, "ngStyle"], ["href", "#futerSide2"], ["href", "#futerSide3"], ["id", "futerSide1", 1, "col", "s12", "offset-s0"], [1, "colorConteiner", "left-align"], [2, "overflow-y", "scroll", "max-width", "100%", "overflow-x", "hidden", "max-height", "400px", "margin-top", "2%"], ["class", "card-panel hoverable ", "style", "margin-top: 3%; margin-right: 0%;", "id", "show", 3, "click", "colorPickerChange", 4, "ngFor", "ngForOf"], [1, "card", 2, "margin-top", "5%"], [1, "card-content", 2, "height", "120px", "width", "100%"], [3, "href"], [1, "activator", 2, "width", "40%", "height", "auto", "display", "flex", "justify-content", "center", "margin-top", "0%", "align-items", "center", 3, "src"], [1, "card-tabs"], [1, "tabs", "tabs-fixed-width"], ["class", "tab", 3, "click", 4, "ngFor", "ngForOf"], [1, "card-content", "grey", "lighten-4"], ["role", "dialog", "aria-label", "Color picker", 1, "", 2, "margin-top", "0%"], [4, "ngIf"], [1, "row", 2, "margin-top", "5%"], ["class", "col s5 m3 l2 offset-s0 offset-m0 offset-l0", 4, "ngFor", "ngForOf"], ["class", "col s12", 4, "ngIf"], ["id", "futerSide2", 1, "active", "row"], [1, "col", "offset-s0", 2, "margin-top", "10px"], [1, "col", "s2", 2, "margin", "5px"], ["id", "origin", "type", "radio", "name", "test", "value", "origin", "checked", ""], ["width", "60px", "height", "60px", "src", "../assets/img/Origin.png", 1, "hoverable"], ["id", "grayscale", "type", "radio", "name", "test", "value", "grayscale"], ["width", "60px", "height", "60px", "src", "../assets/img/BlackWhite.png", 1, "hoverable"], ["id", "vintage", "type", "radio", "name", "test", "value", "vintage"], ["width", "60px", "height", "60px", "src", "../assets/img/Vintage.png", 1, "hoverable"], ["id", "sepia", "type", "radio", "name", "test", "value", "sepia"], ["width", "60px", "height", "60px", "src", "../assets/img/oldstyle.png", 1, "hoverable"], ["id", "invert", "type", "radio", "name", "test", "value", "invert"], ["width", "60px", "height", "60px", "src", "../assets/img/Negative.png", 1, "hoverable"], [1, "col", "s3", "offset-s0;", 2, "margin-top", "10px", "cursor", "pointer"], ["id", "shadow", "type", "checkbox", 1, "filled-in", 3, "disabled", "change"], [1, "fa", "fa-cloud", 2, "font-size", "40px", "color", "#009688", "text-shadow", "12px 8px 4px #4d4a4a"], [1, "col", "s12", "offset-s0", 2, "padding-top", "5px"], [1, "col", "s2"], [1, "col", "s8"], ["type", "range", "id", "hue-value", "value", "0", "min", "0", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], [1, "col", "s12", "offset-s0", 2, "padding-top", "0px"], ["type", "range", "id", "saturation", "value", "0", "min", "-1", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "blur", "value", "0", "min", "0", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "contrast1", "value", "0", "min", "-1", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "noise", "value", "100", "min", "0", "max", "1000", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["id", "nav-mobile", 1, "tabBox", "center-align", "hide-on-med-and-up", "col", "s12", 2, "background-color", "rgb(228, 232, 243)", "padding-top", "10px"], [1, "tabs", "tabs-fixed-width", "tab-demo", "z-depth-1", 2, "height", "40px"], ["href", "#tab11", 1, "active"], ["href", "#tab22"], ["href", "#tab33"], ["id", "tab11"], [1, ""], [1, "file-field", "input-field", "col", "s12"], ["style", "border-style: dashed; opacity: 0.4; margin-top: 0px;", 3, "click", 4, "ngIf"], ["id", "testImage", 1, "col", "s4", "offset-s3", 2, "margin-top", "-20px"], ["class", "images-item-upload", "style", "width: 130px; ", 3, "src", "click", 4, "ngIf"], ["type", "button", "class", "col s3 offset-s1 btn #ef5350 red lighten-1", 3, "click", 4, "ngIf"], ["class", "col s12 offset-s0", 4, "ngIf"], ["id", "tab22", 1, "row"], ["role", "group", "aria-label", "...", 2, "margin-left", "60px", "width", "280px", "margin-top", "350px"], ["id", "square", "width", "40px", "height", "55px", "src", "../assets/img/square.png", "alt", "", 1, "col", "s3", 3, "click"], ["id", "triangle", "width", "45px", "height", "55px", "src", "../assets/img/threeangle.png", "ciricle.png", "", "alt", "", 1, "col", "s3", 3, "click"], ["id", "circle", "width", "40px", "height", "55px", "src", "../assets/img/ciricle.png", "alt", "", 1, "col", "s3", 3, "click"], ["id", "tab33", 1, "col", "s12"], ["id", "futerSide3", 1, "col", "s12"], [2, "margin-top", "20px", "float", "left"], [1, "input-field", "col", "s3", 2, "margin-top", "5px"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Done", "type", "button", 1, "btn", "btn-outline-primary", 3, "disabled", "click"], [1, "input-field", "col", "s8", 2, "margin-top", "0px"], ["id", "icon_prefix2", "type", "text", 1, "materialize-textarea", 3, "ngModel", "disabled", "ngModelChange", "click"], ["for", "icon_prefix2"], [1, "col", "s3", 2, "margin-top", "20px", "cursor", "pointer"], ["id", "shadowText", "type", "checkbox", 1, "filled-in", 3, "change"], [1, "col", "s5", "offset-s0"], [1, "col", "s2", 3, "ngStyle"], [1, "col", "s8", "offset-s1"], ["type", "text", 1, "form-control", 3, "ngStyle", "cpPosition", "colorPicker", "value", "colorPickerChange"], [1, "col", "s7", "offset-s0"], [1, "col", "s2", "offset-s0", 3, "ngStyle"], [1, "browser-default", 3, "ngStyle", "ngModel", "ngModelChange", "change"], ["value", "", "disabled", "", "selected", ""], ["value", "helvetica", "selected", ""], [3, "ngStyle", "value", 4, "ngFor", "ngForOf"], [1, "col", "s12", "offset-s0", 2, "padding-top", "20px"], [1, "col", "s12", "offset-s0", "z-depth-2"], [1, "btn-flat", 3, "ngClass", "click"], [1, "material-icons"], [1, "btn-flat", 3, "click"], [1, "btn-flat", "waves-teal", 3, "ngClass", "click"], [1, "col", "s12", "offset-s0", 2, "padding-top", "25px"], ["type", "range", 3, "ngModel", "ngModelChange"], ["type", "range", "step", "10", "min", "-200", "max", "300", 3, "ngModel", "ngModelChange"], ["action", "#"], [2, "float", "left"], ["name", "group1", "type", "radio", "checked", "", 2, "margin-left", "1%", 3, "change", "click"], ["name", "group1", "type", "radio", 2, "margin-left", "10px", 3, "disabled", "change", "click"], ["class", "col s12 offset-s0", "style", "padding-top: 20px;", 4, "ngIf"], ["id", "show", 1, "card-panel", "hoverable", 2, "margin-top", "3%", "margin-right", "0%", 3, "click", "colorPickerChange"], [1, "productType", 3, "src"], [2, "margin-top", "-40%", "margin-left", "-30%"], [1, "tab", 3, "click"], ["href", "#test1[i]"], ["class", "card-panel hoverable", "role", "option", 3, "background", "click", "colorPickerChange", 4, "ngFor", "ngForOf"], ["role", "option", 1, "card-panel", "hoverable", 3, "click", "colorPickerChange"], ["class", "card-panel hoverable", "role", "option", 3, "background", "click", 4, "ngFor", "ngForOf"], ["role", "option", 1, "card-panel", "hoverable", 3, "click"], [1, "col", "s5", "m3", "l2", "offset-s0", "offset-m0", "offset-l0"], ["type", "radio", "name", "sizeKey", "value", "big", 3, "disabled", "checked", "click"], [2, "font-size", "120%", "text-align", "center", "width", "120%"], [1, "col", "s12"], [1, "card-body"], ["class", "custom-item", 4, "ngIf"], [1, "custom-item"], [1, "custom-item-title"], [1, "custom-item-body"], ["type", "text", "placeholder", "http://example.jpg", 1, "form-control", 3, "ngModel", "ngModelChange", "keyup"], ["type", "text", 1, "form-control", 3, "cpPosition", "colorPicker", "value", "colorPickerChange"], ["inputColor", ""], [2, "border-style", "dashed", "opacity", "0.4", "margin-top", "0px", 3, "click"], [1, "large", "material-icons", 3, "ngStyle"], ["type", "file", "multiple", "", 1, "input", 3, "change"], [1, "images-item-upload", 2, "width", "130px", 3, "src", "click"], ["type", "button", 1, "col", "s3", "offset-s1", "btn", "#ef5350", "red", "lighten-1", 3, "click"], [1, "col", "s12", "offset-s0"], ["class", "col s10 offset-s0", 4, "ngIf"], [1, "col", "s10", "offset-s0"], [1, "col", "s2", 2, "padding-top", "0px"], ["type", "text", 1, "form-control", 2, "height", "20px", "top", "5px", 3, "cpPosition", "colorPicker", "value", "colorPickerChange"], [3, "ngStyle"], [3, "ngStyle", "value"], ["type", "range", "step", "3", "min", "80", "max", "300", 3, "ngModel", "ngModelChange"], ["type", "range", "step", "1", "min", "1", "max", "80", 3, "ngModel", "ngModelChange"], [1, "toolNav", "col", "s5", "m3", "l4", "xl4", "offset-s7", "offset-m9", "offset-l8", "offset-xl8"], ["id", "nav-mobile", 1, "center-align", "hide-on-med-and-down", 2, "background-color", "rgb(228, 232, 243)", "height", "580px", "overflow-y", "hidden", "overflow-x", "hidden"], ["href", "#test1"], ["href", "#test2"], ["href", "#test3"], ["id", "test1", 1, "col", "s12", "offset-s0"], ["id", "test2", 1, "active", "row"], ["id", "origin", "type", "radio", "name", "test", "value", "big", "checked", ""], ["id", "grayscale", "type", "radio", "name", "test", "value", "big"], ["id", "vintage", "type", "radio", "name", "test", "value", "grayscale"], ["id", "nav-mobile", 1, "tabBox", "center-align", "hide-on-med-and-down", "col", "s12", 2, "background-color", "rgb(228, 232, 243)", "padding-top", "10px"], ["href", "#tab1", 1, "active"], ["href", "#tab2"], ["href", "#tab3"], ["id", "tab1"], ["id", "tab2", 1, "row"], ["id", "tab3", 1, "col", "s12"], ["id", "test3", 1, "col", "s12"]],
+      consts: [[1, "full-width"], [1, "row"], [1, "col", "s12", "m6", "l3", "xl2", "offset-s1", "offset-m3", "offset-l2", "offset-xl2"], [1, "imgBox"], [1, "col", "s12", "m12", "l12", "xl12", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "top", "-0.2%"], ["role", "group", "aria-label", "...", 1, "btn-group", 2, "position", "absolute", "z-index", "5", "top", "0"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to back", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to front", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", "class", "btn btn-small indigo lighten-3", "style", "height: 28px;", 3, "disabled", "click", 4, "ngIf"], ["class", "btn-small indigo lighten-3", "style", "cursor: pointer; width: 80px; height: 28px;", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", "class", "btn-small #00e676", "style", "height: 28px;", 3, "click", 4, "ngIf"], ["style", "overflow-y: scroll; max-width: 100%;\n                overflow-x: hidden; width: 250px; max-height: 300px; z-index: 1; margin-top: 5px; position: relative; padding: 10px 10px 0px 0px; background-color: #3d365a73", 4, "ngIf"], ["class", "cleanApply", 4, "ngIf"], [1, "divv", 2, "display", "none"], ["imagePath", ""], [1, "col", "offset-s1", "offset-m4", "offset-l3", "offset-xl6", 2, "margin-top", "2%", "position", "absolute", "z-index", "1"], [1, "canvas", 3, "ngStyle"], ["canvas", ""], [1, "owlCarousel", "mobile", "owl-theme", "selectPic", "col", "s12", "m12", "l8", "xl8", "offset-s0", "offset-m0", "offset-l0", "offset-xl0", 2, "position", "absolute", "z-index", "0", 3, "ngClass", "resize"], ["id", "myCarousel", 3, "options", "translated"], ["owlElement", ""], [4, "ngFor", "ngForOf"], ["carouselSlide", "", "id", "image.id"], ["style", "overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;", 4, "ngIf"], ["class", "toolNav col s5 m3 l4 xl4 offset-s7 offset-m9 offset-l8 offset-xl8", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to back", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], ["aria-hidden", "true", 1, "large", "material-icons"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send to front", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", 1, "btn", "btn-small", "indigo", "lighten-3", 2, "height", "28px", 3, "disabled", "click"], [1, "btn-small", "indigo", "lighten-3", 2, "cursor", "pointer", "width", "80px", "height", "28px"], ["for", "", 2, "top", "50%", "float", "left", "margin", "0", "margin-left", "-8px", "font-size", "large", "font-family", "Arial, Helvetica, sans-serif", "color", "#ffffff"], [2, "margin-left", "10px"], ["src", "../assets/img/oie_aHdWpUcmnmvA.png", 2, "margin-top", "3%", "display", "inline-block", "margin", "0px", "cursor", "pointer", "border-radius", "5%", 3, "ngClass"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clone", "type", "button", 1, "btn-small", "#00e676", 2, "height", "28px", 3, "click"], ["aria-hidden", "true", 1, "material-icons", "right"], [2, "overflow-y", "scroll", "max-width", "100%", "overflow-x", "hidden", "width", "250px", "max-height", "300px", "z-index", "1", "margin-top", "5px", "position", "relative", "padding", "10px 10px 0px 0px", "background-color", "#3d365a73"], ["class", "colorBox;  offset-m4 offset-l3 offset-xl5", "style", "margin: 0;", 3, "click", 4, "ngFor", "ngForOf"], [1, "colorBox;", "offset-m4", "offset-l3", "offset-xl5", 2, "margin", "0", 3, "click"], [1, "imageDiv", 2, "margin", "-5px"], ["for", "", 2, "top", "50%", "transform", "translateY(-50%)", "margin", "0", "left", "13px", "position", "relative", "font-family", "Arial, Helvetica, sans-serif", "color", "#ffffff"], ["alt", "", 1, "imageBox", 2, "top", "-45%", "margin", "0", "position", "relative", "margin-left", "80%", 3, "src"], [2, "border", "1px solid rgba(255, 255, 255, 0.507)"], [1, "cleanApply"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Clean Canvas", "type", "button", 1, "btn", "btn-danger", 3, "disabled", "click"], ["aria-hidden", "true"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Send", "type", "button", 1, "btn", "btn-danger", 3, "disabled", "click"], ["carouselSlide", "", 3, "id"], [1, "mobileImageLeft", 2, "margin-left", "22%"], [3, "src"], ["data-toggle", "tooltip", "style", "margin-top: 0px;", "class", "but btn-small #00e676 green accent-4 black-text", 3, "click", 4, "ngIf"], ["data-toggle", "tooltip", 1, "but", "btn-small", "#00e676", "green", "accent-4", "black-text", 2, "margin-top", "0px", 3, "click"], [1, "check", "material-icons", 2, "margin-left", "-9px", "margin-top", "-0px"], [2, "overflow-y", "scroll", "width", "100%", "max-width", "100%", "overflow-x", "hidden", "max-height", "400px", "position", "absolute", "overflow-x", "hidden", "margin-top", "130%"], ["id", "nav-mobile", 1, "center-align", "hide-on-med-and-up", 2, "background-color", "rgb(228, 232, 243)", "height", "580px", "overflow-y", "hidden", "overflow-x", "hidden"], [1, "tabs", "tabs-fixed-width", "tab-demo", "z-depth-1", 2, "height", "40px", "background-color", "rgb(255, 255, 255)"], [1, "tab"], ["id", "ilo", "href", "#futerSide1"], [1, "small", "material-icons", 3, "ngStyle"], ["href", "#futerSide2"], ["href", "#futerSide3"], ["id", "futerSide1", 1, "col", "s12", "offset-s0"], [1, "colorConteiner", "left-align"], [2, "overflow-y", "scroll", "max-width", "100%", "overflow-x", "hidden", "max-height", "400px", "margin-top", "2%"], ["class", "card-panel hoverable ", "style", "margin-top: 3%; margin-right: 0%;", "id", "show", 3, "click", "colorPickerChange", 4, "ngFor", "ngForOf"], [1, "card", 2, "margin-top", "5%"], [1, "card-content", 2, "height", "120px", "width", "100%"], [3, "href"], [1, "activator", 2, "width", "40%", "height", "auto", "display", "flex", "justify-content", "center", "margin-top", "0%", "align-items", "center", 3, "src"], [1, "card-tabs"], [1, "tabs", "tabs-fixed-width"], ["class", "tab", 3, "click", 4, "ngFor", "ngForOf"], [1, "card-content", "grey", "lighten-4"], ["role", "dialog", "aria-label", "Color picker", 1, "", 2, "margin-top", "0%"], [4, "ngIf"], [1, "row", 2, "margin-top", "5%"], ["class", "col s5 m3 l2 offset-s0 offset-m0 offset-l0", 4, "ngFor", "ngForOf"], ["class", "col s12", 4, "ngIf"], ["id", "futerSide2", 1, "active", "row"], [1, "col", "offset-s0", 2, "margin-top", "10px"], [1, "col", "s2", 2, "margin", "5px"], ["id", "origin", "type", "radio", "name", "test", "value", "origin", "checked", ""], ["width", "60px", "height", "60px", "src", "../assets/img/Origin.png", 1, "hoverable"], ["id", "grayscale", "type", "radio", "name", "test", "value", "grayscale"], ["width", "60px", "height", "60px", "src", "../assets/img/BlackWhite.png", 1, "hoverable"], ["id", "vintage", "type", "radio", "name", "test", "value", "vintage"], ["width", "60px", "height", "60px", "src", "../assets/img/Vintage.png", 1, "hoverable"], ["id", "sepia", "type", "radio", "name", "test", "value", "sepia"], ["width", "60px", "height", "60px", "src", "../assets/img/oldstyle.png", 1, "hoverable"], ["id", "invert", "type", "radio", "name", "test", "value", "invert"], ["width", "60px", "height", "60px", "src", "../assets/img/Negative.png", 1, "hoverable"], [1, "col", "s3", "offset-s0;", 2, "margin-top", "10px", "cursor", "pointer"], ["id", "shadow", "type", "checkbox", 1, "filled-in", 3, "disabled", "change"], [1, "fa", "fa-cloud", 2, "font-size", "40px", "color", "#009688", "text-shadow", "12px 8px 4px #4d4a4a"], [1, "col", "s12", "offset-s0", 2, "padding-top", "5px"], [1, "col", "s2"], [1, "col", "s8"], ["type", "range", "id", "hue-value", "value", "0", "min", "0", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], [1, "col", "s12", "offset-s0", 2, "padding-top", "0px"], ["type", "range", "id", "saturation", "value", "0", "min", "-1", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "blur", "value", "0", "min", "0", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "contrast1", "value", "0", "min", "-1", "max", "1", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["type", "range", "id", "noise", "value", "100", "min", "0", "max", "1000", "step", "0.0001", 3, "ngModel", "ngModelChange"], ["id", "nav-mobile", 1, "tabBox", "center-align", "hide-on-med-and-up", "col", "s12", 2, "background-color", "rgb(228, 232, 243)", "padding-top", "10px"], [1, "tabs", "tabs-fixed-width", "tab-demo", "z-depth-1", 2, "height", "40px"], ["href", "#tab11", 1, "active"], ["href", "#tab22"], ["href", "#tab33"], ["id", "tab11"], [1, ""], [1, "file-field", "input-field", "col", "s12"], ["style", "border-style: dashed; opacity: 0.4; margin-top: 0px;", 3, "click", 4, "ngIf"], ["id", "testImage", 1, "col", "s4", "offset-s3", 2, "margin-top", "-20px"], ["class", "images-item-upload", "style", "width: 130px; ", 3, "src", "click", 4, "ngIf"], ["type", "button", "class", "col s3 offset-s1 btn #ef5350 red lighten-1", 3, "click", 4, "ngIf"], ["class", "col s12 offset-s0", 4, "ngIf"], ["id", "tab22", 1, "row"], ["role", "group", "aria-label", "...", 2, "margin-left", "60px", "width", "280px", "margin-top", "350px"], ["id", "square", "width", "40px", "height", "55px", "src", "../assets/img/square.png", "alt", "", 1, "col", "s3", 3, "click"], ["id", "triangle", "width", "45px", "height", "55px", "src", "../assets/img/threeangle.png", "ciricle.png", "", "alt", "", 1, "col", "s3", 3, "click"], ["id", "circle", "width", "40px", "height", "55px", "src", "../assets/img/ciricle.png", "alt", "", 1, "col", "s3", 3, "click"], ["id", "tab33", 1, "col", "s12"], ["id", "futerSide3", 1, "col", "s12"], [2, "margin-top", "20px", "float", "left"], [1, "input-field", "col", "s3", 2, "margin-top", "5px"], ["data-toggle", "tooltip", "data-placement", "bottom", "title", "Done", "type", "button", 1, "btn", "btn-outline-primary", 3, "click"], [1, "input-field", "col", "s8", 2, "margin-top", "0px"], ["id", "icon_prefix2", "type", "text", 1, "materialize-textarea", 3, "ngModel", "ngModelChange", "click"], ["for", "icon_prefix2"], [1, "col", "s3", 2, "margin-top", "20px", "cursor", "pointer"], ["id", "shadowText", "type", "checkbox", 1, "filled-in", 3, "change"], [1, "col", "s5", "offset-s0"], [1, "col", "s2", 3, "ngStyle"], [1, "col", "s8", "offset-s1"], ["type", "text", 1, "form-control", 3, "ngStyle", "cpPosition", "colorPicker", "value", "colorPickerChange"], [1, "col", "s7", "offset-s0"], [1, "col", "s2", "offset-s0", 3, "ngStyle"], [1, "browser-default", 3, "ngStyle", "ngModel", "ngModelChange", "change"], ["value", "", "disabled", "", "selected", ""], ["value", "helvetica", "selected", ""], [3, "ngStyle", "value", 4, "ngFor", "ngForOf"], [1, "col", "s12", "offset-s0", 2, "padding-top", "20px"], [1, "col", "s12", "offset-s0", "z-depth-2"], [1, "btn-flat", 3, "ngClass", "click"], [1, "material-icons"], [1, "btn-flat", 3, "click"], [1, "btn-flat", "waves-teal", 3, "ngClass", "click"], [1, "col", "s12", "offset-s0", 2, "padding-top", "25px"], ["type", "range", 3, "ngModel", "ngModelChange"], ["type", "range", "step", "10", "min", "-200", "max", "300", 3, "ngModel", "ngModelChange"], ["action", "#"], [2, "float", "left"], ["name", "group1", "type", "radio", "checked", "", 2, "margin-left", "1%", 3, "change", "click"], ["name", "group1", "type", "radio", 2, "margin-left", "10px", 3, "disabled", "change", "click"], ["class", "col s12 offset-s0", "style", "padding-top: 20px;", 4, "ngIf"], ["id", "show", 1, "card-panel", "hoverable", 2, "margin-top", "3%", "margin-right", "0%", 3, "click", "colorPickerChange"], [1, "productType", 3, "src"], [2, "margin-top", "-40%", "margin-left", "-30%"], [1, "tab", 3, "click"], ["href", "#test1[i]"], ["class", "card-panel hoverable", "role", "option", 3, "background", "click", "colorPickerChange", 4, "ngFor", "ngForOf"], ["role", "option", 1, "card-panel", "hoverable", 3, "click", "colorPickerChange"], ["class", "card-panel hoverable", "role", "option", 3, "background", "click", 4, "ngFor", "ngForOf"], ["role", "option", 1, "card-panel", "hoverable", 3, "click"], [1, "col", "s5", "m3", "l2", "offset-s0", "offset-m0", "offset-l0"], ["type", "radio", "name", "sizeKey", "value", "big", 3, "disabled", "checked", "click"], [2, "font-size", "120%", "text-align", "center", "width", "120%"], [1, "col", "s12"], [1, "card-body"], ["class", "custom-item", 4, "ngIf"], [1, "custom-item"], [1, "custom-item-title"], [1, "custom-item-body"], ["type", "text", "placeholder", "http://example.jpg", 1, "form-control", 3, "ngModel", "ngModelChange", "keyup"], ["type", "text", 1, "form-control", 3, "cpPosition", "colorPicker", "value", "colorPickerChange"], ["inputColor", ""], [2, "border-style", "dashed", "opacity", "0.4", "margin-top", "0px", 3, "click"], [1, "large", "material-icons", 3, "ngStyle"], ["type", "file", "multiple", "", 1, "input", 3, "change"], [1, "images-item-upload", 2, "width", "130px", 3, "src", "click"], ["type", "button", 1, "col", "s3", "offset-s1", "btn", "#ef5350", "red", "lighten-1", 3, "click"], [1, "col", "s12", "offset-s0"], ["class", "col s10 offset-s0", 4, "ngIf"], [1, "col", "s10", "offset-s0"], [1, "col", "s2", 2, "padding-top", "0px"], ["type", "text", 1, "form-control", 2, "height", "20px", "top", "5px", 3, "cpPosition", "colorPicker", "value", "colorPickerChange"], [3, "ngStyle"], [3, "ngStyle", "value"], ["type", "range", "step", "3", "min", "80", "max", "300", 3, "ngModel", "ngModelChange"], ["type", "range", "step", "1", "min", "1", "max", "80", 3, "ngModel", "ngModelChange"], [1, "toolNav", "col", "s5", "m3", "l4", "xl4", "offset-s7", "offset-m9", "offset-l8", "offset-xl8"], ["id", "nav-mobile", 1, "center-align", "hide-on-med-and-down", 2, "background-color", "rgb(228, 232, 243)", "height", "580px", "overflow-y", "hidden", "overflow-x", "hidden"], ["href", "#test1"], ["href", "#test2"], ["href", "#test3"], ["id", "test1", 1, "col", "s12", "offset-s0"], ["id", "test2", 1, "active", "row"], ["id", "origin", "type", "radio", "name", "test", "value", "big", "checked", ""], ["id", "grayscale", "type", "radio", "name", "test", "value", "big"], ["id", "vintage", "type", "radio", "name", "test", "value", "grayscale"], ["id", "nav-mobile", 1, "tabBox", "center-align", "hide-on-med-and-down", "col", "s12", 2, "background-color", "rgb(228, 232, 243)", "padding-top", "10px"], ["href", "#tab1", 1, "active"], ["href", "#tab2"], ["href", "#tab3"], ["id", "tab1"], ["id", "tab2", 1, "row"], ["id", "tab3", 1, "col", "s12"], ["id", "test3", 1, "col", "s12"]],
       template: function SiteLayoutComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "router-outlet");
@@ -11274,9 +11260,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](26, SiteLayoutComponent_div_26_Template, 207, 99, "div", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](26, SiteLayoutComponent_div_26_Template, 207, 97, "div", 23);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](27, SiteLayoutComponent_div_27_Template, 207, 99, "div", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](27, SiteLayoutComponent_div_27_Template, 207, 97, "div", 24);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 

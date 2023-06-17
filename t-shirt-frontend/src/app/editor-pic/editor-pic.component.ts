@@ -1185,7 +1185,7 @@ export class EditorPicComponent implements AfterViewInit {
       }
     });
 
-    if (this.intCountText !== 0) {
+    if (this.intCountText !== 0 && this.canvasCount !==0) {
 
       this.canvas.remove(this.canvas.getActiveObject());
       this.canvas.add(this.props.textStraight);
@@ -1285,6 +1285,8 @@ export class EditorPicComponent implements AfterViewInit {
           cornerSize: this.canvas.width / 40,
           padding: this.textPadding,
           centeredRotation: true,
+          centerTransform: true,
+          centeredScaling: true
           // charSpacing: 50,
           // pathStartOffset: 80,
           // centerTransform: true,
@@ -1320,14 +1322,28 @@ export class EditorPicComponent implements AfterViewInit {
 
         });
 
+        let scale = 2;
+
         if (this.dataService.horizontalVertical === true) {
 
-          text.scaleToHeight(textHeight / this.d / 0.3);
-          text.scaleToWidth(textWidth / this.d / 0.3);
-        } else {
+          if (window.innerWidth < 600) {
+            text.scaleToHeight(textHeight / 0.5);
+            text.scaleToWidth(textWidth / 0.5);
+          } else {
+            text.scaleToHeight(textHeight / 1.2);
+            text.scaleToWidth(textWidth / 1.2);
+          }
 
-          text.scaleToHeight(textHeight / this.d / 1.5);
-          text.scaleToWidth(textWidth / this.d / 1.5);
+        } else {
+    
+          if (window.innerWidth < 600) {
+            text.scaleToHeight(textHeight / 0.4);
+            text.scaleToWidth(textWidth / 0.4);
+          } else {
+            text.scaleToHeight(textHeight / 1.1);
+            text.scaleToWidth(textWidth / 1.1);
+          }
+          // scale = this.dataService.scaleKey;
         }
 
         //   text.scaleToHeight(textHeight / this.d / 1.5);
@@ -1364,42 +1380,6 @@ export class EditorPicComponent implements AfterViewInit {
         // console.log(this.canvasCount, 'this.props.diametr === 300');
       }
 
-      console.log('>280', 'sff');
-
-
-      // $(document).on('click', ".deleteBtn", (event) => {
-      //   this.siteLayout.activatebutton = true;
-
-      //   event.stopImmediatePropagation()
-      //   this.canvasCount -= 1;
-      //   // this.intCountText -= 1;
-      //   console.log(this.canvasCount, ".deleteBtn");
-
-      //   // console.log(this.canvasCount);
-      //   if (this.canvasCount === 0) {
-      //     this.siteLayout.firstImage = 0;
-      //     $('.owl-nav').show();
-      //     $(".canvas").css("z-index", 0);
-      //     this.siteLayout.toggle = false;
-      //     this.disableBtn = false;
-
-      //   }
-      //   const activeObject = this.canvas.getActiveObject();
-      //   const activeGroup = this.canvas.getActiveObjects();
-      //   if (activeObject) {
-
-      //     this.canvas.remove(activeObject);
-      //     $(".deleteBtn").remove();
-      //     $(".distance").remove();
-      //     // this.textString = '';
-      //   } else if (activeGroup) {
-      //     this.canvas.discardActiveObject();
-      //     const self = this;
-      //     activeGroup.forEach((object) => {
-      //       self.canvas.remove(object);
-      //     });
-      //   }
-      // });
 
       const path = new fabric.Path(`'M 69 435 A ${this.props.diametr} ${this.props.diametr} 0 0 1 271 420 '`, {
         strokeWidth: 1,
@@ -1450,6 +1430,8 @@ export class EditorPicComponent implements AfterViewInit {
           cornerSize: this.canvas.width / 40,
           padding: this.textPadding,
           centeredRotation: true,
+          centerTransform: true,
+          centeredScaling: true,
           // charSpacing: 50,
           // pathStartOffset: 80,
           // centerTransform: true,
