@@ -242,6 +242,8 @@ export class EditorPicComponent implements AfterViewInit {
     $(document).on('click', ".deleteBtn", (event) => {
 
       this.removeSelected();
+this.siteLayout.isOpasity = false
+this.siteLayout.isOpasity1 = true
 
     });
 

@@ -72,6 +72,34 @@
                     Themes
                 </button>
 
+                <div *ngIf="isOpasity === false" class="file-field input-field" style="height: 28px;">
+
+                    <button class="btn-small #00e676" *ngIf="isOpasity1">
+                        <i class="large material-icons">move_to_inbox</i>
+                        <input type="file" class="input images-item-upload"
+                            (change)="readUrl($event); routerlink();  isOpasity1 = false" multiple>
+                    </button>
+                </div>
+
+                <div id="testImage" class="col s4 offset-s3" style="margin-top: -20px;">
+                    <img *ngIf="canvas.url" class="images-item-upload" [src]="canvas.url" style="width: 130px; "
+                        (click)="addImageOnCanvas(canvas.url); removeWhite(canvas.url); isOpasity = true; toggle = true">
+                    <!-- <div class="tabs tabs-fixed-width tab-demo ">
+                        <li class="tab"><a href="#test1"> tab 
+                            </a></li>
+                    </div>
+                    <a [routerLink]="[ '#test1' ]">name1</a>
+                    <a  href="#test1"  > name </a> -->
+                </div>
+
+                <!-- <button *ngIf="isOpasity" type="button" class="col s3 offset-s1 btn #ef5350 red lighten-1"
+                    (click)="removeWhite(canvas.url); isOpasity1 = true; isOpasity = false">
+                    <i aria-hidden="true"></i>
+                    Remove
+                </button> -->
+
+
+
                 <div *ngIf="isOpen;"
                     style="overflow-y: scroll; max-width: 100%;
                 overflow-x: hidden; width: 250px; max-height: 300px; z-index: 1; margin-top: 5px; position: relative; padding: 10px 10px 0px 0px; background-color: #3d365a73">
@@ -87,6 +115,7 @@
                         <hr style="border: 1px solid rgba(255, 255, 255, 0.507)">
                     </div>
                 </div>
+
 
                 <!-- <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
                     class="btn btn-small indigo lighten-3" style="height: 30px;"
@@ -115,8 +144,7 @@
         </div>
 
 
-        <div *ngIf="canvas.canvasCount !== 0" class="cleanApply"
-            >
+        <div *ngIf="canvas.canvasCount !== 0" class="cleanApply">
             <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                 class="btn btn-danger" [disabled]="canvas.selected" (click)="confirmClear(); isCarouselOpen = true">
                 <i aria-hidden="true"></i> Clean
@@ -227,7 +255,7 @@
             </button> -->
         </div>
 
-    
+
         <!-- opasityshadow -->
 
         <!-- <div *ngIf="canvas.canvasCount !== 0"
@@ -697,8 +725,7 @@
                            </div> -->
                             <div class="input-field col s8" style="margin-top: 0px">
                                 <input id="icon_prefix2" type="text" class="materialize-textarea"
-                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
-                                    >
+                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()">
                                 <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
                                 <label for="icon_prefix2">Input text</label>
                             </div>
@@ -864,8 +891,7 @@
                                             </label>
 
                                             <label>
-                                                <input style="margin-left: 10px;"
-                                                    [disabled]="canvas.canvasCount > 1"
+                                                <input style="margin-left: 10px;" [disabled]="canvas.canvasCount > 1"
                                                     (change)="canvas.props.textCurved = 2"
                                                     (click)="canvas.reRender1(); canvas.props.diametr = 300"
                                                     name="group1" type="radio" />
@@ -919,17 +945,17 @@
 
             <!-- Tabs box -->
 
-            <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"
+            <div style="background-color:rgb(228, 232, 243); height: 1000px; overflow-y: hidden; overflow-x: hidden;"
                 id="nav-mobile" class="center-align hide-on-med-and-down ">
                 <ul class="tabs tabs-fixed-width tab-demo z-depth-1"
                     style="height: 40px; background-color:rgb(255, 255, 255);">
-                    <li class="tab"><a href="#test1"> <i class="small material-icons"
+                    <li class="tab"><a href="#test1"><i class="small material-icons"
                                 [ngStyle]="{'padding-top': '3px'}">color_lens</i>
                         </a></li>
-                    <li class="tab"><a href="#test2"> <i class="small material-icons"
+                    <li class="tab"><a href="#test2"><i class="small material-icons"
                                 [ngStyle]="{'padding-top': '3px'}">photo</i>
                         </a></li>
-                    <li class="tab"><a href="#test3"> <i class="small material-icons"
+                    <li class="tab"><a href="#test3"><i class="small material-icons"
                                 [ngStyle]="{'padding-top': '3px'}">text_format</i>
                         </a></li>
                 </ul>
@@ -1291,7 +1317,7 @@
                         <div style="margin-top: 20px; float:left">
                             <div class="input-field col s3" style="margin-top: 5px">
                                 <button data-toggle="tooltip" data-placement="bottom" title="Done" type="button"
-                                    class="btn btn-outline-primary"1
+                                    class="btn btn-outline-primary"
                                     (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false">
                                     <i class="large material-icons" aria-hidden="true">done_all</i>
                                 </button>
@@ -1304,8 +1330,7 @@
                            </div> -->
                             <div class="input-field col s8" style="margin-top: 0px">
                                 <input id="icon_prefix2" type="text" class="materialize-textarea"
-                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()"
-                                    >
+                                    [(ngModel)]="canvas.textString" (click)="canvas.discardActiveObj()">
                                 <!-- <input type="text" class="form-control" [(ngModel)]="canvas.textString"> -->
                                 <label for="icon_prefix2">Input text</label>
                             </div>
@@ -1471,8 +1496,7 @@
                                             </label>
 
                                             <label>
-                                                <input style="margin-left: 10px;"
-                                                    [disabled]="canvas.canvasCount > 1"
+                                                <input style="margin-left: 10px;" [disabled]="canvas.canvasCount > 1"
                                                     (change)="canvas.props.textCurved = 2"
                                                     (click)="canvas.reRender1(); canvas.props.diametr = 300"
                                                     name="group1" type="radio" />
@@ -1486,8 +1510,8 @@
 
 
 
-                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.canvasCount < 2" class="col s12 offset-s0"
-                                style="padding-top: 20px;">
+                            <div *ngIf="canvas.props.textCurved !== 1 && canvas.canvasCount < 2"
+                                class="col s12 offset-s0" style="padding-top: 20px;">
 
                                 <div class="col s2">Diameter</div>
                                 <div class="col s8">

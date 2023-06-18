@@ -673,6 +673,7 @@ export class SiteLayoutComponent implements AfterViewInit {
 
   public readUrl(event) {
     this.canvas.readUrl(event);
+
   }
 
   public removeWhite(url) {

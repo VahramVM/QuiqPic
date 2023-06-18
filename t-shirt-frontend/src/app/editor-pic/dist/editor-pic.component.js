@@ -129,6 +129,8 @@ var EditorPicComponent = /** @class */ (function () {
         // );
         $(document).on('click', ".deleteBtn", function (event) {
             _this.removeSelected();
+            _this.siteLayout.isOpasity = false;
+            _this.siteLayout.isOpasity1 = true;
         });
     }
     EditorPicComponent.prototype.onResize = function (event) {
@@ -842,7 +844,7 @@ var EditorPicComponent = /** @class */ (function () {
                 return _this.canvas.setActiveObject(o);
             }
         });
-        if (this.intCountText !== 0) {
+        if (this.intCountText !== 0 && this.canvasCount !== 0) {
             this.canvas.remove(this.canvas.getActiveObject());
             this.canvas.add(this.props.textStraight);
             this.selectItemAfterAdded(this.props.textStraight);
@@ -919,7 +921,17 @@ var EditorPicComponent = /** @class */ (function () {
                     // width: 50,
                     cornerSize: this.canvas.width / 40,
                     padding: this.textPadding,
-                    centeredRotation: true
+                    centeredRotation: true,
+                    centerTransform: true,
+                    centeredScaling: true
+                    // charSpacing: 50,
+                    // pathStartOffset: 80,
+                    // centerTransform: true,
+                    // textAlign: 'center',
+                    // pathSide: 'right',
+                    // strokeDashOffset: 30, 
+                    // originX: 'center',
+                    // originY: 'center',
                 }, this.path = path);
                 $('#shadowText').on('click', function () {
                     if (!_this.siteLayout.shadowText) {
@@ -934,13 +946,27 @@ var EditorPicComponent = /** @class */ (function () {
                     }
                     _this.canvas.renderAll();
                 });
+                var scale = 2;
                 if (this.dataService.horizontalVertical === true) {
-                    text_1.scaleToHeight(textHeight / this.d / 0.3);
-                    text_1.scaleToWidth(textWidth / this.d / 0.3);
+                    if (window.innerWidth < 600) {
+                        text_1.scaleToHeight(textHeight / 0.5);
+                        text_1.scaleToWidth(textWidth / 0.5);
+                    }
+                    else {
+                        text_1.scaleToHeight(textHeight / 1.2);
+                        text_1.scaleToWidth(textWidth / 1.2);
+                    }
                 }
                 else {
-                    text_1.scaleToHeight(textHeight / this.d / 1.5);
-                    text_1.scaleToWidth(textWidth / this.d / 1.5);
+                    if (window.innerWidth < 600) {
+                        text_1.scaleToHeight(textHeight / 0.4);
+                        text_1.scaleToWidth(textWidth / 0.4);
+                    }
+                    else {
+                        text_1.scaleToHeight(textHeight / 1.1);
+                        text_1.scaleToWidth(textWidth / 1.1);
+                    }
+                    // scale = this.dataService.scaleKey;
                 }
                 //   text.scaleToHeight(textHeight / this.d / 1.5);
                 // text.scaleToWidth(textWidth / this.d / 1.5);
@@ -967,36 +993,6 @@ var EditorPicComponent = /** @class */ (function () {
                 this.canvasCount += 1;
                 // console.log(this.canvasCount, 'this.props.diametr === 300');
             }
-            console.log('>280', 'sff');
-            // $(document).on('click', ".deleteBtn", (event) => {
-            //   this.siteLayout.activatebutton = true;
-            //   event.stopImmediatePropagation()
-            //   this.canvasCount -= 1;
-            //   // this.intCountText -= 1;
-            //   console.log(this.canvasCount, ".deleteBtn");
-            //   // console.log(this.canvasCount);
-            //   if (this.canvasCount === 0) {
-            //     this.siteLayout.firstImage = 0;
-            //     $('.owl-nav').show();
-            //     $(".canvas").css("z-index", 0);
-            //     this.siteLayout.toggle = false;
-            //     this.disableBtn = false;
-            //   }
-            //   const activeObject = this.canvas.getActiveObject();
-            //   const activeGroup = this.canvas.getActiveObjects();
-            //   if (activeObject) {
-            //     this.canvas.remove(activeObject);
-            //     $(".deleteBtn").remove();
-            //     $(".distance").remove();
-            //     // this.textString = '';
-            //   } else if (activeGroup) {
-            //     this.canvas.discardActiveObject();
-            //     const self = this;
-            //     activeGroup.forEach((object) => {
-            //       self.canvas.remove(object);
-            //     });
-            //   }
-            // });
             var path = new fabric.Path("'M 69 435 A " + this.props.diametr + " " + this.props.diametr + " 0 0 1 271 420 '", {
                 strokeWidth: 1,
                 absolutePositioned: true,
@@ -1036,7 +1032,9 @@ var EditorPicComponent = /** @class */ (function () {
                     // width: 50,
                     cornerSize: this.canvas.width / 40,
                     padding: this.textPadding,
-                    centeredRotation: true
+                    centeredRotation: true,
+                    centerTransform: true,
+                    centeredScaling: true
                 });
                 this.props.textStraight = text_2;
                 // if (text.height > 1300) {
