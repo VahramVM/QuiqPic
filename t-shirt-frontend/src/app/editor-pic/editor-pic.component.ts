@@ -242,12 +242,13 @@ export class EditorPicComponent implements AfterViewInit {
     $(document).on('click', ".deleteBtn", (event) => {
 
       this.removeSelected();
-this.siteLayout.isOpasity = false
-this.siteLayout.isOpasity1 = true
+      this.siteLayout.isOpasity = false
+      this.siteLayout.isOpasity1 = true
 
     });
 
   }
+  
 
 
   ngAfterViewInit(): void {
@@ -1187,7 +1188,7 @@ this.siteLayout.isOpasity1 = true
       }
     });
 
-    if (this.intCountText !== 0 && this.canvasCount !==0) {
+    if (this.intCountText !== 0 && this.canvasCount !== 0) {
 
       this.canvas.remove(this.canvas.getActiveObject());
       this.canvas.add(this.props.textStraight);
@@ -1337,7 +1338,7 @@ this.siteLayout.isOpasity1 = true
           }
 
         } else {
-    
+
           if (window.innerWidth < 600) {
             text.scaleToHeight(textHeight / 0.4);
             text.scaleToWidth(textWidth / 0.4);
@@ -1754,7 +1755,8 @@ this.siteLayout.isOpasity1 = true
         0, 0, 1, 0, 0,
         0, 0, 1, 1, 0]
 
-      $('#hue-value').on('change', () => {
+      $('#hue-value').on('mousemove', () => {
+
 
         // image.filters.push(new fabric.Image.filters.BlackWhite());
         image.filters = [];
@@ -1763,8 +1765,8 @@ this.siteLayout.isOpasity1 = true
         }));
         image.filters.push(new fabric.Image.filters.RemoveColor({
           distance: this.props.distance,
-          //     // color: "red",
-          //     // threshold: 0.2,
+          // color: "red",
+          // threshold: 0.2,
         }
         ));
         image.applyFilters();
@@ -1772,7 +1774,7 @@ this.siteLayout.isOpasity1 = true
       });
 
 
-      $('#saturation').on('change', () => {
+      $('#saturation').on('mousemove', () => {
         image.filters = [];
 
         image.filters.push(new fabric.Image.filters.ColorMatrix({
@@ -1787,7 +1789,7 @@ this.siteLayout.isOpasity1 = true
         this.canvas.renderAll();
       });
 
-      $('#blur').on('change', () => {
+      $('#blur').on('mousemove', () => {
         image.filters = [];
 
         image.filters.push(new fabric.Image.filters.ColorMatrix({
@@ -1801,7 +1803,7 @@ this.siteLayout.isOpasity1 = true
         this.canvas.renderAll();
       });
 
-      $('#contrast1').on('change', () => {
+      $('#contrast1').on('mousemove', () => {
 
         image.filters = [];
         image.filters.push(new fabric.Image.filters.ColorMatrix({
@@ -1815,7 +1817,7 @@ this.siteLayout.isOpasity1 = true
         this.canvas.renderAll();
       });
 
-      $('#noise').on('change', () => {
+      $('#noise').on('mousemove', () => {
 
         image.filters = [];
         image.filters.push(new fabric.Image.filters.ColorMatrix({

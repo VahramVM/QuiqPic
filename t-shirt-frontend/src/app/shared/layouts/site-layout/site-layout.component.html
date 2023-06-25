@@ -308,7 +308,7 @@
 
 
         <div (window:resize)="onResize($event)" [ngClass]="{'class1': toggle === true}"
-            style="position: absolute; z-index: 0;"
+            style="position: absolute; z-index: 0; top: 35%;"
             class="owlCarousel mobile owl-theme selectPic col s12 m12 l8 xl8 offset-s0 offset-m0 offset-l0 offset-xl0">
             <owl-carousel-o id="myCarousel" #owlElement [options]="customOptions" (translated)="getPassedData($event)">
 

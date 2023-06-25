@@ -1287,7 +1287,7 @@ var EditorPicComponent = /** @class */ (function () {
                 0, 1, 0, 0, 0,
                 0, 0, 1, 0, 0,
                 0, 0, 1, 1, 0];
-            $('#hue-value').on('change', function () {
+            $('#hue-value').on('mousemove', function () {
                 // image.filters.push(new fabric.Image.filters.BlackWhite());
                 image.filters = [];
                 image.filters.push(new fabric.Image.filters.ColorMatrix({
@@ -1299,7 +1299,7 @@ var EditorPicComponent = /** @class */ (function () {
                 image.applyFilters();
                 _this.canvas.renderAll();
             });
-            $('#saturation').on('change', function () {
+            $('#saturation').on('mousemove', function () {
                 image.filters = [];
                 image.filters.push(new fabric.Image.filters.ColorMatrix({
                     matrix: customFilter
@@ -1310,7 +1310,7 @@ var EditorPicComponent = /** @class */ (function () {
                 image.applyFilters();
                 _this.canvas.renderAll();
             });
-            $('#blur').on('change', function () {
+            $('#blur').on('mousemove', function () {
                 image.filters = [];
                 image.filters.push(new fabric.Image.filters.ColorMatrix({
                     matrix: customFilter
@@ -1321,7 +1321,7 @@ var EditorPicComponent = /** @class */ (function () {
                 image.applyFilters();
                 _this.canvas.renderAll();
             });
-            $('#contrast1').on('change', function () {
+            $('#contrast1').on('mousemove', function () {
                 image.filters = [];
                 image.filters.push(new fabric.Image.filters.ColorMatrix({
                     matrix: customFilter
@@ -1332,7 +1332,7 @@ var EditorPicComponent = /** @class */ (function () {
                 image.applyFilters();
                 _this.canvas.renderAll();
             });
-            $('#noise').on('change', function () {
+            $('#noise').on('mousemove', function () {
                 image.filters = [];
                 image.filters.push(new fabric.Image.filters.ColorMatrix({
                     matrix: customFilter
