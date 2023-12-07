@@ -313,9 +313,7 @@
             <owl-carousel-o id="myCarousel" #owlElement [options]="customOptions" (translated)="getPassedData($event)">
 
                 <ng-container *ngFor="let image of images">
-
                     <ng-template carouselSlide [id]="image.id">
-
                         <div class="mobileImageLeft" style="margin-left: 22%;">
 
                             <img [src]="image.imageSrc">
