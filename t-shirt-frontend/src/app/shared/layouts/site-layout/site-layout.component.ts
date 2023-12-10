@@ -758,7 +758,7 @@ export class SiteLayoutComponent implements AfterViewInit {
 
     //mobile
     if (window.innerWidth < 600) {
-      this.canvas.moveWithFormat(this.dataService.scaleKey / 0.3351111, true);
+      this.canvas.moveWithFormat(this.dataService.scaleKey / 0.335, true);
 
     } else {
       this.canvas.moveWithFormat(this.dataService.scaleKey, true);
