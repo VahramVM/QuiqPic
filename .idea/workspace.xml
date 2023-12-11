@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="44223284-b74f-4ae5-9db4-b5c525c0656a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/t-shirt-frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/t-shirt-frontend/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/t-shirt-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/t-shirt-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/t-shirt-frontend/src/app/main-page/main-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/t-shirt-frontend/src/app/main-page/main-page.component.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="7937397b88a417c29b1fad2be3922cb9bca1c0d3" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2Z4DNsA46lQTHo8ZdlxA9zJcRzZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "develop__1",
+    "last_opened_file_path": "/home/suren/Desktop/QuiqPic/t-shirt-frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/snap/webstorm/348/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/t-shirt-frontend" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44223284-b74f-4ae5-9db4-b5c525c0656a" name="Changes" comment="" />
+      <created>1701672420710</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701672420710</updated>
+      <workItem from="1701672421972" duration="4260000" />
+      <workItem from="1701713745999" duration="609000" />
+      <workItem from="1701763669093" duration="30000" />
+      <workItem from="1701876168925" duration="2712000" />
+      <workItem from="1701883047349" duration="3333000" />
+      <workItem from="1701886439197" duration="34000" />
+      <workItem from="1701886858456" duration="1478000" />
+      <workItem from="1701933153968" duration="10227000" />
+      <workItem from="1702014630564" duration="15000" />
+      <workItem from="1702309378899" duration="2873000" />
+      <workItem from="1702312993621" duration="347000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

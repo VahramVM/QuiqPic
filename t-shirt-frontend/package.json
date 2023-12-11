@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --openssl-legacy-provider",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -11,16 +11,16 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.2.5",
+    "@angular/animations": "~9.1.11",
     "@angular/cdk": "^6.3.0",
-    "@angular/common": "~10.2.5",
-    "@angular/compiler": "~10.2.5",
-    "@angular/core": "~10.2.5",
-    "@angular/forms": "~10.2.5",
+    "@angular/common": "~9.1.11",
+    "@angular/compiler": "~9.1.11",
+    "@angular/core": "~9.1.11",
+    "@angular/forms": "~9.1.11",
     "@angular/material": "^14.2.5",
-    "@angular/platform-browser": "~10.2.5",
-    "@angular/platform-browser-dynamic": "~10.2.5",
-    "@angular/router": "~10.2.5",
+    "@angular/platform-browser": "~9.1.11",
+    "@angular/platform-browser-dynamic": "~9.1.11",
+    "@angular/router": "~9.1.11",
     "@microsoft/rush-stack-compiler-4.2": "^0.1.2",
     "@types/fabric": "^3.6.7",
     "bootstrap": "^4.4.1",
@@ -35,9 +35,6 @@
     "moment": "^2.29.4",
     "ngx-color-picker": "^9.1.0",
     "ngx-owl-carousel-o": "^5.0.0",
-    "node": "^21.2.0",
-    "punycode": "^2.3.1",
-    "react-scripts": "^5.0.1",
     "rxjs": "~6.5.4",
     "sass": "^1.69.5",
     "save": "^2.4.0",
@@ -46,9 +43,9 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1002.4",
-    "@angular/cli": "~10.2.4",
-    "@angular/compiler-cli": "~10.2.5",
+    "@angular-devkit/build-angular": "^0.901.15",
+    "@angular/cli": "~9.1.8",
+    "@angular/compiler-cli": "~9.1.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/jquery": "^3.5.5",
@@ -64,6 +61,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.0.8"
+    "typescript": "^3.7.5"
   }
 }
