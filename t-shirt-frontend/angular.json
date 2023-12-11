@@ -16,8 +16,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            
-            "allowedCommonJsDependencies": ["fabric"],
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -133,10 +131,8 @@
       }
     }
   },
-  "defaultProject": "clent",
+  "defaultProject": "client",
   "cli": {
     "analytics": "fadac282-16af-4345-97fe-269bda4e5475"
   }
 }
-
-
