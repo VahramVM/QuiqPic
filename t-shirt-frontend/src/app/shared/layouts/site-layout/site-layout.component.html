@@ -85,7 +85,7 @@
                     <img *ngIf="canvas.url" class="images-item-upload" [src]="canvas.url" style="width: 130px; "
                         (click)="addImageOnCanvas(canvas.url); removeWhite(canvas.url); isOpasity = true; toggle = true">
                     <!-- <div class="tabs tabs-fixed-width tab-demo ">
-                        <li class="tab"><a href="#test1"> tab 
+                        <li class="tab"><a href="#test1"> tab
                             </a></li>
                     </div>
                     <a [routerLink]="[ '#test1' ]">name1</a>
@@ -270,12 +270,12 @@
         </div> -->
 
 
-        <!-- <owl-carousel [options]="SlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >  
-            <div class="item" *ngFor="let img of Images">  
-            <div style="align-content: center">  
-            <img style="height: 260px;width:100%"src={{img}}/>  
-            </div>  
-            </div>  
+        <!-- <owl-carousel [options]="SlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >
+            <div class="item" *ngFor="let img of Images">
+            <div style="align-content: center">
+            <img style="height: 260px;width:100%"src={{img}}/>
+            </div>
+            </div>
             </owl-carousel>   -->
 
         <div class="canvas" [ngStyle]="{'left.px' : canvasCenteredPosition}">
@@ -367,14 +367,14 @@
                         <div
                             style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 2%;">
                             <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
-                                *ngFor="let imageProduct of products; let i = index" (click)=" 
-                                canvas.props.canvasImage = imageProduct.type; 
-                                canvas.props.canvasFill = productBrandColors[0]; 
+                                *ngFor="let imageProduct of products; let i = index" (click)="
+                                canvas.props.canvasImage = imageProduct.type;
+                                canvas.props.canvasFill = productBrandColors[0];
                                 allColors = true;
                                 orderDatas.productTypeName = imageProduct.name;
                                 orderDatas.productColor = '';
                                 indexBrandType = i;
-                                setCanvasImage();  
+                                setCanvasImage();
                                 productsTypeColor();" (colorPickerChange)="setCanvasFill()">
                                 <img class="productType" [src]="imageProduct.type1">
                                 <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
@@ -417,12 +417,12 @@
                             <div class="card-tabs">
 
                                 <ul class="tabs tabs-fixed-width">
-                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
+                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;
                                             canvas.props.brandName = productBrand.name;
                                             orderDatas.brendName = productBrand.name;
-                                            productBrandColor(); 
+                                            productBrandColor();
                                             productBrandSize();
-                                            setCanvasImage();  
+                                            setCanvasImage();
                                             productsTypeColor();
                                             " class="tab"><a href="#test1[i]">{{productBrand.name}}</a>
                                     </li>
@@ -436,7 +436,7 @@
                                         <div class="card-panel hoverable" *ngFor="let color of arrColor" role="option"
                                             [style.background]="color" [attr.aria-selected]="color == selectColor"
                                             (click)="
-                                            canvas.props.canvasFill = color; 
+                                            canvas.props.canvasFill = color;
                                             orderDatas.productColor = color;
                                             setCanvasFill()" (colorPickerChange)="setCanvasFill()">
                                         </div>
@@ -446,7 +446,7 @@
                                             role="option" [style.background]="colorBrand"
                                             [attr.aria-selected]="colorBrand == selectColor" (click)="
                                             canvas.props.canvasFill = colorBrand;
-                                            orderDatas.productColor = colorBrand; 
+                                            orderDatas.productColor = colorBrand;
                                             setCanvasFill()">
                                         </div>
                                     </div>
@@ -518,7 +518,7 @@
                 <div id="futerSide2" class="active row">
 
                     <!-- Filters imges -->
-                    <div class="col offset-s0" style="margin-top: 10px;">
+                    <div class="col offset-s0" style="margin-top: 10px; display: none">
                         <label class="col s2" style="margin: 5px;">
                             <input id="origin" type="radio" name="test" value="origin" checked>
                             <img class="hoverable" width="60px" height="60px" src="../assets/img/Origin.png">
@@ -632,7 +632,7 @@
                                     style="width: 130px; "
                                     (click)="addImageOnCanvas(canvas.url);  isOpasity = true; toggle = true">
                                 <!-- <div class="tabs tabs-fixed-width tab-demo ">
-                                    <li class="tab"><a href="#test1"> tab 
+                                    <li class="tab"><a href="#test1"> tab
                                         </a></li>
                                 </div>
                                 <a [routerLink]="[ '#test1' ]">name1</a>
@@ -716,7 +716,7 @@
                                 </button>
                             </div>
                             <!-- <div [attr.disabled]="canvas.textString === '' ">
-                            <i  id="addText" 
+                            <i  id="addText"
                                 (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false"
                                 style="cursor: pointer;" class="material-icons prefix">add_box
                             </i>
@@ -958,7 +958,7 @@
                         </a></li>
                 </ul>
 
-                <div id="test1" class="col s12 offset-s0">
+                <div id="test1" style="background-color: #00ff22" class="col s12 offset-s0">
 
                     <div class="colorConteiner left-align">
                         <!-- <button type="button" class="colorButton" (click)="isOpen = !isOpen" cdkOverlayOrigin
@@ -972,14 +972,14 @@
                         <div
                             style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 2%;">
                             <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
-                                *ngFor="let imageProduct of products; let i = index" (click)=" 
-                                canvas.props.canvasImage = imageProduct.type; 
-                                canvas.props.canvasFill = productBrandColors[0]; 
+                                *ngFor="let imageProduct of products; let i = index" (click)="
+                                canvas.props.canvasImage = imageProduct.type;
+                                canvas.props.canvasFill = productBrandColors[0];
                                 allColors = true;
                                 orderDatas.productTypeName = imageProduct.name;
                                 orderDatas.productColor = '';
                                 indexBrandType = i;
-                                setCanvasImage();  
+                                setCanvasImage();
                                 productsTypeColor();" (colorPickerChange)="setCanvasFill()">
                                 <img class="productType" [src]="imageProduct.type1">
                                 <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
@@ -1022,12 +1022,12 @@
                             <div class="card-tabs">
 
                                 <ul class="tabs tabs-fixed-width">
-                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;  
+                                    <li *ngFor="let productBrand of productBrands; let i = index" (click)="indexBrand = i; allColors = false;
                                             canvas.props.brandName = productBrand.name;
                                             orderDatas.brendName = productBrand.name;
-                                            productBrandColor(); 
+                                            productBrandColor();
                                             productBrandSize();
-                                            setCanvasImage();  
+                                            setCanvasImage();
                                             productsTypeColor();
                                             " class="tab"><a href="#test1[i]">{{productBrand.name}}</a>
                                     </li>
@@ -1041,7 +1041,7 @@
                                         <div class="card-panel hoverable" *ngFor="let color of arrColor" role="option"
                                             [style.background]="color" [attr.aria-selected]="color == selectColor"
                                             (click)="
-                                            canvas.props.canvasFill = color; 
+                                            canvas.props.canvasFill = color;
                                             orderDatas.productColor = color;
                                             setCanvasFill()" (colorPickerChange)="setCanvasFill()">
                                         </div>
@@ -1051,7 +1051,7 @@
                                             role="option" [style.background]="colorBrand"
                                             [attr.aria-selected]="colorBrand == selectColor" (click)="
                                             canvas.props.canvasFill = colorBrand;
-                                            orderDatas.productColor = colorBrand; 
+                                            orderDatas.productColor = colorBrand;
                                             setCanvasFill()">
                                         </div>
                                     </div>
@@ -1237,7 +1237,7 @@
                                     style="width: 130px; "
                                     (click)="addImageOnCanvas(canvas.url);  isOpasity = true; toggle = true">
                                 <!-- <div class="tabs tabs-fixed-width tab-demo ">
-                                    <li class="tab"><a href="#test1"> tab 
+                                    <li class="tab"><a href="#test1"> tab
                                         </a></li>
                                 </div>
                                 <a [routerLink]="[ '#test1' ]">name1</a>
@@ -1321,7 +1321,7 @@
                                 </button>
                             </div>
                             <!-- <div [attr.disabled]="canvas.textString === '' ">
-                            <i  id="addText" 
+                            <i  id="addText"
                                 (click)="canvas.discardActiveObj(); addText(); expression = true; toggle = true; activatebutton = false"
                                 style="cursor: pointer;" class="material-icons prefix">add_box
                             </i>

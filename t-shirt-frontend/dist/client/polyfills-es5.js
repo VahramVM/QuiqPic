@@ -1,14 +1,18 @@
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["polyfills-es5"], {
   /***/
@@ -1431,9 +1435,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var end = argumentsLength > 2 ? arguments[2] : undefined;
       var endPos = end === undefined ? length : toAbsoluteIndex(end, length);
 
-      while (endPos > index) {
-        O[index++] = value;
-      }
+      while (endPos > index) O[index++] = value;
 
       return O;
     };
@@ -1660,31 +1662,29 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var target = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
         var value, result;
 
-        for (; length > index; index++) {
-          if (NO_HOLES || index in self) {
-            value = self[index];
-            result = boundFunction(value, index, O);
+        for (; length > index; index++) if (NO_HOLES || index in self) {
+          value = self[index];
+          result = boundFunction(value, index, O);
 
-            if (TYPE) {
-              if (IS_MAP) target[index] = result; // map
-              else if (result) switch (TYPE) {
-                  case 3:
-                    return true;
-                  // some
+          if (TYPE) {
+            if (IS_MAP) target[index] = result; // map
+            else if (result) switch (TYPE) {
+              case 3:
+                return true;
+              // some
 
-                  case 5:
-                    return value;
-                  // find
+              case 5:
+                return value;
+              // find
 
-                  case 6:
-                    return index;
-                  // findIndex
+              case 6:
+                return index;
+              // findIndex
 
-                  case 2:
-                    push.call(target, value);
-                  // filter
-                } else if (IS_EVERY) return false; // every
-            }
+              case 2:
+                push.call(target, value);
+              // filter
+            } else if (IS_EVERY) return false; // every
           }
         }
 
@@ -1773,9 +1773,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       if (arguments.length > 1) index = min(index, toInteger(arguments[1]));
       if (index < 0) index = length + index;
 
-      for (; index >= 0; index--) {
-        if (index in O && O[index] === searchElement) return index || 0;
-      }
+      for (; index >= 0; index--) if (index in O && O[index] === searchElement) return index || 0;
 
       return -1;
     } : nativeLastIndexOf;
@@ -1957,10 +1955,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
         }
 
-        for (; IS_RIGHT ? index >= 0 : length > index; index += i) {
-          if (index in self) {
-            memo = callbackfn(memo, self[index], index, O);
-          }
+        for (; IS_RIGHT ? index >= 0 : length > index; index += i) if (index in self) {
+          memo = callbackfn(memo, self[index], index, O);
         }
 
         return memo;
@@ -2349,9 +2345,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             while (entry = entry ? entry.next : state.first) {
               boundFunction(entry.value, entry.key, this); // revert to the last existing entry
 
-              while (entry && entry.removed) {
-                entry = entry.previous;
-              }
+              while (entry && entry.removed) entry = entry.previous;
             }
           },
           // 23.1.3.7 Map.prototype.has(key)
@@ -2402,9 +2396,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var kind = state.kind;
           var entry = state.last; // revert to the last existing entry
 
-          while (entry && entry.removed) {
-            entry = entry.previous;
-          } // get next entry
+          while (entry && entry.removed) entry = entry.previous; // get next entry
 
 
           if (!state.target || !(state.last = entry = entry ? entry.next : state.state.first)) {
@@ -2704,9 +2696,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var $instance = new NativeConstructor();
           var index = 5;
 
-          while (index--) {
-            $instance[ADDER](index, index);
-          }
+          while (index--) $instance[ADDER](index, index);
 
           return !$instance.has(-0);
         });
@@ -3820,9 +3810,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           };
       }
 
-      return function ()
-      /* ...args */
-      {
+      return function () {
         return fn.apply(that, arguments);
       };
     };
@@ -3855,9 +3843,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var construct = function construct(C, argsLength, args) {
       if (!(argsLength in factories)) {
-        for (var list = [], i = 0; i < argsLength; i++) {
-          list[i] = 'a[' + i + ']';
-        } // eslint-disable-next-line no-new-func
+        for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']'; // eslint-disable-next-line no-new-func
 
 
         factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
@@ -3874,9 +3860,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var fn = aFunction(this);
       var partArgs = slice.call(arguments, 1);
 
-      var boundFunction = function bound()
-      /* args... */
-      {
+      var boundFunction = function bound() {
         var args = partArgs.concat(slice.call(arguments));
         return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
       };
@@ -5321,9 +5305,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _NullProtoObject = activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame();
       var length = enumBugKeys.length;
 
-      while (length--) {
-        delete _NullProtoObject[PROTOTYPE][enumBugKeys[length]];
-      }
+      while (length--) delete _NullProtoObject[PROTOTYPE][enumBugKeys[length]];
 
       return _NullProtoObject();
     };
@@ -5383,9 +5365,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var index = 0;
       var key;
 
-      while (length > index) {
-        definePropertyModule.f(O, key = keys[index++], Properties[key]);
-      }
+      while (length > index) definePropertyModule.f(O, key = keys[index++], Properties[key]);
 
       return O;
     };
@@ -5645,15 +5625,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var result = [];
       var key;
 
-      for (key in O) {
-        !has(hiddenKeys, key) && has(O, key) && result.push(key);
-      } // Don't enum bug & hidden keys
+      for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key); // Don't enum bug & hidden keys
 
 
-      while (names.length > i) {
-        if (has(O, key = names[i++])) {
-          ~indexOf(result, key) || result.push(key);
-        }
+      while (names.length > i) if (has(O, key = names[i++])) {
+        ~indexOf(result, key) || result.push(key);
       }
 
       return result;
@@ -5920,9 +5896,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     "./node_modules/core-js/internals/redefine.js");
 
     module.exports = function (target, src, options) {
-      for (var key in src) {
-        redefine(target, key, src[key], options);
-      }
+      for (var key in src) redefine(target, key, src[key], options);
 
       return target;
     };
@@ -6626,9 +6600,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var n = toInteger(count);
       if (n < 0 || n == Infinity) throw RangeError('Wrong number of repetitions');
 
-      for (; n > 0; (n >>>= 1) && (str += str)) {
-        if (n & 1) result += str;
-      }
+      for (; n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
 
       return result;
     };
@@ -6790,9 +6762,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var args = [];
         var i = 1;
 
-        while (arguments.length > i) {
-          args.push(arguments[i++]);
-        }
+        while (arguments.length > i) args.push(arguments[i++]);
 
         queue[++counter] = function () {
           // eslint-disable-next-line no-new-func
@@ -7270,9 +7240,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             len = toLength(E.length);
             if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
 
-            for (k = 0; k < len; k++, n++) {
-              if (k in E) createProperty(A, n, E[k]);
-            }
+            for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
           } else {
             if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
             createProperty(A, n++, E);
@@ -7962,16 +7930,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       stat: true,
       forced: ISNT_GENERIC
     }, {
-      of: function of()
-      /* ...args */
-      {
+      of: function of() {
         var index = 0;
         var argumentsLength = arguments.length;
         var result = new (typeof this == 'function' ? this : Array)(argumentsLength);
 
-        while (argumentsLength > index) {
-          createProperty(result, index, arguments[index++]);
-        }
+        while (argumentsLength > index) createProperty(result, index, arguments[index++]);
 
         result.length = argumentsLength;
         return result;
@@ -8171,9 +8135,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         result = new (Constructor === undefined ? Array : Constructor)(max(fin - k, 0));
 
-        for (n = 0; k < fin; k++, n++) {
-          if (k in O) createProperty(result, n, O[k]);
-        }
+        for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
 
         result.length = n;
         return result;
@@ -8392,9 +8354,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             if (from in O) O[to] = O[from];else delete O[to];
           }
 
-          for (k = len; k > len - actualDeleteCount + insertCount; k--) {
-            delete O[k - 1];
-          }
+          for (k = len; k > len - actualDeleteCount + insertCount; k--) delete O[k - 1];
         } else if (insertCount > actualDeleteCount) {
           for (k = len - actualDeleteCount; k > actualStart; k--) {
             from = k + actualDeleteCount - 1;
@@ -8656,9 +8616,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (typeof this != 'function' || !isObject(O)) return false;
           if (!isObject(this.prototype)) return O instanceof this; // for environment w/o native `@@hasInstance` logic enough `instanceof`, but add this:
 
-          while (O = getPrototypeOf(O)) {
-            if (this.prototype === O) return true;
-          }
+          while (O = getPrototypeOf(O)) if (this.prototype === O) return true;
 
           return false;
         }
@@ -11349,9 +11307,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var keys = getOwnPropertyNames(NativeRegExp);
       var index = 0;
 
-      while (keys.length > index) {
-        proxy(keys[index++]);
-      }
+      while (keys.length > index) proxy(keys[index++]);
 
       RegExpPrototype.constructor = RegExpWrapper;
       RegExpWrapper.prototype = RegExpPrototype;
@@ -12363,9 +12319,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
           // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
 
-          for (var j = 1; j < result.length; j++) {
-            captures.push(maybeToString(result[j]));
-          }
+          for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
 
           var namedCaptures = result.groups;
 
@@ -13533,9 +13487,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var index = 1;
           var $replacer;
 
-          while (arguments.length > index) {
-            args.push(arguments[index++]);
-          }
+          while (arguments.length > index) args.push(arguments[index++]);
 
           $replacer = replacer;
           if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
@@ -15819,7 +15771,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         var noop = function noop() {};
 
-        var ZoneAwarePromise = /*#__PURE__*/function () {
+        var ZoneAwarePromise = /*#__PURE__*/function (_Symbol$toStringTag, _Symbol$species) {
           function ZoneAwarePromise(executor) {
             _classCallCheck(this, ZoneAwarePromise);
 
@@ -15840,12 +15792,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           _createClass(ZoneAwarePromise, [{
-            key: Symbol.toStringTag,
+            key: _Symbol$toStringTag,
             get: function get() {
               return 'Promise';
             }
           }, {
-            key: Symbol.species,
+            key: _Symbol$species,
             get: function get() {
               return ZoneAwarePromise;
             }
@@ -16051,7 +16003,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }]);
 
           return ZoneAwarePromise;
-        }(); // Protect against aggressive optimizers dropping seemingly unused properties.
+        }(Symbol.toStringTag, Symbol.species); // Protect against aggressive optimizers dropping seemingly unused properties.
         // E.g. Closure Compiler in advanced mode.
 
 
@@ -16258,7 +16210,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       function patchPrototype(prototype, fnNames) {
         var source = prototype.constructor['name'];
 
-        var _loop3 = function _loop3(i) {
+        var _loop3 = function _loop3() {
           var name = fnNames[i];
           var delegate = prototype[name];
 
@@ -16266,7 +16218,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var prototypeDesc = ObjectGetOwnPropertyDescriptor(prototype, name);
 
             if (!isPropertyWritable(prototypeDesc)) {
-              return "continue";
+              return 1; // continue
             }
 
             prototype[name] = function (delegate) {
@@ -16281,9 +16233,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         };
 
         for (var i = 0; i < fnNames.length; i++) {
-          var _ret = _loop3(i);
-
-          if (_ret === "continue") continue;
+          if (_loop3()) continue;
         }
       }
 
@@ -18897,7 +18847,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! D:\Angular\Copy of origin project T-shirt_last\t-shirt\t-shirt-backend\t-shirt-frontend\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es5-polyfills.js */
+    /*! /home/suren/Desktop/QuiqPic/t-shirt-frontend/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */
     "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 
     __webpack_require__(
@@ -18905,7 +18855,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     "./node_modules/zone.js/dist/zone-legacy.js");
 
     module.exports = __webpack_require__(
-    /*! D:\Angular\Copy of origin project T-shirt_last\t-shirt\t-shirt-backend\t-shirt-frontend\src\polyfills.ts */
+    /*! /home/suren/Desktop/QuiqPic/t-shirt-frontend/src/polyfills.ts */
     "./src/polyfills.ts");
     /***/
   }
