@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators'
 
 export class AuthServices {
 
-    private token = null
+    private token = null;
 
     constructor(private http: HttpClient) { }
 
@@ -21,19 +21,19 @@ export class AuthServices {
             data => {
                 let res:any = data;
                 console.log('scssessfuli');
-                
+
             }
         );
     };
 
     data() {
-        return this.http.get('api/category').pipe(        
-        )   
+        return this.http.get('api/category').pipe(
+        )
     }
 
 
     register(user: User): Observable<User> {
-        return this.http.post<User>('/api/auth/register', user)
+      return this.http.post<{ token: string }>('/api/auth/register', user);
     }
 
     login(user: User): Observable<{ token: string }> {
@@ -43,6 +43,7 @@ export class AuthServices {
                     ({ token }) => {
                         localStorage.setItem('auth-token', token);
                         this.setToken(token);
+                        console.log(token, "sdf");
                     }
                 )
             )

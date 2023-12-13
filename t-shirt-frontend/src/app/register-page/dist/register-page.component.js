@@ -30,7 +30,7 @@ var RegisterPageComponent = /** @class */ (function () {
         var _this = this;
         this.form.disable();
         this.aSub = this.auth.register(this.form.value).subscribe(function () {
-            _this.router.navigate(['/login'], {
+            _this.router.navigate(['/main'], {
                 queryParams: {
                     registered: true
                 }

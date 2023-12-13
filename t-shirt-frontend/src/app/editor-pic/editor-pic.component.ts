@@ -91,7 +91,7 @@ export class EditorPicComponent implements AfterViewInit {
 
   // public sizeCanvas: { width: number, height: number } = {
   //   // left: 350,
-  //   width:  430, 
+  //   width:  430,
   //   height: 530
   // };
 
@@ -236,7 +236,7 @@ export class EditorPicComponent implements AfterViewInit {
 
     // this.dataService.canvasCount1.subscribe(
 
-    //   res => this.canvasCount = res      
+    //   res => this.canvasCount = res
     // );
 
     $(document).on('click', ".deleteBtn", (event) => {
@@ -248,7 +248,7 @@ export class EditorPicComponent implements AfterViewInit {
     });
 
   }
-  
+
 
 
   ngAfterViewInit(): void {
@@ -488,7 +488,7 @@ export class EditorPicComponent implements AfterViewInit {
         //     } else if (sumHeight > formatHeight) {
         //       console.log('nnnnnnnn');
 
-        //       activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.8));              
+        //       activeObject.scaleX = formatWidth / (activeObject.width / (cos * 0.8));
         //       activeObject.scaleY = formatWidth / (activeObject.width / (cos * 0.8));
         //     }
         //   })
@@ -638,7 +638,7 @@ export class EditorPicComponent implements AfterViewInit {
 
         // var mouse = this.canvas.getPointer(e.memo);
         //  const x = mouse.x;
-        //  const y = mouse.y;  
+        //  const y = mouse.y;
 
         //   e.target.set({
         //     lockScalingX: true,
@@ -1295,7 +1295,7 @@ export class EditorPicComponent implements AfterViewInit {
           // centerTransform: true,
           // textAlign: 'center',
           // pathSide: 'right',
-          // strokeDashOffset: 30, 
+          // strokeDashOffset: 30,
           // originX: 'center',
           // originY: 'center',
         },
@@ -1440,7 +1440,7 @@ export class EditorPicComponent implements AfterViewInit {
           // centerTransform: true,
           // textAlign: 'center',
           // pathSide: 'right',
-          // strokeDashOffset: 30, 
+          // strokeDashOffset: 30,
           // originX: 'center',
           // originY: 'center',
         },
@@ -1699,7 +1699,7 @@ export class EditorPicComponent implements AfterViewInit {
         // top: this.canvas.height / 3.7,
         // originX: 'left',
         // width: 100,
-        // height: 100 
+        // height: 100
       });
       // value.shadow.affectStroke = false;
       // image.panToActiveObject()
@@ -2711,7 +2711,7 @@ export class EditorPicComponent implements AfterViewInit {
     // })
 
     // function onChange(obj) {
-    //   var 
+    //   var
     //     group = obj.target,
     //     scaleX = obj.target.item().width / group.getWidth(),
     //     scaleY = obj.target.item().height / group.getHeight();
@@ -3166,7 +3166,7 @@ export class EditorPicComponent implements AfterViewInit {
     // if (activeObject.type === 'i-text') {
     //   this.intCountText -= 1;
     //   // console.log(this.intCountText);
-    // } 
+    // }
 
     // console.log(activeObject.get('type'), activeObject.type, 'sssss');
 
@@ -3227,7 +3227,7 @@ export class EditorPicComponent implements AfterViewInit {
   public confirmClear(): void {
 
     if (confirm('Are you sure?')) {
-      // location.reload(); 
+      // location.reload();
       this.canvas.remove(...this.canvas.getObjects());
       this.canvasCount = 0;
       $('.owl-nav').show();
@@ -3252,7 +3252,7 @@ export class EditorPicComponent implements AfterViewInit {
 
     // const w = window.open();
     // w.document.write(
-    //   `<div style='margin-top: 100px'>${image.outerHTML}</div>` 
+    //   `<div style='margin-top: 100px'>${image.outerHTML}</div>`
     // // this.hello.nativeElement.innerHTML,
 
     // );

@@ -21,7 +21,6 @@ export class LoginPageComponent implements OnInit {
   constructor(private auth: AuthServices, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -64,16 +63,16 @@ export class LoginPageComponent implements OnInit {
           registered: true
         }
       }),
-      
+
       error => {
-        
+
         console.log(error);
         alert(error.error.message)
         Material.mat(error.error.message)
         this.form.enable()
       }
 
-      
+
     )
   }
 
