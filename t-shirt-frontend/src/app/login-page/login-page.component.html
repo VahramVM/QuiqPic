@@ -1,5 +1,4 @@
 <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
-
     <div class="card-content">
         <span class="card-title">Login to the sistem</span>
         <div class="input-field">
@@ -23,6 +22,7 @@
             </span>
         </div>
     </div>
+    <a class="register-link" routerLink="/register">You don't have an account?</a>
     <div class="card-action">
         <button data-position="bottom" type="submit"
             class="modal-action btn waves-effect" [disabled]="form.invalid">

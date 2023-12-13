@@ -26,11 +26,25 @@ body {
  resize: block
 }
 
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #212121;
+}
+
+::selection {
+  color: white;
+  background: #212121;
+}
+
 html {
     box-sizing: border-box;
 }
 *, *::before, *::after {
     box-sizing: inherit;
+}
+
+app-home-page {
+  overflow-y: scroll;
 }
 
 app-login-page {

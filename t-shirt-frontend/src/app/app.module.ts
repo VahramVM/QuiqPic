@@ -22,11 +22,13 @@ import { PipesPipe } from './shared/pipes.pipe';
 import { BackgroundDirective } from './shared/background.directive';
 import { SizeFormatComponent } from './shared/layouts/site-layout/size-format/size-format.component';
 import { ShopingPageComponent } from './shoping-page/shoping-page.component';
+import { HomeComponent } from './home-page/home/home.component';
+import {RouterModule} from "@angular/router";
 // import { EditorPicComponent } from './editor-pic/editor-pic.component';
 // import {MatSelectModule} from '@angular/material/select';
 
 
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // import { OverlayModule } from '@angular/cdk/overlay';
 // import { SwiperModule } from 'swiper/angular';
@@ -46,7 +48,8 @@ import { ShopingPageComponent } from './shoping-page/shoping-page.component';
     BackgroundDirective,
     SizeFormatComponent,
     ShopingPageComponent,
-    
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { ShopingPageComponent } from './shoping-page/shoping-page.component';
     EditorPicModule,
     BrowserAnimationsModule,
     CarouselModule,
+    RouterModule,
 
 
     // SwiperModule

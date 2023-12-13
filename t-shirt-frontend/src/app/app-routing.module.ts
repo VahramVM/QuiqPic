@@ -7,12 +7,13 @@ import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.co
 import { AuthGuard } from './shared/classes/authguard';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ShopingPageComponent } from './shoping-page/shoping-page.component';
+import {HomeComponent} from "./home-page/home/home.component";
 
 
 const routes: Routes = [
   {
     path: '', component: AuthLayoutComponent, children: [
-      { path: '', redirectTo: '/register', pathMatch: 'full' },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterPageComponent },
 
@@ -23,6 +24,10 @@ const routes: Routes = [
       { path: 'main', component: SiteLayoutComponent},
       { path: 'order', component: ShopingPageComponent},
     ]
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 ];
 

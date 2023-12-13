@@ -1,0 +1,25 @@
+<div class="main-view">
+  <div class="layout">
+    <header>
+      <div class="container">
+        <a class="nav_link sign_up" routerLink="/register">Sign Up</a>
+      </div>
+    </header>
+    <div class="container">
+      <div class="flex_box">
+        <div>
+          <h1>a website where you can come up with something more creative for a T-shirt</h1>
+          <a (click)="scroll()" class="link_start">Start learn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <video class="bg-video" src="assets/videos/background.mp4" autoplay loop muted></video>
+  <div #simulator_block class="simulator_vd_box">
+    <h3 class="simulator_title">learn by example</h3>
+    <div class="video-box">
+      <video class="simulator_vd" controls autoplay loop muted src="assets/videos/simulator.mp4"></video>
+    </div>
+    <a class="start_creative_link" routerLink="/register">Start creative</a>
+  </div>
+</div>
