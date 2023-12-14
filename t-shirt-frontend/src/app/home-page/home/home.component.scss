@@ -162,3 +162,72 @@ header > .container {
   border-radius: 20px;
   margin-top: 10px;
 }
+
+
+// media
+
+@media  screen and (max-width: 1300px){
+  .container {
+    width: 95%;
+  }
+}
+
+@media  screen and (max-width: 800px){
+  .container {
+    width: 90%;
+  }
+}
+
+@media  screen and (max-width: 720px){
+  .video-box {
+    width: 90%;
+  }
+
+  .simulator_vd_box > video {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media  screen and (max-width: 660px){
+  h1 {
+    font-size: 60px;
+  }
+}
+
+@media  screen and (max-width: 600px){
+  h1 {
+    font-size: 50px;
+  }
+
+  .video-box {
+    height: 300px;
+  }
+}
+
+@media  screen and (max-width: 500px){
+  h1 {
+    font-size: 45px;
+  }
+
+  .video-box {
+    height: 200px;
+  }
+}
+
+@media  screen and (max-width: 430px){
+  .simulator_title {
+    font-size: 30px;
+  }
+}
+
+
+@media  screen and (max-width: 380px){
+  h1 {
+    font-size: 40px;
+  }
+
+  .video-box {
+    height: 170px;
+  }
+}
