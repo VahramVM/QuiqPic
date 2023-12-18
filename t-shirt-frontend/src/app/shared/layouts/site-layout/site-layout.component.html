@@ -336,10 +336,9 @@
         </div>
 
 
-        <div *ngIf="checkWith"
-            style="overflow-y: scroll; width: 100%;  max-width: 100%; overflow-x: hidden; max-height: 400px; position: absolute;  overflow-x: hidden;  margin-top: 130%;">
+        <div class="tools_bar" *ngIf="checkWith">
             <div style="background-color:rgb(228, 232, 243); height: 580px; overflow-y: hidden; overflow-x: hidden;"
-                id="nav-mobile" class="center-align hide-on-med-and-up ">
+                 class="center-align hide-on-med-and-up ">
                 <ul class="tabs tabs-fixed-width tab-demo z-depth-1"
                     style="height: 40px; background-color:rgb(255, 255, 255);">
                     <li class="tab"><a id="ilo" href="#futerSide1"> <i class="small material-icons"
@@ -362,7 +361,6 @@
                         <!-- <ng-template #display>
                             Select color
                         </ng-template> -->
-
 
                         <div
                             style="overflow-y: scroll; max-width: 100%; overflow-x: hidden; max-height: 400px; margin-top: 2%;">
@@ -932,7 +930,57 @@
                 </div>
 
 
+
             </div>
+        </div>
+
+
+        <div class="tools_bar_mobile">
+          <div>
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <i (click)="openBrandBlock()" class="material-icons mobile-tool-icon">settings_accessibility</i>
+              <span class="mobile-tool-iconDown-text">brands</span>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; flex-direction: column; align-items: center; margin-left: 40px">
+              <i (click)="openColorBlock()" class="material-icons mobile-tool-icon">palette</i>
+              <span class="mobile-tool-iconDown-text">Color</span>
+            </div>
+          </div>
+        </div>
+        <div
+          [style.opacity]="isOpenedBrandBlock ? '1' : '0'"
+          [style.bottom]="isOpenedBrandBlock ? '93px' : '-60px'"
+          class="tool-block">
+          <div class="card-panel hoverable " style="margin-top: 3%; margin-right: 0%;" id="show"
+               *ngFor="let imageProduct of products; let i = index" (click)="
+                                 canvas.props.canvasImage = imageProduct.type;
+                                 canvas.props.canvasFill = productBrandColors[0];
+                                 allColors = true;
+                                 orderDatas.productTypeName = imageProduct.name;
+                                 orderDatas.productColor = '';
+                                 indexBrandType = i;
+                                 setCanvasImage();
+                                 productsTypeColor();" (colorPickerChange)="setCanvasFill()">
+            <img class="productType" [src]="imageProduct.type1">
+            <p style="margin-top: -40%; margin-left: -30%;">{{imageProduct.name}}</p>
+            <!-- [style.background]="canvas.props.canvasFill" [value]="canvas.props.canvasFill" -->
+          </div>
+        </div>
+        <div
+          [style.opacity]="isOpenedColorBlock ? '1' : '0'"
+          [style.bottom]="isOpenedColorBlock ? '93px' : '-60px'"
+          class="tool-block">
+          <div *ngIf="allColors">
+            <div class="card-panel hoverable" *ngFor="let color of arrColor" role="option"
+                 [style.background]="color" [attr.aria-selected]="color == selectColor"
+                 (click)="
+                   canvas.props.canvasFill = color;
+                   orderDatas.productColor = color;
+                   setCanvasFill()" (colorPickerChange)="setCanvasFill()">
+            </div>
+          </div>
         </div>
 
 

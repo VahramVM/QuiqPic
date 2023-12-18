@@ -24,6 +24,7 @@ import { SizeFormatComponent } from './shared/layouts/site-layout/size-format/si
 import { ShopingPageComponent } from './shoping-page/shoping-page.component';
 import { HomeComponent } from './home-page/home/home.component';
 import {RouterModule} from "@angular/router";
+// import {MatIconModule} from "@angular/material/icon";
 // import { EditorPicComponent } from './editor-pic/editor-pic.component';
 // import {MatSelectModule} from '@angular/material/select';
 
@@ -51,27 +52,28 @@ import {RouterModule} from "@angular/router";
     HomeComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ColorPickerModule,
-    EditorPicModule,
-    BrowserAnimationsModule,
-    CarouselModule,
-    RouterModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        ColorPickerModule,
+        EditorPicModule,
+        BrowserAnimationsModule,
+        CarouselModule,
+        RouterModule,
+        // MatIconModule,
 
 
-    // SwiperModule
+        // SwiperModule
 
-    // OwlModule
-    // NgbModule
-    // OverlayModule
+        // OwlModule
+        // NgbModule
+        // OverlayModule
 
-    // MatTooltipModule
-  ],
+        // MatTooltipModule
+    ],
   providers: [EditorPicModule],
   bootstrap: [AppComponent]
 })

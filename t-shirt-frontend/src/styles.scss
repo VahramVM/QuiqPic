@@ -43,6 +43,10 @@ html {
     box-sizing: inherit;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 app-home-page {
   overflow-y: scroll;
 }

@@ -885,5 +885,25 @@ export class SiteLayoutComponent implements AfterViewInit {
   }
 
 
+  //   mobile tool script
+  isOpenedBrandBlock: boolean = false;
+  isOpenedColorBlock: boolean = false;
 
+  openBrandBlock() {
+    if (this.isOpenedBrandBlock) {
+      this.isOpenedBrandBlock = false;
+    } else {
+      this.isOpenedBrandBlock = true;
+      this.isOpenedColorBlock = false;
+    }
+  }
+
+  openColorBlock() {
+    if (this.isOpenedColorBlock) {
+      this.isOpenedColorBlock = false;
+    } else {
+      this.isOpenedColorBlock = true;
+      this.isOpenedBrandBlock = false;
+    }
+  }
 }
